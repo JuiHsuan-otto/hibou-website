@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiBOU 喜福生活苑｜精品電商全功能版 V10-Pro (Copywriting Optimized)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7A9A7E; --moss: #4A6741; --cream: #FAF7F2; --warm-white: #FFFDF9; --charcoal: #2C2C2C; --gold: #C9A97A;
+            --blue-soft: #A3B8C2; --pink-soft: #E8C3BC;
+            --bg-texture: radial-gradient(var(--cream) 0.5px, transparent 0.5px);
+        }
+        
+        body { 
+            font-family: "Noto Sans TC", sans-serif; 
+            background-color: var(--warm-white); 
+            background-image: var(--bg-texture);
+            background-size: 30px 30px;
+            color: var(--charcoal); 
+            margin: 0; 
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 { font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 0.1em; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* 1. HERO */
+        .hero { position: relative; padding: 180px 0 120px; background: var(--cream); text-align: center; overflow: hidden; }
+        .hero-title { position: relative; z-index: 2; margin-bottom: 80px; }
+        .hero-title h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); margin: 0; color: var(--charcoal); opacity: 0.9; line-height: 1.25; font-weight: 900; }
+        .hero-title p { font-size: 1.6rem; color: var(--moss); letter-spacing: 0.4em; margin-top: 25px; font-weight: 500; }
+        .hero-img-container { max-width: 960px; margin: 50px auto 0; position: relative; z-index: 1; }
+        .hero-img-container img {
+            width: 100%; opacity: 0.85; filter: contrast(0.9) saturate(0.85) brightness(1.02);
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 90%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 90%);
+        }
+
+        /* 0. SEO SNIPPET (Zero Position - AIDA Interest) */
+        .seo-snippet { 
+            background: #fff; 
+            padding: 50px 24px; 
+            text-align: center; 
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .seo-snippet p { 
+            max-width: 850px; 
+            margin: 0 auto; 
+            font-size: 1.2rem; 
+            color: var(--moss); 
+            font-style: italic;
+            line-height: 2.2;
+            font-weight: 400;
+        }
+
+        /* 2. 防潑水特性 (PAS Model) */
+        .sec-waterproof { padding: 160px 0; background: linear-gradient(to bottom, var(--cream), #fff); }
+        .feature-block { display: flex; flex-direction: column; align-items: center; gap: 80px; }
+        @media (min-width: 768px) { .feature-block { flex-direction: row; } }
+        .feature-block .img-side { flex: 1.2; padding: 15px; background: #fff; box-shadow: 0 40px 100px rgba(0,0,0,0.05); border-radius: 4px; }
+        .feature-block .text-side { flex: 1; }
+        .feature-block h2 { font-size: 2.4rem; color: var(--moss); margin-bottom: 35px; border-left: 10px solid var(--gold); padding-left: 30px; line-height: 1.4; }
+        .feature-block p { font-size: 1.15rem; color: #555; }
+
+        /* 3. 情境展示 (FAB Model) */
+        .sec-usage { padding: 160px 0; background: #fff; }
+        .usage-row { display: grid; grid-template-columns: 1fr; gap: 100px; }
+        @media (min-width: 768px) { .usage-row { grid-template-columns: 1fr 1fr; } }
+        .usage-card { background: transparent; display: flex; flex-direction: column; }
+        .usage-card .img-wrap { aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.03); background: var(--cream); }
+        .usage-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); opacity: 0.95; }
+        .usage-card:hover img { transform: scale(1.08); opacity: 1; }
+        .usage-card .content { padding: 40px 0; text-align: center; }
+        .usage-card h3 { font-size: 1.8rem; color: var(--moss); margin-bottom: 20px; }
+        .usage-card h3::after { content: ""; display: block; width: 40px; height: 1px; background: var(--gold); margin: 15px auto; }
+        .usage-card p { font-size: 1.15rem; color: #666; line-height: 1.9; }
+
+        /* 4. 花色選擇區 (Desire & Action) */
+        .sec-styles { padding: 160px 0; background: var(--warm-white); }
+        .style-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 60px; 
+            max-width: 900px; 
+            margin: 80px auto 0;
+        }
+        @media (min-width: 768px) { .style-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+        .style-card { text-align: center; background: #fff; padding: 25px; border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.03); transition: all 0.4s ease; border: 1px solid transparent; }
+        .style-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: var(--gold); }
+        .style-img-wrap { width: 100%; aspect-ratio: 1 / 1; margin-bottom: 30px; border-radius: 2px; overflow: hidden; }
+        .style-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .style-card:hover .style-img-wrap img { transform: scale(1.05); }
+        .style-name { font-size: 1.6rem; color: var(--charcoal); margin-bottom: 25px; }
+        .btn-buy { display: inline-block; background: var(--moss); color: #fff; padding: 16px 60px; border-radius: 50px; text-decoration: none; font-weight: 700; letter-spacing: 3px; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(74,103,65,0.2); border: none; cursor: pointer; }
+        .btn-buy:hover { background: var(--gold); transform: scale(1.05); }
+
+        /* 5. 規格 (Expertise) */
+        .sec-specs { padding: 120px 0; background: var(--cream); }
+        .specs-card { background: #fff; padding: 80px 60px; border-radius: 4px; box-shadow: 0 30px 80px rgba(0,0,0,0.02); position: relative; }
+        .specs-card::before { content: "Expert Specs"; position: absolute; top: 30px; left: 30px; font-family: "Noto Serif TC"; font-size: 0.8rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; }
+        .spec-item { border-bottom: 1px solid #f2f2f2; padding: 20px 0; font-size: 1.1rem; }
+        .spec-item b { color: var(--moss); width: 120px; display: inline-block; font-weight: 700; }
+
+        /* 6. 手繪圖示意區 */
+        .sec-illus { padding: 140px 0; background: #fff; }
+        .illus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        @media (min-width: 768px) { .illus-grid { grid-template-columns: repeat(4, 1fr); gap: 60px; } }
+        .illus-item { text-align: center; }
+        .illus-img-box { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; background: var(--cream); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .illus-img-box img { max-height: 70%; width: auto; filter: grayscale(0.1) opacity(0.8); }
+        .illus-item p { font-family: "Noto Serif TC"; font-weight: 700; font-size: 1.1rem; color: var(--moss); }
+
+        .warning-box { margin-top: 100px; padding: 50px; background: rgba(201,169,122,0.05); border: 1px solid var(--gold); border-radius: 4px; text-align: left; }
+        footer { text-align: center; padding: 140px 0; color: #999; font-size: 0.85rem; letter-spacing: 3px; border-top: 1px solid #f0f0f0; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO (AIDA - Attention) -->
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero-title">
+                <h1>【HiBOU 喜福】機能防風罩｜抗UV、防潑水<br>定義推車與揹巾的質感防護標準</h1>
+                <p>「 育 兒 旅 程， 由 我 溫 柔 守 護 」</p>
+            </div>
+            <div class="hero-img-container">
+                <img src="./hibou-web/public/images/detail_scenes/image_1.webp" alt="英雄情境照">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO SNIPPET (AIDA - Interest / Featured Snippet) -->
+    <section class="seo-snippet">
+        <div class="wrap">
+            <p>HiBOU 喜福機能防風罩為追求極致育兒品質的家長而生。結合 UPF50+ 專業抗 UV 技術與高效防潑水機能，專門應對台灣潮濕多風的氣候。無論是揹巾、推車或戶外哺乳，單件即可靈活切換。獨家專利分腿設計能精準阻絕寒風，讓寶寶在每一場探索中，始終感受如在母親懷中的溫暖舒適。</p>
+        </div>
+    </section>
+
+    <!-- 特性展示 (PAS - Problem-Agitation-Solution) -->
+    <section class="sec-waterproof">
+        <div class="wrap feature-block">
+            <div class="img-side"><img src="./hibou-web/public/images/products/image_25.webp"></div>
+            <div class="text-side">
+                <h2>別讓突如其來的小雨，<br>打斷了寶寶探索世界的興致</h2>
+                <p><b>[Problem]</b> 帶寶寶出門最怕變天。細雨、冷風或路邊的噴濺水花，常讓家長措手不及。<br><br><b>[Agitation]</b> 濕冷的衣物不僅讓寶寶不適大哭，更大大增加了著涼感冒的風險。而在戶外要即時清理髒汙，更是育兒的一大挑戰。<br><br><b>[Solution]</b> HiBOU 專用防潑水機能布料採用先進奈米技術，讓水珠觸碰瞬間自然滑落，髒汙一抹即淨。內層始終保持乾爽透氣，為寶寶打造一個無懼風雨的行動保護殼。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 情境展示 (FAB - Feature-Advantage-Benefit) -->
+    <section class="sec-usage">
+        <div class="wrap">
+            <div class="section-header" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 2.8rem; color: var(--moss); letter-spacing: 0.2em;">全場景適配 ‧ 優雅切換</h2>
+            </div>
+            <div class="usage-row">
+                <!-- 揹巾用 (FAB) -->
+                <div class="usage-card">
+                    <div class="img-wrap"><img src="./hibou-web/public/images/usage_scenes/%E5%96%9C%E7%A6%8F-06736-jpg.webp"></div>
+                    <div class="content">
+                        <h3>揹巾推薦：冷風不再灌入</h3>
+                        <p><b>[Feature]</b> 布料厚度加強與專利扣點。<br><b>[Advantage]</b> 完美貼合揹巾邊緣，阻隔外界溫差。<br><b>[Benefit]</b> 即便在日夜溫差 10 度的傍晚出遊，您也能安心感受寶寶在懷中平穩的呼吸與體溫。</p>
+                    </div>
+                </div>
+                <!-- 推車用 (FAB) -->
+                <div class="usage-card">
+                    <div class="img-wrap"><img src="./hibou-web/public/images/usage_scenes/stroller_new.jpg"></div>
+                    <div class="content">
+                        <h3>推車必備：移動的小城堡</h3>
+                        <p><b>[Feature]</b> 彈性固定繩與寬大遮蓋面。<br><b>[Advantage]</b> 能穩固安裝於各類品牌推車，無懼強風吹襲。<br><b>[Benefit]</b> 讓吵雜的城市街頭，瞬間變身為安靜、遮光且避風的睡眠艙，讓寶寶在移動中也能睡得安穩。</p>
+                    </div>
+                </div>
+                <!-- 外出專用哺乳巾 (FAB) -->
+                <div class="usage-card">
+                    <div class="img-wrap"><img src="./hibou-web/public/images/usage_scenes/breastfeeding_new.jpg"></div>
+                    <div class="content">
+                        <h3>隱密哺乳：找回出門的自由</h3>
+                        <p><b>[Feature]</b> 輕量化摺疊設計與高遮蓋係數。<br><b>[Advantage]</b> 隨身收納不佔空間，展開即是私密空間。<br><b>[Benefit]</b> 不必再尋找哺乳室，在公園草地、餐廳一隅，您都能優雅、從容地享受與寶寶的親密時光。</p>
+                    </div>
+                </div>
+                <!-- 獨家專利分腿包腳 (FAB) -->
+                <div class="usage-card">
+                    <div class="img-wrap"><img src="./hibou-web/public/images/usage_scenes/image_10.webp"></div>
+                    <div class="content">
+                        <h3>分腿設計：暖意不遺漏</h3>
+                        <p><b>[Feature]</b> 獨家分腿扣點設計。<br><b>[Advantage]</b> 從整體罩裝一秒切換為分腿包覆，徹底封鎖腳底冷風。<br><b>[Benefit]</b> 保護寶寶細嫩的小腳丫免受寒風侵襲，徹底解決家長最擔心的「腳底冷、全體寒」的問題。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 花色選購區 (AIDA - Desire & Action) -->
+    <section class="sec-styles wrap">
+        <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 2.6rem; color: var(--moss);">挑選您的育兒風格</h2>
+        </div>
+        <div class="style-grid">
+            <div class="style-card">
+                <div class="style-img-wrap"><img src="./hibou-web/public/images/styles/style_grey_blue.jpg"></div>
+                <h4 class="style-name">灰灰藍恐龍</h4>
+                <p style="color: #888; margin-bottom: 25px;">中性優雅的色調，百搭各式推車與揹巾，展現家長的高雅品味。</p>
+                <a href="#" class="btn-buy">立即收藏</a>
+            </div>
+            <div class="style-card">
+                <div class="style-img-wrap"><img src="./hibou-web/public/images/styles/style_flower_pink.jpg"></div>
+                <h4 class="style-name">花花粉恐龍</h4>
+                <p style="color: #888; margin-bottom: 25px;">溫潤柔美的色彩，為寶寶的出遊穿搭增添一抹溫馨的氛圍。</p>
+                <a href="#" class="btn-buy">立即收藏</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 規格 (Trust & Expertise) -->
+    <section class="sec-specs">
+        <div class="wrap">
+            <div class="specs-card">
+                <h3 style="text-align: center; margin-bottom: 50px; color: var(--moss); font-size: 2rem;">專業規格與認證</h3>
+                <div class="spec-item"><b>科技材質</b> 高機能 UPF50+ 專業抗UV布料 + 親膚透氣雙重紗</div>
+                <div class="spec-item"><b>核心工藝</b> 台灣在地職人手工製造 (MIT)，嚴控每一道車縫線</div>
+                <div class="spec-item"><b>尺寸基準</b> 66 x 76 cm (優化包覆比例，不含帽)</div>
+                <div class="spec-item"><b>安全檢驗</b> 國家級安全合格認證 BSMI: M55352，不含螢光劑、甲醛</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 手繪圖示意區 -->
+    <section class="sec-illus wrap">
+        <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 1.2rem; letter-spacing: 0.6em; opacity: 0.5;">USAGE ILLUSTRATIONS</h2>
+        </div>
+        <div class="illus-grid">
+            <div class="illus-item">
+                <div class="illus-img-box"><img src="./hibou-web/public/images/illustrations/image_2.webp"></div>
+                <p>背帶搭配</p>
+            </div>
+            <div class="illus-item">
+                <div class="illus-img-box"><img src="./hibou-web/public/images/illustrations/image_4.webp"></div>
+                <p>哺乳巾使用</p>
+            </div>
+            <div class="illus-item">
+                <div class="illus-img-box"><img src="./hibou-web/public/images/illustrations/image_6.webp"></div>
+                <p>推車上使用</p>
+            </div>
+            <div class="illus-item">
+                <div class="illus-img-box"><img src="./hibou-web/public/images/illustrations/image_14.webp"></div>
+                <p>寶寶包巾</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="wrap">
+        <div class="warning-box">
+            <p>🛡️ <b>洗滌與保養建議</b>：為維護高機能防潑水塗層與 UPF 防護壽命，建議手洗或使用中性洗劑。請避免使用漂白劑、柔軟精或強效酵素洗劑，以確保機能持久如新。</p>
+        </div>
+        <p style="margin-top: 80px;">&copy; 2026 HIBOU 喜福生活苑 ｜ 讓科技機能成為育兒最溫柔的後盾</p>
+    </footer>
+
+</body>
+</html>

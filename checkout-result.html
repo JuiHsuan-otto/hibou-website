@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單結果｜HiBOU 喜福生活苑</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7A9A7E; --moss: #4A6741; --cream: #FAF7F2;
+            --warm-white: #FFFDF9; --charcoal: #2C2C2C; --gold: #C9A97A;
+            --error: #C0614A;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Noto Sans TC", sans-serif;
+            background: var(--warm-white);
+            background-image: radial-gradient(var(--cream) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #fff;
+            border-bottom: 1px solid #E5E0D8;
+            padding: 18px 24px;
+            text-align: center;
+        }
+        .logo {
+            font-family: "Noto Serif TC", serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--moss);
+            text-decoration: none;
+        }
+        .logo span { color: var(--gold); }
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .result-card {
+            background: #fff;
+            border: 1px solid #E5E0D8;
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+        .result-icon {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 24px;
+        }
+        .result-icon.success { background: #e8f4e8; }
+        .result-icon.fail    { background: #fdf0ee; }
+        h1 {
+            font-family: "Noto Serif TC", serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        h1.success { color: var(--moss); }
+        h1.fail    { color: var(--error); }
+        .trade-no {
+            font-size: 0.78rem;
+            color: #aaa;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.9;
+            margin-bottom: 28px;
+        }
+        .btn {
+            display: inline-block;
+            border-radius: 50px;
+            padding: 13px 36px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            transition: background 0.2s;
+            margin: 4px;
+        }
+        .btn-primary { background: var(--moss); color: #fff; }
+        .btn-primary:hover { background: #3a5632; }
+        .btn-outline {
+            background: transparent;
+            color: var(--moss);
+            border: 1.5px solid var(--moss);
+        }
+        .btn-outline:hover { background: #f0f5f0; }
+        .atm-info {
+            background: var(--cream);
+            border: 1px solid #E5E0D8;
+            border-radius: 10px;
+            padding: 16px 20px;
+            text-align: left;
+            margin-bottom: 24px;
+            font-size: 0.82rem;
+            color: var(--charcoal);
+            line-height: 2;
+        }
+        .atm-info strong { color: var(--moss); }
+    </style>
+</head>
+<body>
+<header>
+    <a href="index.html" class="logo">HiBOU <span>喜福</span>生活苑</a>
+</header>
+
+<main>
+    <div class="result-card" id="result-card">
+        <!-- 動態填入 -->
+    </div>
+</main>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const success = params.get('success') === '1';
+const tradeNo = params.get('tradeNo') || '';
+const msg     = params.get('msg') || '';
+const card    = document.getElementById('result-card');
+
+if (success) {
+    card.innerHTML = `
+        <div class="result-icon success">✅</div>
+        <h1 class="success">付款成功！</h1>
+        <p class="trade-no">訂單編號：${tradeNo}</p>
+        <p>
+            感謝您購買 HiBOU 機能防風罩 🎉<br>
+            訂單確認信已寄至您的信箱，<br>
+            我們將於 1-2 個工作天內安排出貨。
+        </p>
+        <a href="index.html" class="btn btn-primary">回首頁</a>
+    `;
+} else {
+    // 判斷是否為 ATM / 超商代碼（等待付款）
+    const isPending = msg.includes('ATM') || msg.includes('CVS') || msg.includes('繳費');
+    if (isPending) {
+        card.innerHTML = `
+            <div class="result-icon success">🏧</div>
+            <h1 class="success">訂單成立，等待付款</h1>
+            <p class="trade-no">訂單編號：${tradeNo}</p>
+            <div class="atm-info">
+                <strong>付款說明</strong><br>
+                繳費帳號已寄至您的信箱，<br>
+                請於 <strong>3 天內</strong> 完成付款，<br>
+                付款完成後將自動安排出貨。
+            </div>
+            <a href="index.html" class="btn btn-primary">回首頁</a>
+        `;
+    } else {
+        card.innerHTML = `
+            <div class="result-icon fail">❌</div>
+            <h1 class="fail">付款未完成</h1>
+            <p class="trade-no">訂單編號：${tradeNo}</p>
+            <p>
+                付款過程中發生問題，<br>
+                您的訂單尚未成立，請重新嘗試。<br>
+                <small style="color:#bbb;">${msg}</small>
+            </p>
+            <a href="checkout.html" class="btn btn-primary">重新結帳</a>
+            <a href="index.html" class="btn btn-outline">回首頁</a>
+        `;
+    }
+}
+</script>
+</body>
+</html>
