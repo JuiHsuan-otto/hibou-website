@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiBOU 網站維護 SOP｜OpenClaw 操作手冊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741; --sage: #7A9A7E; --sand: #C9A97A;
+    --cream: #FAF7F2; --charcoal: #2C2C2C; --soft-gray: #6A6A6A;
+    --light-gray: #F0EDE8; --orange: #D4845A;
+    --code-bg: #1e2227; --code-fg: #abb2bf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: #f8f9fa; color: var(--charcoal); line-height: 1.7; }
+
+  /* NAV */
+  .doc-nav {
+    position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
+    background: white; border-right: 1px solid var(--light-gray);
+    overflow-y: auto; padding: 1.5rem 0; z-index: 50;
+  }
+  .doc-nav-logo {
+    padding: 0 1.5rem 1.25rem;
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 1rem;
+  }
+  .doc-nav-logo .brand { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: var(--moss); }
+  .doc-nav-logo .sub { font-size: 0.68rem; color: var(--soft-gray); letter-spacing: 0.1em; margin-top: 0.2rem; }
+  .nav-section-title { font-size: 0.65rem; letter-spacing: 0.18em; color: var(--soft-gray); text-transform: uppercase; padding: 0.75rem 1.5rem 0.35rem; }
+  .doc-nav a {
+    display: block; padding: 0.4rem 1.5rem; font-size: 0.8rem;
+    color: var(--soft-gray); text-decoration: none; transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .doc-nav a:hover { color: var(--moss); background: var(--cream); border-left-color: var(--sage); }
+  .doc-nav a.active { color: var(--moss); font-weight: 500; border-left-color: var(--moss); }
+
+  /* MAIN */
+  .doc-main { margin-left: 260px; padding: 3rem 4rem 6rem; max-width: 960px; }
+
+  /* HEADER */
+  .doc-header {
+    background: linear-gradient(135deg, var(--moss) 0%, #3a5233 100%);
+    color: white; padding: 3rem; border-radius: 16px; margin-bottom: 3rem;
+    position: relative; overflow: hidden;
+  }
+  .doc-header::before {
+    content: '🦉'; position: absolute; right: 3rem; top: 50%;
+    transform: translateY(-50%); font-size: 5rem; opacity: 0.15;
+  }
+  .doc-header-badge { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+  .doc-header h1 { font-family: 'Noto Serif TC', serif; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.4; }
+  .doc-header-meta { display: flex; gap: 1.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.65); flex-wrap: wrap; }
+  .doc-header-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+  /* SECTIONS */
+  .doc-section { margin-bottom: 3.5rem; }
+  .section-anchor { display: block; height: 80px; margin-top: -80px; }
+
+  h2.section-title {
+    font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 1.5rem;
+    padding: 0.85rem 1.25rem; background: var(--cream);
+    border-left: 4px solid var(--moss); border-radius: 0 10px 10px 0;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  h3.sub-title {
+    font-size: 1rem; font-weight: 600; color: var(--moss);
+    margin: 2rem 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  h3.sub-title::before { content: '▸'; font-size: 0.75rem; }
+  h4 { font-size: 0.9rem; font-weight: 600; color: var(--charcoal); margin: 1.5rem 0 0.5rem; }
+  p { font-size: 0.9rem; color: #444; margin-bottom: 1rem; line-height: 1.85; }
+
+  /* TASK CARDS */
+  .task-card {
+    background: white; border-radius: 14px; border: 1px solid var(--light-gray);
+    overflow: hidden; margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .task-card-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .task-letter {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 700; color: white;
+  }
+  .task-letter.a { background: var(--moss); }
+  .task-letter.b { background: var(--orange); }
+  .task-letter.c { background: var(--sand); color: var(--charcoal); }
+  .task-letter.d { background: var(--sage); }
+  .task-letter.e { background: #7b6fa0; }
+  .task-letter.f { background: #5a8fa0; }
+  .task-card-header-info h3 { font-size: 0.95rem; font-weight: 600; color: var(--charcoal); }
+  .task-card-header-info p { font-size: 0.75rem; color: var(--soft-gray); margin: 0; }
+  .task-card-body { padding: 1.5rem; }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 1rem; }
+  .step {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .step-num {
+    width: 26px; height: 26px; background: var(--moss); color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 600; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; font-size: 0.85rem; color: #444; line-height: 1.8; }
+  .step-content strong { color: var(--charcoal); }
+
+  /* CODE */
+  pre {
+    background: var(--code-bg); color: var(--code-fg);
+    padding: 1.25rem 1.5rem; border-radius: 10px; overflow-x: auto;
+    font-size: 0.8rem; line-height: 1.7; margin: 1rem 0;
+    font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+  }
+  code {
+    background: rgba(74,103,65,0.1); color: var(--moss);
+    padding: 0.15rem 0.45rem; border-radius: 4px;
+    font-size: 0.82em; font-family: monospace;
+  }
+  pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+  .comment { color: #5c6370; font-style: italic; }
+  .keyword { color: #c678dd; }
+  .string { color: #98c379; }
+  .tag { color: #e06c75; }
+  .attr { color: #d19a66; }
+  .value { color: #98c379; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.83rem; }
+  th { background: var(--cream); padding: 0.65rem 1rem; text-align: left; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.05em; color: var(--charcoal); border-bottom: 2px solid var(--light-gray); }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--light-gray); color: #444; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--cream); }
+  td code { font-size: 0.78rem; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.85rem; color: #444; padding: 0.5rem 0.75rem;
+    background: white; border: 1px solid var(--light-gray);
+    border-radius: 8px; transition: border-color 0.2s;
+  }
+  .checklist li:hover { border-color: var(--sage); }
+  .check-box {
+    width: 18px; height: 18px; border: 2px solid var(--light-gray);
+    border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+    transition: all 0.2s; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; font-size: 0.7rem;
+  }
+  .checklist li.done .check-box { background: var(--moss); border-color: var(--moss); color: white; }
+  .checklist li.done span { text-decoration: line-through; color: var(--soft-gray); }
+
+  /* ALERTS */
+  .alert { padding: 0.85rem 1.25rem; border-radius: 10px; margin: 1rem 0; font-size: 0.85rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+  .alert-warn { background: #fff8e6; border: 1px solid #f0c060; color: #7a5c00; }
+  .alert-info { background: #e8f4e8; border: 1px solid #8cc88c; color: #2a5a2a; }
+  .alert-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+
+  /* QUICK REF */
+  .quick-ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .qr-card {
+    background: white; border: 1px solid var(--light-gray);
+    border-radius: 12px; padding: 1.25rem;
+  }
+  .qr-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; color: var(--moss); text-transform: uppercase; margin-bottom: 0.75rem; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--light-gray); margin: 2.5rem 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .doc-nav { display: none; }
+    .doc-main { margin-left: 0; padding: 2rem 1.5rem 4rem; }
+    .quick-ref-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav class="doc-nav">
+  <div class="doc-nav-logo">
+    <div class="brand">HiBOU 喜福生活苑</div>
+    <div class="sub">OpenClaw 維護 SOP v1.0</div>
+  </div>
+  <div class="nav-section-title">概覽</div>
+  <a href="#overview">專案概覽</a>
+  <a href="#tokens">設計系統 Token</a>
+  <a href="#structure">檔案結構</a>
+  <div class="nav-section-title">任務 SOP</div>
+  <a href="#task-a">A｜新增部落客文章</a>
+  <a href="#task-b">B｜商品新增/修改</a>
+  <a href="#task-c">C｜SEO 文章撰寫</a>
+  <a href="#task-d">D｜品牌數字更新</a>
+  <a href="#task-e">E｜建立列表頁</a>
+  <a href="#task-f">F｜圖片管理</a>
+  <div class="nav-section-title">參考資料</div>
+  <a href="#quick-ref">代碼速查</a>
+  <a href="#brand-voice">品牌聲音規範</a>
+  <a href="#troubleshoot">常見問題</a>
+  <a href="#checklist">發布 Checklist</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="doc-main">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-header-badge">OPENCLAW OPERATION MANUAL</div>
+    <h1>HiBOU 喜福生活苑<br>網站維護 SOP</h1>
+    <div class="doc-header-meta">
+      <span>📄 版本 v1.0</span>
+      <span>🤖 適用代理人：hibou_agent / HiBOUBrandBot</span>
+      <span>🌐 技術：純 HTML + CSS + JS</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <span class="section-anchor" id="overview"></span>
+  <div class="doc-section">
+    <h2 class="section-title">一、專案概覽</h2>
+
+    <span class="section-anchor" id="structure"></span>
+    <h3 class="sub-title">檔案結構</h3>
+    <pre>hibou-website/
+├── index.html                   <span class="comment"># 首頁（主要入口）</span>
+├── hibou_landing_page_v10.html  <span class="comment"># 機能防風罩 Landing Page</span>
+├── news-bloggers.html           <span class="comment"># 部落客推薦列表頁 ✅</span>
+├── news-travel.html             <span class="comment"># 親子旅遊誌列表頁（待建）</span>
+├── news-parenting.html          <span class="comment"># 媽咪育兒教室列表頁（待建）</span>
+├── article-template.html        <span class="comment"># 文章頁模板（複製使用）✅</span>
+├── article-[slug].html          <span class="comment"># 各篇文章頁</span>
+└── images/                      <span class="comment"># 所有圖片資源</span>
+    ├── logo.png
+    ├── 喜福-09049-jpg.webp       <span class="comment"># 機能防風罩主圖</span>
+    ├── 015_9336.jpg              <span class="comment"># 穿著衣物 / Hero</span>
+    ├── 21-6重紗_呼呼防踢被_3-7歲KEWE.jpg
+    ├── Hibou_6.jpg               <span class="comment"># 清潔沐浴</span>
+    └── fb-02.png                 <span class="comment"># 早教玩具</span></pre>
+
+    <span class="section-anchor" id="tokens"></span>
+    <h3 class="sub-title">設計系統 CSS Token（禁止任意更改）</h3>
+    <pre><span class="comment">/* 色彩系統 */</span>
+<span class="attr">--sage</span>: <span class="value">#7A9A7E</span>;        <span class="comment">/* 次要綠，hover 狀態 */</span>
+<span class="attr">--moss</span>: <span class="value">#4A6741</span>;        <span class="comment">/* 主色，按鈕、標題、重點 */</span>
+<span class="attr">--sand</span>: <span class="value">#C9A97A</span>;        <span class="comment">/* 金沙色，部落客推薦、裝飾 */</span>
+<span class="attr">--cream</span>: <span class="value">#FAF7F2</span>;       <span class="comment">/* 淺奶油背景 */</span>
+<span class="attr">--warm-white</span>: <span class="value">#FFFEF9</span>; <span class="comment">/* 頁面底色 */</span>
+<span class="attr">--charcoal</span>: <span class="value">#2C2C2C</span>;    <span class="comment">/* 主要文字 */</span>
+<span class="attr">--soft-gray</span>: <span class="value">#8A8A8A</span>;   <span class="comment">/* 次要文字 */</span>
+<span class="attr">--light-gray</span>: <span class="value">#F0EDE8</span>;  <span class="comment">/* 分隔線、tag 背景 */</span>
+<span class="attr">--accent-orange</span>: <span class="value">#D4845A</span>; <span class="comment">/* 強調橘，熱銷標籤 */</span>
+
+<span class="comment">/* 字型 */</span>
+標題字：Noto Serif TC (font-weight: 700)
+內文字：Noto Sans TC (font-weight: 300/400/500)
+Logo：Zen Antique</pre>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TASK A -->
+  <span class="section-anchor" id="task-a"></span>
+  <div class="doc-section">
+    <h2 class="section-title">二、任務 SOP</h2>
+
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter a">A</div>
+        <div class="task-card-header-info">
+          <h3>新增部落客推薦文章</h3>
+          <p>觸發條件：使用者提供部落客名稱、標題、內容、推薦商品</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>決定文章 slug（檔名）</strong><br>
+              命名規則：<code>article-[品牌縮寫]-[商品縮寫]-[流水號].html</code><br>
+              範例：<code>article-adoufu-windcover-001.html</code>、<code>article-boli-blanket-001.html</code>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>複製 article-template.html，替換所有 {{變數}}</strong>
+              <table style="margin-top:0.75rem;">
+                <tr><th>變數</th><th>說明</th><th>範例</th></tr>
+                <tr><td><code>{{ARTICLE_TITLE}}</code></td><td>完整文章標題</td><td>喜福育兒好物分享｜寶寶我最罩</td></tr>
+                <tr><td><code>{{ARTICLE_META_DESC}}</code></td><td>160字內 SEO 摘要</td><td>阿呆夫妻使用喜福防風罩…</td></tr>
+                <tr><td><code>{{BLOGGER_HANDLE}}</code></td><td>部落客名稱（含書名號）</td><td>《阿呆夫妻過日子》</td></tr>
+                <tr><td><code>{{PRODUCT_TAG_1/2}}</code></td><td>推薦商品標籤</td><td>機能防風罩</td></tr>
+                <tr><td><code>{{BLOGGER_QUOTE}}</code></td><td>部落客金句（引言框）</td><td>超必買！用了四年還是最愛</td></tr>
+                <tr><td><code>{{PRODUCT_NAME}}</code></td><td>商品名稱</td><td>機能防風罩</td></tr>
+                <tr><td><code>{{TAG_1~3}}</code></td><td>文章標籤</td><td>防風罩</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>在 news-bloggers.html 對應分類的 .reviews-grid 內新增卡片</strong>
+              <pre><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"article-[slug].html"</span> <span class="attr">class</span>=<span class="value">"review-list-card reveal"</span> <span class="attr">data-cat</span>=<span class="value">"[category]"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"rlc-handle"</span><span class="tag">&gt;</span>《部落客名稱》<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"rlc-title"</span><span class="tag">&gt;</span>文章標題<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"rlc-tags"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="value">"rlc-tag"</span><span class="tag">&gt;</span>商品標籤<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+              data-cat 可用值：<code>windcover</code> / <code>blanket</code> / <code>bib</code> / <code>bath</code> / <code>organic</code> / <code>gift</code> / <code>pacifier</code>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>更新跑馬燈（若為新部落客）</strong> — news-bloggers.html 正本 + 複製本各加一個 <code>.ticker-item</code>；同步更新 index.html 的 <code>.blogger-ticker</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK B -->
+    <span class="section-anchor" id="task-b"></span>
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter b">B</div>
+        <div class="task-card-header-info">
+          <h3>商品新增 / 修改</h3>
+          <p>修改首頁商品卡片、主打商品、分類卡片</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <h4>B-1 修改精選商品（#products）</h4>
+        <pre><span class="comment">&lt;!-- 定位：index.html → section#products → .products-grid --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"product-name"</span><span class="tag">&gt;</span>【修改商品名稱】<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"product-sub"</span><span class="tag">&gt;</span>【修改商品描述】<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"product-price"</span><span class="tag">&gt;</span>NT$ 【價格】 <span class="tag">&lt;small&gt;</span>/ 件<span class="tag">&lt;/small&gt;&lt;/div&gt;</span></pre>
+        <h4>B-2 新增分類卡片（#categories .cat-grid）</h4>
+        <pre><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span> <span class="attr">class</span>=<span class="value">"cat-card reveal"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"./images/【圖檔名】"</span> <span class="attr">alt</span>=<span class="value">"【分類名】"</span> <span class="attr">class</span>=<span class="value">"cat-img"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"cat-overlay"</span><span class="tag">&gt;&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"cat-info"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"cat-name"</span><span class="tag">&gt;</span>【分類名稱】<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"cat-sub"</span><span class="tag">&gt;</span>【商品描述，以・分隔】<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"cat-arrow"</span><span class="tag">&gt;</span>→<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+      </div>
+    </div>
+
+    <!-- TASK C -->
+    <span class="section-anchor" id="task-c"></span>
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter c">C</div>
+        <div class="task-card-header-info">
+          <h3>SEO 文章撰寫規範</h3>
+          <p>每篇文章必須符合的 SEO 結構與內容標準</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <h4>必要 SEO 元素</h4>
+        <pre><span class="comment">&lt;!-- 1. Title（60字以內）--&gt;</span>
+<span class="tag">&lt;title&gt;</span>【關鍵字】｜【部落客名稱】推薦｜HiBOU 喜福生活苑<span class="tag">&lt;/title&gt;</span>
+
+<span class="comment">&lt;!-- 2. Meta Description（120-160字）--&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> <span class="attr">content</span>=<span class="value">"【部落客】親身體驗喜福【商品名稱】，【賣點一句話】。MIT台灣製造，SGS嚴格把關。"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- 3. H1（唯一，文章標題）--&gt;</span>
+<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="value">"article-title"</span><span class="tag">&gt;</span>【完整標題】<span class="tag">&lt;/h1&gt;</span></pre>
+
+        <table>
+          <tr><th>主要關鍵字</th><th>出現次數</th><th>長尾關鍵字（自然融入）</th></tr>
+          <tr><td>喜福 / HiBOU</td><td>≥ 3 次</td><td>嬰幼兒用品推薦</td></tr>
+          <tr><td>商品名稱</td><td>≥ 3 次</td><td>新手媽媽必備</td></tr>
+          <tr><td>MIT台灣製造</td><td>≥ 1 次</td><td>台灣嬰兒品牌</td></tr>
+        </table>
+
+        <table style="margin-top:1rem;">
+          <tr><th>文章類型</th><th>最低字數</th><th>建議字數</th></tr>
+          <tr><td>部落客推薦</td><td>400 字</td><td>600–800 字</td></tr>
+          <tr><td>育兒教室</td><td>600 字</td><td>800–1200 字</td></tr>
+          <tr><td>親子旅遊</td><td>500 字</td><td>700–1000 字</td></tr>
+        </table>
+
+        <div class="alert alert-warn" style="margin-top:1rem;">
+          <span class="alert-icon">⚠️</span>
+          <span><strong>禁止：</strong>關鍵字堆疊（同段落同詞 ≥ 3 次）、誇大詞彙「最好」「第一名」「保證」</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK D -->
+    <span class="section-anchor" id="task-d"></span>
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter d">D</div>
+        <div class="task-card-header-info">
+          <h3>品牌數字更新</h3>
+          <p>三處數字需同步更新，保持一致</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <table>
+          <tr><th>位置</th><th>定位方式</th><th>元素</th></tr>
+          <tr><td>首頁 brand-stats</td><td>index.html → section.brand-stats → .stats-inner</td><td><code>.stat-number</code></td></tr>
+          <tr><td>首頁 blogger-wall</td><td>index.html → section.blogger-wall → .blogger-stats-row</td><td><code>.bstat-num</code></td></tr>
+          <tr><td>部落客推薦頁 Hero</td><td>news-bloggers.html → .page-hero → .page-hero-stats</td><td><code>.phs-num</code></td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:1rem;">
+          <span class="alert-icon">ℹ️</span>
+          <span>數字動畫由 JS statsObserver 自動觸發，只需修改 HTML 內的文字數字即可。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK E -->
+    <span class="section-anchor" id="task-e"></span>
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter e">E</div>
+        <div class="task-card-header-info">
+          <h3>建立新列表頁</h3>
+          <p>待建：news-travel.html、news-parenting.html</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content">複製 <code>news-bloggers.html</code> 作為基底</div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content">修改 <code>&lt;title&gt;</code>、<code>&lt;meta description&gt;</code></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content">修改 Page Hero 標題、描述、配色（travel 用 moss 系；parenting 用 accent-orange 系）</div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content">修改 Filter Bar 篩選條件</div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-content">替換所有文章卡片內容</div></div>
+          <div class="step"><div class="step-num">6</div><div class="step-content">更新 Breadcrumb 路徑</div></div>
+          <div class="step"><div class="step-num">7</div><div class="step-content">在 <code>index.html</code> 的 <code>.news-grid</code> 中更新對應卡片的 <code>href</code></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK F -->
+    <span class="section-anchor" id="task-f"></span>
+    <div class="task-card">
+      <div class="task-card-header">
+        <div class="task-letter f">F</div>
+        <div class="task-card-header-info">
+          <h3>圖片管理規範</h3>
+          <p>命名、尺寸、alt 文字標準</p>
+        </div>
+      </div>
+      <div class="task-card-body">
+        <table>
+          <tr><th>用途</th><th>建議尺寸</th><th>格式</th></tr>
+          <tr><td>Hero 主視覺</td><td>1920 × 1080px</td><td>jpg / webp</td></tr>
+          <tr><td>商品分類卡片</td><td>800 × 600px</td><td>jpg / webp</td></tr>
+          <tr><td>商品精選（1:1）</td><td>800 × 800px</td><td>jpg / webp</td></tr>
+          <tr><td>文章封面（16:9）</td><td>1200 × 675px</td><td>jpg / webp</td></tr>
+          <tr><td>文章內嵌圖</td><td>800 × 600px</td><td>jpg / webp</td></tr>
+        </table>
+        <h4 style="margin-top:1rem;">Alt 文字格式</h4>
+        <pre>格式：[商品名稱] [使用場景] HiBOU 喜福
+範例：喜福機能防風罩 寶寶外出使用 HiBOU 喜福</pre>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- QUICK REF -->
+  <span class="section-anchor" id="quick-ref"></span>
+  <div class="doc-section">
+    <h2 class="section-title">三、常用代碼速查</h2>
+    <div class="quick-ref-grid">
+      <div class="qr-card">
+        <div class="qr-title">goPage() 路由對照</div>
+        <pre style="font-size:0.75rem;margin:0;"><span class="string">'home'</span>      → index.html
+<span class="string">'landing'</span>   → hibou_landing_page_v10.html
+<span class="string">'outdoor'</span>   → index.html#categories
+<span class="string">'bedding'</span>   → index.html#categories
+<span class="string">'clothing'</span>  → index.html#categories
+<span class="string">'brand'</span>     → index.html#brand
+<span class="string">'products'</span>  → index.html#products
+<span class="string">'news'</span>      → index.html#news
+<span class="string">'travel'</span>    → news-travel.html
+<span class="string">'parenting'</span> → news-parenting.html
+<span class="string">'bloggers'</span>  → news-bloggers.html</pre>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">商品分類對照</div>
+        <table style="margin:0;">
+          <tr><th>中文</th><th>data-cat</th></tr>
+          <tr><td>外出防護</td><td><code>windcover</code></td></tr>
+          <tr><td>寢具床品</td><td><code>blanket</code></td></tr>
+          <tr><td>穿著衣物</td><td><code>clothing</code></td></tr>
+          <tr><td>清潔沐浴</td><td><code>bath</code></td></tr>
+          <tr><td>早教玩具</td><td><code>toys</code></td></tr>
+          <tr><td>禮盒客製</td><td><code>gift</code></td></tr>
+          <tr><td>奶嘴收納</td><td><code>pacifier</code></td></tr>
+        </table>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">常用 CSS 類別</div>
+        <pre style="font-size:0.75rem;margin:0;"><span class="comment">/* 按鈕 */</span>
+.btn-primary    <span class="comment">// moss綠實心</span>
+.btn-secondary  <span class="comment">// 透明外框</span>
+.btn-shop       <span class="comment">// header選購</span>
+
+<span class="comment">/* 商品標籤 */</span>
+.badge-hot      <span class="comment">// 橘：熱銷</span>
+.badge-new      <span class="comment">// sage綠：新品</span>
+.badge-best     <span class="comment">// moss：推薦</span>
+
+<span class="comment">/* 動畫 */</span>
+.reveal         <span class="comment">// 捲動進入</span>
+.fade-in        <span class="comment">// CSS淡入</span></pre>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">文章頁可用元件</div>
+        <pre style="font-size:0.75rem;margin:0;">.article-quote         <span class="comment">// 引言框</span>
+.product-card-inline   <span class="comment">// 嵌入商品卡</span>
+.img-placeholder       <span class="comment">// 圖片佔位符</span>
+.article-img           <span class="comment">// 文章圖片</span>
+.article-img-caption   <span class="comment">// 圖片說明</span>
+h2 (in .article-body)  <span class="comment">// 金沙左邊框標題</span>
+h3 (in .article-body)  <span class="comment">// moss色次標題</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BRAND VOICE -->
+  <span class="section-anchor" id="brand-voice"></span>
+  <div class="doc-section">
+    <h2 class="section-title">四、品牌聲音規範</h2>
+    <div class="quick-ref-grid">
+      <div class="qr-card">
+        <div class="qr-title">語氣原則</div>
+        <ul style="list-style:none;font-size:0.83rem;color:#444;display:flex;flex-direction:column;gap:0.4rem;">
+          <li>✅ 溫暖、有媽媽溫度，不冷硬</li>
+          <li>✅ 品牌自稱「喜福」或「我們」</li>
+          <li>✅ 對消費者用「媽媽」、「您」</li>
+          <li>❌ 不用「消費者」「用戶」等詞</li>
+        </ul>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">品牌核心語句</div>
+        <ul style="list-style:none;font-size:0.83rem;color:#444;display:flex;flex-direction:column;gap:0.4rem;">
+          <li>「最私心的呵護」</li>
+          <li>「為守護孩子而幸福誕生」</li>
+          <li>「給孩子的永遠都要最好的」</li>
+          <li>「MIT 台灣製造・SGS 嚴格把關」</li>
+        </ul>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">商品描述必帶認證（擇一以上）</div>
+        <ul style="list-style:none;font-size:0.83rem;color:#444;display:flex;flex-direction:column;gap:0.4rem;">
+          <li>✅ SGS-CNS 15290 國家標準</li>
+          <li>✅ BSMI M55352 商品安全標章</li>
+          <li>✅ MIT 台灣製造</li>
+          <li>✅ 日本三河木棉認證（六重紗）</li>
+        </ul>
+      </div>
+      <div class="qr-card">
+        <div class="qr-title">禁止使用詞彙</div>
+        <table style="margin:0;font-size:0.78rem;">
+          <tr><th>禁用</th><th>改用</th></tr>
+          <tr><td>最好</td><td>極致、嚴格把關</td></tr>
+          <tr><td>第一名</td><td>媽媽首選、熱銷</td></tr>
+          <tr><td>保證</td><td>通過檢驗、品質把關</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TROUBLESHOOT -->
+  <span class="section-anchor" id="troubleshoot"></span>
+  <div class="doc-section">
+    <h2 class="section-title">五、常見問題排除</h2>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:1.25rem;">
+        <h4 style="margin:0 0 0.5rem;color:var(--orange);">Q1：reveal 動畫元素不出現</h4>
+        <p style="margin:0;font-size:0.83rem;">確認新增元素有加 <code>.reveal</code> class，且 JS 已執行 <code>observer.observe(el)</code>。JS 在頁面底部執行，新增元素後頁面需重載。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:1.25rem;">
+        <h4 style="margin:0 0 0.5rem;color:var(--orange);">Q2：行動版選單點擊沒反應</h4>
+        <p style="margin:0;font-size:0.83rem;">確認每頁只有一個 <code>id="hamburger"</code> 和 <code>id="mobileNav"</code>，不可重複。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:1.25rem;">
+        <h4 style="margin:0 0 0.5rem;color:var(--orange);">Q3：Filter 篩選後卡片消失不掉</h4>
+        <p style="margin:0;font-size:0.83rem;"><code>data-cat</code> 屬性值拼錯。對照 Section 3 商品分類對照表，確認全小寫英文、無空格。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:1.25rem;">
+        <h4 style="margin:0 0 0.5rem;color:var(--orange);">Q4：數字動畫不觸發</h4>
+        <p style="margin:0;font-size:0.83rem;"><code>.stat-number</code> 的直接文字節點只能含數字，<code>&lt;sup&gt;</code> 等標籤不影響，但 <code>+</code> 或 <code>%</code> 等符號放在 <code>&lt;sup&gt;</code> 內才能正確解析。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:1.25rem;">
+        <h4 style="margin:0 0 0.5rem;color:var(--orange);">Q5：goPage() 找不到目標頁面</h4>
+        <p style="margin:0;font-size:0.83rem;">在 <code>index.html</code> JS 的 <code>goPage()</code> 函式內，補充對應的 key-value 路由。</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CHECKLIST -->
+  <span class="section-anchor" id="checklist"></span>
+  <div class="doc-section">
+    <h2 class="section-title">六、發布前 Checklist</h2>
+    <p style="font-size:0.83rem;color:var(--soft-gray);margin-bottom:1.25rem;">每次更新完成後，點擊勾選確認所有項目再發布。</p>
+    <ul class="checklist" id="checklist-items">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>&lt;title&gt; 已更新，包含關鍵字</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>&lt;meta description&gt; 已填寫（非空、非佔位符，120-160字）</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>所有 {{...}} 佔位符已替換完畢</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>圖片 src 路徑正確（以 ./images/ 開頭）</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>所有圖片 alt 文字已填寫</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>新文章已加入 news-bloggers.html 列表</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>跑馬燈已同步更新（正本 + 複製本）</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>行動版選單可正常開關</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>reveal 動畫可在捲動時觸發</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Footer 連結正確（不指向空 #）</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Breadcrumb 路徑正確</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span>品牌認證資訊至少包含一項</span></li>
+    </ul>
+    <div id="checklist-result" style="margin-top:1rem;font-size:0.83rem;color:var(--soft-gray);"></div>
+  </div>
+
+  <div style="text-align:center;padding:2rem 0;font-size:0.75rem;color:var(--soft-gray);">
+    HiBOU 喜福生活苑 網站維護 SOP v1.0｜由 Claude 協助建立，供 OpenClaw hibou_agent 使用<br>
+    如網站架構有重大調整，請同步更新本文件。
+  </div>
+
+</main>
+
+<script>
+  // Active nav on scroll
+  const sections = document.querySelectorAll('.section-anchor');
+  const navLinks = document.querySelectorAll('.doc-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Checklist
+  function toggleCheck(li) {
+    li.classList.toggle('done');
+    const box = li.querySelector('.check-box');
+    box.textContent = li.classList.contains('done') ? '✓' : '';
+    const total = document.querySelectorAll('#checklist-items li').length;
+    const done = document.querySelectorAll('#checklist-items li.done').length;
+    const result = document.getElementById('checklist-result');
+    result.textContent = done === total
+      ? `✅ 全部 ${total} 項已確認，可以發布！`
+      : `已完成 ${done} / ${total} 項`;
+    result.style.color = done === total ? 'var(--moss)' : 'var(--soft-gray)';
+  }
+</script>
+</body>
+</html>

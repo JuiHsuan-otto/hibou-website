@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ARTICLE_TITLE}}｜部落客推薦｜HiBOU 喜福生活苑</title>
+<meta name="description" content="{{ARTICLE_META_DESC}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7A9A7E;
+    --moss: #4A6741;
+    --sand: #C9A97A;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --accent-orange: #D4845A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
+  }
+  header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-text .brand { font-family: 'Zen Antique', serif; font-size: 1.35rem; color: var(--moss); letter-spacing: 0.05em; }
+  .logo-text .sub { font-size: 0.65rem; color: var(--soft-gray); letter-spacing: 0.12em; }
+  nav { display: flex; align-items: center; gap: 0.25rem; }
+  nav a {
+    font-size: 0.82rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.4rem 0.85rem; border-radius: 20px; transition: all 0.2s;
+    letter-spacing: 0.03em; white-space: nowrap;
+  }
+  nav a:hover, nav a.active { background: var(--light-gray); color: var(--moss); }
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .btn-shop {
+    background: var(--moss); color: white; border: none;
+    padding: 0.5rem 1.25rem; border-radius: 20px; font-size: 0.82rem;
+    cursor: pointer; font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.05em; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-shop:hover { background: var(--sage); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; }
+
+  /* ── MOBILE NAV ── */
+  .mobile-nav {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,154,126,0.15);
+    padding: 1.25rem 2rem 1.5rem; z-index: 99;
+    flex-direction: column; gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a {
+    font-size: 0.95rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.7rem 0.75rem; border-radius: 10px;
+    border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover { background: var(--light-gray); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn {
+    margin-top: 0.75rem; background: var(--moss); color: white;
+    text-align: center; padding: 0.75rem; border-radius: 20px;
+    font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em;
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    margin-top: 72px; background: var(--cream);
+    border-bottom: 1px solid var(--light-gray); padding: 0.85rem 2rem;
+  }
+  .breadcrumb-inner {
+    max-width: 780px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: var(--soft-gray);
+  }
+  .breadcrumb-inner a { color: var(--soft-gray); text-decoration: none; }
+  .breadcrumb-inner a:hover { color: var(--moss); }
+  .breadcrumb-inner .sep { color: var(--light-gray); }
+
+  /* ── ARTICLE HEADER ── */
+  .article-header { max-width: 780px; margin: 3rem auto 2.5rem; padding: 0 2rem; text-align: center; }
+  .article-meta {
+    font-size: 0.75rem; color: var(--sand); font-weight: 600;
+    letter-spacing: 0.15em; margin-bottom: 1rem; display: block;
+  }
+  .article-title {
+    font-family: 'Noto Serif TC', serif; font-size: clamp(1.75rem, 4vw, 2.4rem);
+    color: var(--charcoal); line-height: 1.4; margin-bottom: 1.5rem;
+  }
+  .article-author-row {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--light-gray);
+  }
+  .author-handle { font-size: 0.9rem; font-weight: 500; color: var(--moss); }
+  .publish-date { font-size: 0.8rem; color: var(--soft-gray); }
+
+  /* ── CONTENT BODY ── */
+  .article-main { max-width: 780px; margin: 0 auto 5rem; padding: 0 2rem; }
+  .article-main p { font-size: 1rem; line-height: 1.9; color: var(--charcoal); margin-bottom: 1.75rem; text-align: justify; }
+  .article-main h2 {
+    font-family: 'Noto Serif TC', serif; font-size: 1.4rem; color: var(--charcoal);
+    margin: 3rem 0 1.5rem; padding-left: 1rem; border-left: 4px solid var(--sand);
+  }
+  .article-main h3 {
+    font-family: 'Noto Serif TC', serif; font-size: 1.15rem; color: var(--moss);
+    margin: 2rem 0 1rem;
+  }
+  .article-img { width: 100%; border-radius: 12px; margin: 1.5rem 0 0.75rem; display: block; }
+  .article-img-caption { font-size: 0.8rem; color: var(--soft-gray); text-align: center; margin-bottom: 2.5rem; }
+
+  /* ── COMPONENTS ── */
+  .article-quote {
+    margin: 3rem 0; padding: 2.5rem; background: var(--cream); border-radius: 24px;
+    position: relative; text-align: center;
+  }
+  .article-quote::before {
+    content: '"'; position: absolute; top: 1rem; left: 2rem;
+    font-family: serif; font-size: 4rem; color: rgba(201,169,122,0.2);
+  }
+  .article-quote p { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; color: var(--moss); margin-bottom: 1rem; font-style: italic; }
+  .article-quote cite { font-size: 0.85rem; color: var(--soft-gray); font-style: normal; }
+
+  .product-card-inline {
+    background: white; border: 1.5px solid var(--light-gray); border-radius: 20px;
+    padding: 2rem; margin: 3rem 0; display: flex; gap: 2rem; align-items: center;
+    transition: border-color 0.3s;
+  }
+  .product-card-inline:hover { border-color: var(--sage); }
+  .pci-icon { width: 64px; height: 64px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+  .pci-body { flex: 1; }
+  .pci-label { font-size: 0.7rem; color: var(--sage); letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+  .pci-name { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .pci-desc { font-size: 0.85rem; color: var(--soft-gray); margin-bottom: 1rem; line-height: 1.6; }
+  .pci-link { color: var(--moss); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.6); padding: 5rem 2rem; text-align: center; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-brand { font-family: 'Zen Antique', serif; font-size: 1.5rem; color: white; margin-bottom: 1rem; }
+  
+  @media (max-width: 768px) {
+    nav { display: none; } .hamburger { display: flex; }
+    .product-card-inline { flex-direction: column; text-align: center; padding: 1.5rem; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { animation: fadeIn 0.8s ease-out both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-text">
+        <span class="brand">HiBOU</span>
+        <span class="sub">BORN FOR BABIES</span>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="news-bloggers.html" class="active">部落客推薦</a>
+      <a href="news-parenting.html">育兒教室</a>
+      <a href="news-travel.html">親子旅遊</a>
+    </nav>
+    <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="news-bloggers.html">部落客推薦</a>
+  <a href="news-parenting.html">育兒教室</a>
+  <a href="news-travel.html">親子旅遊</a>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">首頁</a> <span class="sep">›</span>
+    <a href="news-bloggers.html">部落客推薦</a> <span class="sep">›</span>
+    <span class="current">{{BLOGGER_HANDLE}}</span>
+  </div>
+</div>
+
+<header class="article-header fade-in">
+  <span class="article-meta">BLOGGER REVIEWS</span>
+  <h1 class="article-title">{{ARTICLE_TITLE}}</h1>
+  <div class="article-author-row">
+    <span class="author-handle">{{BLOGGER_HANDLE}}</span>
+    <span class="publish-date">{{PUBLISH_DATE}}</span>
+  </div>
+</header>
+
+<main class="article-main fade-in">
+  <p>{{ARTICLE_CONTENT_PARAGRAPH_1}}</p>
+  
+  <h2>{{SECTION_TITLE_1}}</h2>
+  <div style="background:#f9f9f9; height:300px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#ccc; margin-bottom:1rem;">📷 文章實拍圖</div>
+  <p class="article-img-caption">圖片來源：{{BLOGGER_HANDLE}}</p>
+
+  <p>{{ARTICLE_CONTENT_PARAGRAPH_2}}</p>
+
+  <blockquote class="article-quote">
+    <p>「{{BLOGGER_QUOTE}}」</p>
+    <cite>— {{BLOGGER_HANDLE}}</cite>
+  </blockquote>
+
+  <h2>{{SECTION_TITLE_2}}</h2>
+  <p>{{ARTICLE_CONTENT_PARAGRAPH_3}}</p>
+
+  <div class="product-card-inline">
+    <div class="pci-icon">🦉</div>
+    <div class="pci-body">
+      <div class="pci-label">{{PRODUCT_CATEGORY}}</div>
+      <div class="pci-name">{{PRODUCT_NAME}}</div>
+      <p class="pci-desc">{{PRODUCT_DESC}}</p>
+      <a href="hibou_landing_page_v10.html" class="pci-link">查看商品詳情 →</a>
+    </div>
+  </div>
+
+  <p>{{ARTICLE_CONTENT_PARAGRAPH_4}}</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">HiBOU</div>
+    <p>© 2025 HiBOU 喜福生活苑 ｜ Born for Babies</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

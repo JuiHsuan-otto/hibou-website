@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最新消息｜HiBOU 喜福生活苑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741;
+    --sage: #7A9A7E;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --border: rgba(122,154,126,0.15);
+    --sand: #C9A97A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.8;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,254,249,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+
+  nav { display: flex; align-items: center; gap: 0.15rem; }
+  nav a {
+    font-size: 0.78rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  nav a:hover { background: var(--light-gray); color: var(--moss); }
+  nav a.active { color: var(--moss); font-weight: 500; }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .btn-shop {
+    background: var(--moss);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 1000px; margin: 120px auto 80px; padding: 0 2rem; }
+  
+  .section-hdr { text-align: center; margin-bottom: 60px; }
+  .section-lbl { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--sage); text-transform: uppercase; margin-bottom: 12px; display: block; }
+  .page-title { font-family: 'Noto Serif TC', serif; font-size: 2.4rem; color: var(--charcoal); font-weight: 700; }
+  .wavy { margin: 20px auto; width: 50px; height: 4px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 4'%3E%3Cpath d='M0 2 Q6.25 0 12.5 2 T25 2 T37.5 2 T50 2' fill='none' stroke='%237A9A7E' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x; }
+
+  /* ── NEWS GRID ── */
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
+  .news-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .news-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  
+  .news-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--cream); }
+  
+  .news-body { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+  .news-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+  .news-date { font-size: 0.75rem; color: var(--soft-gray); letter-spacing: 0.05em; font-family: 'Noto Serif TC', serif; }
+  .news-tag { font-size: 0.65rem; padding: 2px 10px; border-radius: 20px; background: var(--cream); color: var(--moss); border: 1px solid rgba(74,103,65,0.2); }
+  
+  .news-title { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: var(--charcoal); font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+  .news-desc { font-size: 0.88rem; color: var(--soft-gray); line-height: 1.8; margin-bottom: 20px; }
+  .news-more { margin-top: auto; font-size: 0.8rem; color: var(--moss); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 60px 2rem 40px; text-align: center; }
+  footer p { font-size: 0.75rem; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="section-hdr">
+    <span class="section-lbl">Announcements</span>
+    <h1 class="page-title">最新消息</h1>
+    <div class="wavy"></div>
+  </div>
+  
+  <div class="news-grid">
+    <a href="#" class="news-card">
+      <img src="./images/015_9336.jpg" class="news-img" alt="新品上市">
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.03.15</span>
+          <span class="news-tag">新品上市</span>
+        </div>
+        <h2 class="news-title">春季新品：六重紗「恆溫呼呼被」暖心登場</h2>
+        <p class="news-desc">喜福 2026 春季首發，獨家工藝打造如雲朵般輕盈的觸感，陪伴寶寶度過溫差變化大的春季。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <div class="news-img" style="background: linear-gradient(135deg, #f9c3a0 0%, #D4845A 100%);"></div>
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.03.08</span>
+          <span class="news-tag">活動公告</span>
+        </div>
+        <h2 class="news-title">【女王節優惠】寵愛媽咪與寶貝，全館滿額現折</h2>
+        <p class="news-desc">即日起至 3/20，購買指定系列商品滿 $2,000 立減 $200，給辛勞的媽咪最貼心的回饋。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <img src="./images/Hibou_6.jpg" class="news-img" alt="品牌消息">
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.02.25</span>
+          <span class="news-tag">品牌消息</span>
+        </div>
+        <h2 class="news-title">喜福通過 SGS 安全認證：我們對品質的最高堅持</h2>
+        <p class="news-desc">喜福全系列六重紗商品再度通過年度嚴格檢驗，確保無螢光劑、無甲醛，守護寶寶每一吋肌膚。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 HiBOU 喜福生活苑 · 彰化縣鹿港鎮</p>
+</footer>
+
+</body>
+</html>

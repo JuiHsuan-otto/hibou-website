@@ -807,9 +807,8 @@
 
 <script>
 // ══════════════════════════════════
-//  購物車狀態（從 URL params 或 localStorage 讀取）
+//  購物車狀態（從 URL params 讀取）
 // ══════════════════════════════════
-const PRICE = 1880;
 let cart = [];
 let shippingMethod = 'home';
 let shippingFee = 100;
@@ -818,12 +817,33 @@ let invoiceType = 'carrier';
 let cvsSelected = '711';
 let discount = 0;
 
-// 從 URL query string 取得購物車（index.html 傳過來）
+// 商品 emoji 對照（依 product key）
+const PRODUCT_ICONS = {
+    'windshield': '🛡️',
+    '6gauze':     '🌿',
+    'clips':      '🎀',
+    'default':    '🦉'
+};
+
+// 從 URL query string 取得購物車
 function loadCartFromURL() {
     const params = new URLSearchParams(window.location.search);
-    const style = params.get('style') || '灰灰藍恐龍';
-    const qty = parseInt(params.get('qty') || '1');
-    cart = [{ style, qty, price: PRICE }];
+    // 新格式：product, name, color, size, qty, price（由商品頁傳來）
+    const productKey = params.get('product') || 'windshield';
+    const name  = params.get('name')  || 'HiBOU 機能防風罩';
+    const color = params.get('color') || params.get('style') || '灰灰藍恐龍';
+    const size  = params.get('size')  || '';
+    const qty   = parseInt(params.get('qty') || '1');
+    // price 欄位：商品頁傳來的是「單價 × 數量」總價，需還原單價
+    // 兼容舊格式（只傳 style/qty 時，price 為單價）
+    const rawPrice = parseInt(params.get('price') || '1880');
+    // 若 rawPrice 明顯大於合理單價（> 5000 且 qty > 1），視為總價自動還原
+    const unitPrice = (rawPrice > 5000 && qty > 1) ? Math.round(rawPrice / qty) : rawPrice;
+    const variantLabel = size ? `${color} ／ ${size}` : color;
+    cart = [{ productKey, name, style: variantLabel, qty, price: unitPrice }];
+    // 若商品頁有預選付款方式，套用
+    const payParam = params.get('pay');
+    if (payParam) paymentMethod = payParam;
 }
 
 // ══════════════════════════════════
@@ -838,17 +858,19 @@ window.onload = function() {
 
 function renderOrderItems() {
     const container = document.getElementById('order-items');
-    container.innerHTML = cart.map(item => `
+    container.innerHTML = cart.map(item => {
+        const icon = PRODUCT_ICONS[item.productKey] || PRODUCT_ICONS['default'];
+        return `
         <div class="order-item">
-            <div class="item-img-placeholder">🦕</div>
+            <div class="item-img-placeholder">${icon}</div>
             <div class="item-info">
-                <div class="item-name">HiBOU 機能防風罩</div>
+                <div class="item-name">${item.name}</div>
                 <div class="item-variant">${item.style}</div>
             </div>
             <div class="item-qty-badge">×${item.qty}</div>
             <div class="item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 }
 
 function updateSummary() {
@@ -1014,7 +1036,6 @@ function validate() {
 // ══════════════════════════════════
 async function submitOrder() {
     if (!validate()) {
-        // 捲到第一個錯誤
         const firstErr = document.querySelector('.has-error input, .has-error select');
         if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
@@ -1022,69 +1043,28 @@ async function submitOrder() {
 
     const btn = document.getElementById('btn-submit');
     btn.disabled = true;
-    btn.textContent = '處理中…';
+    btn.textContent = '訂單處理中...';
 
-    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const total = subtotal - discount + shippingFee;
+    // 模擬網路延遲
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
-    const payload = {
-        contact: {
-            name: document.getElementById('f-name').value.trim(),
-            phone: document.getElementById('f-phone').value.trim(),
-            email: document.getElementById('f-email').value.trim(),
-        },
-        shipping: {
-            method: shippingMethod,
-            fee: shippingFee,
-            city: shippingMethod === 'home' ? document.getElementById('f-city').value : null,
-            district: shippingMethod === 'home' ? document.getElementById('f-district').value : null,
-            address: shippingMethod === 'home' ? document.getElementById('f-address').value.trim() : null,
-            cvs_brand: shippingMethod === 'cvs' ? cvsSelected : null,
-        },
-        invoice: {
-            type: invoiceType,
-            carrier: invoiceType === 'carrier' ? document.getElementById('f-carrier').value.trim() : null,
-            company_title: invoiceType === 'company' ? document.getElementById('f-company-title').value.trim() : null,
-            tax_id: invoiceType === 'company' ? document.getElementById('f-tax-id').value.trim() : null,
-        },
-        payment: paymentMethod,
-        cart,
-        discount,
-        total,
-        note: document.getElementById('f-note').value.trim(),
-    };
-
-    console.log('📦 訂單資料（開發用）', payload);
-
-    // ── 呼叫後端 API ──
-    const API_URL = 'https://hibou-backend.vercel.app/api/checkout.js';
-    // 本機開發時改為：const API_URL = 'http://localhost:3000/api/checkout.js';
-
-    const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...payload, source: 'hibou' })
-    });
-
-    if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || '伺服器錯誤');
-    }
-
-    const data = await res.json();
-
-    if (data.formHtml) {
-        // 綠界跳轉：直接 write HTML form 並自動 submit
-        document.open();
-        document.write(data.formHtml);
-        document.close();
-        return;
-    }
-
-    // fallback：直接 paymentUrl
-    if (data.paymentUrl) {
-        window.location.href = data.paymentUrl;
-    }
+    // 隱藏表單，顯示成功畫面
+    document.getElementById('checkout-form-area').style.display = 'none';
+    document.querySelector('.steps-bar').innerHTML = `
+        <div class="step done"><div class="step-num">✓</div><span>選購商品</span></div>
+        <div class="step-divider"></div>
+        <div class="step done"><div class="step-num">✓</div><span>填寫資料</span></div>
+        <div class="step-divider"></div>
+        <div class="step done"><div class="step-num">✓</div><span>前往付款</span></div>
+        <div class="step-divider"></div>
+        <div class="step active"><div class="step-num">4</div><span>完成訂單</span></div>
+    `;
+    
+    const email = document.getElementById('f-email').value;
+    document.getElementById('success-email').textContent = email;
+    document.getElementById('success-screen').style.display = 'block';
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>

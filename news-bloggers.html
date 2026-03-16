@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>部落客推薦｜HiBOU 喜福生活苑</title>
+<meta name="description" content="超過 50 位真實媽媽部落客親身體驗喜福商品，防風罩、紗布巾、防踢被、有機棉系列，每一篇都是最真實的育兒推薦。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7A9A7E;
+    --moss: #4A6741;
+    --sand: #C9A97A;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --accent-orange: #D4845A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,254,249,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,154,126,0.15);
+    transition: box-shadow 0.3s;
+  }
+  header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-text .brand { font-family: 'Zen Antique', serif; font-size: 1.35rem; color: var(--moss); letter-spacing: 0.05em; }
+  .logo-text .sub { font-size: 0.65rem; color: var(--soft-gray); letter-spacing: 0.12em; }
+  nav { display: flex; align-items: center; gap: 0.25rem; }
+  nav a {
+    font-size: 0.82rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.4rem 0.85rem; border-radius: 20px; transition: all 0.2s;
+    letter-spacing: 0.03em; white-space: nowrap;
+  }
+  nav a:hover, nav a.active { background: var(--light-gray); color: var(--moss); }
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .btn-shop {
+    background: var(--moss); color: white; border: none;
+    padding: 0.5rem 1.25rem; border-radius: 20px; font-size: 0.82rem;
+    cursor: pointer; font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.05em; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-shop:hover { background: var(--sage); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; }
+
+  /* ── MOBILE NAV ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(255,254,249,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,154,126,0.15);
+    padding: 1.25rem 2rem 1.5rem;
+    z-index: 99;
+    flex-direction: column;
+    gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a {
+    font-size: 0.95rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em;
+    border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover { background: var(--light-gray); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn {
+    margin-top: 0.75rem; background: var(--moss); color: white;
+    text-align: center; padding: 0.75rem; border-radius: 20px;
+    font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em;
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    margin-top: 72px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0.85rem 2rem;
+  }
+  .breadcrumb-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--soft-gray);
+  }
+  .breadcrumb-inner a { color: var(--soft-gray); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb-inner a:hover { color: var(--moss); }
+  .breadcrumb-inner .sep { color: var(--light-gray); }
+  .breadcrumb-inner .current { color: var(--charcoal); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    background: linear-gradient(135deg, var(--sand) 0%, #b8904a 100%);
+    padding: 72px 2rem 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 280px; height: 280px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35);
+    color: white; font-size: 0.72rem; letter-spacing: 0.18em;
+    padding: 0.35rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .page-hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+  .page-hero-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.9;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .page-hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.45s ease both;
+  }
+  .phs { text-align: center; }
+  .phs-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.8rem; font-weight: 700; color: white; line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .phs-num sup { font-size: 0.9rem; }
+  .phs-label { font-size: 0.72rem; color: rgba(255,255,255,0.75); letter-spacing: 0.08em; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background: white;
+    border-bottom: 1px solid var(--light-gray);
+    position: sticky;
+    top: 72px;
+    z-index: 50;
+    padding: 0 2rem;
+  }
+  .filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.85rem 0;
+    scrollbar-width: none;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--light-gray);
+    background: transparent;
+    font-size: 0.78rem;
+    color: var(--soft-gray);
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--sage); color: var(--moss); }
+  .filter-btn.active {
+    background: var(--moss); border-color: var(--moss);
+    color: white;
+  }
+
+  /* ── COMMON SECTION ── */
+  section { padding: 72px 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-label {
+    display: inline-block; font-size: 0.72rem;
+    letter-spacing: 0.2em; color: var(--sage); text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700; color: var(--charcoal); line-height: 1.4;
+  }
+  .section-desc { font-size: 0.88rem; color: var(--soft-gray); margin-top: 0.6rem; line-height: 1.8; }
+
+  /* ── FEATURED REVIEWS ── */
+  .featured-reviews { background: var(--cream); }
+  .featured-reviews-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .review-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .review-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .review-card.featured-large .review-cover { height: 260px; }
+  .review-cover {
+    height: 180px;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--light-gray) 100%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    overflow: hidden;
+  }
+  .review-cover-pattern {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(122,154,126,0.05) 20px,
+      rgba(122,154,126,0.05) 40px
+    );
+  }
+  .review-product-badge {
+    position: absolute; bottom: 0.75rem; left: 0.75rem;
+    background: var(--moss); color: white;
+    font-size: 0.65rem; letter-spacing: 0.08em;
+    padding: 0.22rem 0.65rem; border-radius: 20px;
+  }
+  .review-body { padding: 1.35rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .review-handle {
+    font-size: 0.72rem; color: var(--sand);
+    font-weight: 600; letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+  .review-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--charcoal); line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+  .review-card.featured-large .review-title { font-size: 1.1rem; }
+  .review-excerpt {
+    font-size: 0.8rem; color: var(--soft-gray);
+    line-height: 1.75; flex: 1;
+  }
+  .review-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1rem; padding-top: 0.85rem;
+    border-top: 1px solid var(--light-gray);
+  }
+  .review-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .rtag {
+    background: var(--light-gray);
+    color: var(--moss); font-size: 0.67rem;
+    padding: 0.18rem 0.55rem; border-radius: 20px;
+  }
+  .review-arrow {
+    font-size: 0.8rem; color: var(--sage);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .review-card:hover .review-arrow { transform: translateX(4px); }
+
+  /* ── ALL REVIEWS GRID ── */
+  .all-reviews { background: var(--warm-white); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .review-list-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem 1.4rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 3px solid transparent;
+    transition: all 0.25s;
+  }
+  .review-list-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    border-left-color: var(--sand);
+  }
+  .rlc-handle { font-size: 0.7rem; color: var(--sand); font-weight: 600; letter-spacing: 0.05em; }
+  .rlc-title { font-family: 'Noto Serif TC', serif; font-size: 0.88rem; font-weight: 700; color: var(--charcoal); line-height: 1.5; }
+  .rlc-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.25rem; }
+  .rlc-tag { background: var(--light-gray); color: var(--moss); font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 20px; }
+
+  /* 分類標題 */
+  .category-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .category-divider-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--charcoal); white-space: nowrap;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .category-divider-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--light-gray), transparent);
+  }
+  .cat-count {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.72rem; color: var(--soft-gray);
+    background: var(--light-gray); padding: 0.2rem 0.6rem;
+    border-radius: 20px; font-weight: 400;
+  }
+
+  /* ── TICKER ── */
+  .ticker-section {
+    background: var(--moss);
+    padding: 1.5rem 0;
+    overflow: hidden;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 2.5rem;
+    animation: ticker 45s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .t-item {
+    font-size: 0.8rem; color: rgba(255,255,255,0.7);
+    flex-shrink: 0; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .t-item .t-name { color: rgba(201,169,122,0.9); font-weight: 500; }
+  .t-item .t-dot { color: rgba(255,255,255,0.25); font-size: 0.5rem; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--cream);
+    text-align: center;
+    padding: 72px 2rem;
+  }
+  .cta-banner-inner { max-width: 600px; margin: 0 auto; }
+  .cta-banner h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700; color: var(--charcoal);
+    margin-bottom: 0.75rem; line-height: 1.5;
+  }
+  .cta-banner p { font-size: 0.9rem; color: var(--soft-gray); line-height: 1.8; margin-bottom: 2rem; }
+  .cta-btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--moss); color: white;
+    padding: 0.85rem 2rem; border-radius: 30px;
+    text-decoration: none; font-size: 0.9rem;
+    letter-spacing: 0.05em; transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,103,65,0.25); }
+  .btn-secondary {
+    background: transparent; color: var(--charcoal);
+    padding: 0.85rem 2rem; border-radius: 30px;
+    border: 1.5px solid rgba(44,44,44,0.25);
+    text-decoration: none; font-size: 0.9rem;
+    letter-spacing: 0.05em; transition: all 0.25s;
+  }
+  .btn-secondary:hover { border-color: var(--moss); color: var(--moss); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.7);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .brand-name {
+    font-family: 'Zen Antique', serif; font-size: 1.3rem;
+    color: white; margin-bottom: 0.25rem;
+  }
+  .footer-brand .brand-tagline {
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.4); margin-bottom: 1rem;
+  }
+  .footer-col h4 {
+    font-size: 0.8rem; letter-spacing: 0.1em; color: white;
+    margin-bottom: 1rem; text-transform: uppercase;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--sage); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; color: rgba(255,255,255,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .featured-reviews-grid { grid-template-columns: 1fr 1fr; }
+    .featured-reviews-grid .featured-large { grid-column: 1 / -1; }
+    .featured-reviews-grid .featured-large .review-cover { height: 220px; }
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .featured-reviews-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .page-hero-stats { gap: 1.5rem; }
+  }
+
+  /* ── HEADER synced ── */
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
+  }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width:1200px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+  a.logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+  header#header nav { display:flex; align-items:center; gap:0.15rem; }
+  header#header nav a { font-size:0.78rem; color:var(--charcoal); text-decoration:none; padding:0.4rem 0.6rem; border-radius:20px; transition:all 0.2s; letter-spacing:0.02em; white-space:nowrap; }
+  header#header nav a:hover, header#header nav a.cur { background:rgba(122,158,126,0.1); color:#4a6741; }
+  header#header nav a.cur { font-weight:500; }
+  .header-actions { display:flex; align-items:center; gap:0.75rem; }
+  a.btn-shop { background:#4a6741; color:white; border:none; padding:0.5rem 1.25rem; border-radius:20px; font-size:0.82rem; cursor:pointer; font-family:inherit; letter-spacing:0.05em; transition:all 0.2s; text-decoration:none; display:inline-flex; align-items:center; }
+  a.btn-shop:hover { background:#7a9a7e; transform:translateY(-1px); }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .hamburger span { width:22px; height:2px; background:var(--charcoal); border-radius:2px; transition:0.3s; display:block; }
+  .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(255,254,249,0.98); backdrop-filter:blur(12px); border-bottom:1px solid rgba(122,154,126,0.15); padding:1.25rem 2rem 1.5rem; z-index:499; flex-direction:column; gap:0.25rem; box-shadow:0 8px 32px rgba(0,0,0,0.08); transform:translateY(-8px); opacity:0; transition:opacity 0.25s, transform 0.25s; }
+  .mobile-nav.open { display:flex; opacity:1; transform:translateY(0); }
+  .mobile-nav a { font-size:0.95rem; color:var(--charcoal); text-decoration:none; padding:0.7rem 0.75rem; border-radius:10px; border-bottom:1px solid rgba(122,154,126,0.1); transition:background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom:none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background:rgba(122,154,126,0.08); color:#4a6741; }
+  .mobile-nav .mobile-shop-btn { margin-top:0.75rem; background:#4a6741; color:white; text-align:center; padding:0.75rem; border-radius:20px; font-size:0.9rem; border-bottom:none; letter-spacing:0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background:#7a9a7e; }
+  .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+  .hamburger.active span:nth-child(2) { opacity:0; }
+  .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+  @media (max-width:768px) { header#header nav { display:none; } .hamburger { display:flex; } }
+
+  /* ── end header sync ── */
+</style>
+</head>
+<body>
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+<!-- HEADER -->
+
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">首頁</a>
+    <span class="sep">›</span>
+    <a href="hibou-journal.html">喜福生活誌</a>
+    <span class="sep">›</span>
+    <span class="current">部落客推薦</span>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">⭐ Blogger Reviews · 部落客推薦</div>
+    <h1 class="page-hero-title">她們都在用喜福</h1>
+    <p class="page-hero-desc">
+      超過 50 位真實媽媽部落客，從防風罩到有機棉系列<br>
+      每一篇開箱都是最真實、最溫暖的育兒推薦
+    </p>
+    <div class="page-hero-stats">
+      <div class="phs">
+        <div class="phs-num">50<sup>+</sup></div>
+        <div class="phs-label">部落客真實推薦</div>
+      </div>
+      <div class="phs">
+        <div class="phs-num">80<sup>+</sup></div>
+        <div class="phs-label">開箱評測文章</div>
+      </div>
+      <div class="phs">
+        <div class="phs-num">10<sup>+</sup></div>
+        <div class="phs-label">熱銷商品被推薦</div>
+      </div>
+      <div class="phs">
+        <div class="phs-num">4.9</div>
+        <div class="phs-label">平均推薦評分</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterReviews('all', this)">全部推薦</button>
+    <button class="filter-btn" onclick="filterReviews('windcover', this)">防風罩系列</button>
+    <button class="filter-btn" onclick="filterReviews('blanket', this)">防踢被系列</button>
+    <button class="filter-btn" onclick="filterReviews('bib', this)">圍兜・口水巾</button>
+    <button class="filter-btn" onclick="filterReviews('bath', this)">浴巾・沐浴</button>
+    <button class="filter-btn" onclick="filterReviews('organic', this)">有機棉系列</button>
+    <button class="filter-btn" onclick="filterReviews('gift', this)">彌月禮盒</button>
+    <button class="filter-btn" onclick="filterReviews('pacifier', this)">奶嘴收納</button>
+  </div>
+</div>
+
+<!-- FEATURED REVIEWS 精選推薦 -->
+<section class="featured-reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Editor's Pick · 精選推薦</span>
+      <h2 class="section-title">最多媽媽推薦的那幾篇</h2>
+      <p class="section-desc">人氣最高、互動最熱烈的開箱文章</p>
+    </div>
+
+    <div class="featured-reviews-grid">
+
+      <!-- 精選大卡 -->
+      <a href="article-hibou-chenlin-001.html" class="review-card featured-large reveal" data-cat="windcover bib">
+        <div class="review-cover" style="background: linear-gradient(135deg, #e8f0e9 0%, #c5d8c7 100%);">
+          <div class="review-cover-pattern"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🌿</span>
+          <span class="review-product-badge">防風罩・圍兜・口水巾</span>
+        </div>
+        <div class="review-body">
+          <div class="review-handle">《陳林府育兒育犬》</div>
+          <div class="review-title">高品質日本進口布料 MIT寶寶貼身用品 推車防風罩、拍嗝圍兜、口水巾</div>
+          <p class="review-excerpt">喜福的圍兜產品辰董用了一年多，真心感受到在布料選擇上的用心。日本六重紗越洗越柔軟，陪伴寶寶度過口水洪流期。</p>
+          <div class="review-footer">
+            <div class="review-tags">
+              <span class="rtag">推車防風罩</span>
+              <span class="rtag">拍嗝圍兜</span>
+            </div>
+            <span class="review-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 小卡 1 -->
+      <a href="#" class="review-card reveal" data-cat="windcover">
+        <div class="review-cover" style="background: linear-gradient(135deg, #ddeee0 0%, #a8c9ad 100%);">
+          <div class="review-cover-pattern"></div>
+          <span style="font-size:3.5rem; position:relative; z-index:1;">🛡️</span>
+          <span class="review-product-badge">背巾防風罩</span>
+        </div>
+        <div class="review-body">
+          <div class="review-handle">《Cynthia's 分享》</div>
+          <div class="review-title">寶寶我最罩｜嚴選低敏防蟎機能布加日本雙重紗</div>
+          <p class="review-excerpt">低敏防蟎機能布 × 日本雙重紗，讓過敏寶寶媽媽也能安心外出。</p>
+          <div class="review-footer">
+            <div class="review-tags">
+              <span class="rtag">低敏防蟎</span>
+            </div>
+            <span class="review-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 小卡 2 -->
+      <a href="#" class="review-card reveal" data-cat="blanket">
+        <div class="review-cover" style="background: linear-gradient(135deg, #f5e8d6 0%, #d4a97a 100%);">
+          <div class="review-cover-pattern"></div>
+          <span style="font-size:3.5rem; position:relative; z-index:1;">🐑</span>
+          <span class="review-product-badge">羊咩咩防踢被</span>
+        </div>
+        <div class="review-body">
+          <div class="review-handle">《波力的小屁桃》</div>
+          <div class="review-title">寶寶冬天防踢被選擇—喜福羊咩咩防踢被，睡翻天！</div>
+          <p class="review-excerpt">超柔軟厚實的羊咩咩防踢被，讓寶寶冬天睡得暖又安心。</p>
+          <div class="review-footer">
+            <div class="review-tags">
+              <span class="rtag">防踢被</span>
+            </div>
+            <span class="review-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 跑馬燈 -->
+<div class="ticker-section">
+  <div class="ticker-track">
+    <span class="t-item"><span class="t-name">陳林府育兒育犬</span><span class="t-dot">●</span>防風罩 圍兜 口水巾推薦</span>
+    <span class="t-item"><span class="t-name">蕭張宅</span><span class="t-dot">●</span>如何避免嬰兒口水疹・喜福推薦</span>
+    <span class="t-item"><span class="t-name">Kiwi&小老闆</span><span class="t-dot">●</span>寶寶我最罩（背巾防風罩）真的好方便！</span>
+    <span class="t-item"><span class="t-name">陳林府育兒育犬</span><span class="t-dot">●</span>防風罩 圍兜 口水巾推薦</span>
+  </div>
+</div>
+
+<!-- ALL REVIEWS -->
+<section class="all-reviews" id="all-reviews">
+  <div class="container">
+    <div class="category-divider reveal">
+      <div class="category-divider-title">🛡️ 精選推薦 <span class="cat-count">最新文章</span></div>
+      <div class="category-divider-line"></div>
+    </div>
+    <div class="reviews-grid">
+      <a href="article-hibou-chenlin-001.html" class="review-list-card reveal" data-cat="windcover bib">
+        <div class="rlc-handle">《陳林府育兒育犬》</div>
+        <div class="rlc-title">高品質日本進口布料 MIT寶寶貼身用品 推車防風罩、拍嗝圍兜、口水巾</div>
+        <div class="rlc-tags">
+          <span class="rlc-tag">推車防風罩</span>
+          <span class="rlc-tag">拍嗝圍兜</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="cta-banner-inner reveal">
+    <h2>被這麼多媽媽推薦，<br>您也來試試看？</h2>
+    <div class="cta-btn-row">
+      <a href="hibou_landing_page_v10.html" class="btn-primary">立即選購 →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-name">HiBOU 喜福生活苑</div>
+      </div>
+      <div class="footer-col">
+        <h4>喜福生活誌</h4>
+        <ul>
+          <li><a href="news-bloggers.html">部落客推薦</a></li>
+          <li><a href="news-travel.html">親子旅遊誌</a></li>
+          <li><a href="news-parenting.html">媽咪育兒教室</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  function filterReviews(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('[data-cat]').forEach(card => {
+      const cats = card.dataset.cat || '';
+      card.style.display = (cat === 'all' || cats.includes(cat)) ? '' : 'none';
+    });
+  }
+
+  function toggleMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n.classList.contains('open')){closeMobileMenu();}else{n.classList.add('open');b.classList.add('active');document.body.style.overflow='hidden';}}
+  function closeMobileMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');n.classList.remove('open');b.classList.remove('active');document.body.style.overflow='';}
+  document.addEventListener('click',(e)=>{const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n&&n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target))closeMobileMenu();});
+  window.addEventListener('scroll',()=>{const h=document.getElementById('header');if(h)h.classList.toggle('scrolled',window.scrollY>10);},{passive:true});
+</script>
+</body>
+</html>

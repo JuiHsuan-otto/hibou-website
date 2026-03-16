@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六重紗系列｜HiBOU 喜福生活苑</title>
+<meta name="description" content="HiBOU 喜福生活苑六重紗系列。日本三河木綿製造，呼呼大睡被、防踢被、背帶口水巾、手帕、圍兜、肚圍。MIT 台灣製造，SGS 認證合格。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════
+   ROOT — Warm Organic Cream Palette
+════════════════════════════════ */
+:root {
+  /* Core palette — warm cream & sage */
+  --butter:     #fdf6eb;     /* page base */
+  --linen:      #f5ead8;     /* subtle sections */
+  --parchment:  #ece0ca;     /* card backgrounds */
+  --biscuit:    #e2d1b5;     /* borders / dividers */
+  --wheat:      #c9a87a;     /* accent warm gold */
+  --cinnamon:   #b07d4a;     /* warm accent deep */
+  --moss:       #4a6b3e;     /* primary green */
+  --sage:       #7a9e7e;     /* secondary green */
+  --fern:       #a8c0a4;     /* light sage */
+  --ink:        #2a2118;     /* text dark */
+  --bark:       #5c4a30;     /* text warm mid */
+  --clay:       #9a8060;     /* text soft */
+  --mist:       rgba(245,234,216,0.6); /* translucent */
+
+  --serif:  'Cormorant Garamond', 'Noto Serif TC', serif;
+  --sans:   'Noto Sans TC', sans-serif;
+
+  --r-xs: 6px;
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 32px;
+  --r-xl: 48px;
+  --r-full: 9999px;
+
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --sh-xs: 0 2px 8px rgba(42,33,24,0.06);
+  --sh-sm: 0 4px 20px rgba(42,33,24,0.08);
+  --sh-md: 0 10px 40px rgba(42,33,24,0.11);
+  --sh-lg: 0 24px 72px rgba(42,33,24,0.14);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--butter);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* organic noise texture overlay */
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+body > * { position:relative; z-index:1; }
+
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background: var(--butter); }
+::-webkit-scrollbar-thumb { background: var(--biscuit); border-radius:2px; }
+
+/* ════════════════════════════════
+   HEADER
+════════════════════════════════ */
+.site-header {
+  position: fixed; top:0; left:0; right:0; z-index:500;
+  height: 70px;
+  transition: background 0.5s, box-shadow 0.5s;
+}
+.site-header.solid {
+  background: rgba(253,246,235,0.96);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: 0 1px 0 var(--biscuit), 0 4px 24px rgba(42,33,24,0.07);
+}
+.header-inner {
+  max-width: 1260px; margin:0 auto;
+  padding: 0 2rem; height:100%;
+  display: flex; align-items:center; justify-content:space-between;
+}
+.logo-link { text-decoration:none; display:flex; align-items:center; }
+.logo-link img { height:46px; width:auto; }
+
+.main-nav { display:flex; align-items:center; gap:0.15rem; }
+.main-nav a {
+  font-family: var(--sans); font-size:0.79rem; letter-spacing:0.08em;
+  color: var(--bark); text-decoration:none;
+  padding: 0.42rem 0.95rem; border-radius: var(--r-full);
+  transition: background 0.2s, color 0.2s;
+  white-space:nowrap;
+}
+.main-nav a:hover { background:rgba(74,107,62,0.08); color:var(--moss); }
+.main-nav a.active { background:rgba(74,107,62,0.1); color:var(--moss); font-weight:500; }
+
+.header-end { display:flex; align-items:center; gap:0.9rem; }
+.btn-shop {
+  display:inline-flex; align-items:center; gap:0.45rem;
+  background: var(--moss); color:white;
+  padding: 0.52rem 1.35rem; border-radius:var(--r-full);
+  font-size:0.79rem; letter-spacing:0.07em; font-family:var(--sans);
+  text-decoration:none; border:none; cursor:pointer;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+.btn-shop:hover {
+  background: var(--sage); transform:translateY(-1px);
+  box-shadow: 0 6px 20px rgba(74,107,62,0.28);
+}
+
+/* Hamburger */
+.hamburger {
+  display:none; flex-direction:column; gap:5px;
+  cursor:pointer; padding:5px; background:none; border:none;
+}
+.hamburger span {
+  display:block; width:21px; height:1.5px;
+  background:var(--ink); border-radius:2px;
+  transition:transform 0.3s var(--ease), opacity 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(4.5px,4.5px); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(4.5px,-4.5px); }
+
+/* Mobile nav */
+.mobile-nav {
+  display:none; position:fixed; top:70px; left:0; right:0; z-index:499;
+  background: rgba(253,246,235,0.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--biscuit);
+  padding:1.5rem 2rem 2rem;
+  flex-direction:column; gap:0.1rem;
+  box-shadow: 0 12px 40px rgba(42,33,24,0.1);
+  transform:translateY(-8px); opacity:0;
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+.mobile-nav.open { display:flex; opacity:1; transform:translateY(0); }
+.mobile-nav a {
+  font-size:0.95rem; color:var(--bark); text-decoration:none;
+  padding:0.8rem 0.5rem; border-bottom:1px solid var(--biscuit);
+  letter-spacing:0.04em; transition:color 0.2s;
+}
+.mobile-nav a:last-child { border-bottom:none; }
+.mobile-nav a:hover, .mobile-nav a.active { color:var(--moss); }
+.mobile-nav .m-shop {
+  margin-top:1.1rem; background:var(--moss); color:white;
+  text-align:center; padding:0.9rem; border-radius:var(--r-full);
+  border-bottom:none !important; font-size:0.9rem; letter-spacing:0.07em;
+}
+
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+.hero {
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+  max-height: 900px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero__photo {
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  object-position: center 35%;
+  filter: brightness(0.88) saturate(0.92);
+  transform: scale(1.06);
+  transition: transform 9s var(--ease-spring);
+}
+.hero.loaded .hero__photo { transform:scale(1); }
+
+/* warm creamy gradient from left */
+.hero__veil {
+  position:absolute; inset:0;
+  background: linear-gradient(
+    110deg,
+    rgba(253,246,235,0.97) 0%,
+    rgba(253,246,235,0.88) 28%,
+    rgba(253,246,235,0.52) 55%,
+    rgba(253,246,235,0.08) 100%
+  );
+}
+
+/* organic blob shapes */
+.hero__blob {
+  position:absolute; pointer-events:none; z-index:0;
+}
+.hero__blob--1 {
+  bottom:-120px; left:-80px; width:480px; height:480px;
+  background: radial-gradient(ellipse at center, rgba(201,168,122,0.18) 0%, transparent 70%);
+  border-radius:50%;
+}
+.hero__blob--2 {
+  top:5%; left:35%;
+  width:300px; height:260px;
+  background: radial-gradient(ellipse, rgba(122,158,126,0.08) 0%, transparent 70%);
+  border-radius:50%;
+}
+
+.hero__inner {
+  position:relative; z-index:2;
+  max-width:1260px; margin:0 auto; width:100%;
+  padding: 4rem 2rem 5rem;
+}
+.hero__kicker {
+  display:inline-flex; align-items:center; gap:0.55rem;
+  font-family:var(--sans); font-size:0.68rem; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--moss);
+  background:rgba(74,107,62,0.08); border:1px solid rgba(74,107,62,0.18);
+  padding:0.3rem 0.9rem; border-radius:var(--r-full);
+  margin-bottom:1.6rem;
+  animation: riseIn 0.9s 0.15s both;
+}
+.hero__kicker-dot { width:5px; height:5px; border-radius:50%; background:var(--sage); }
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  font-weight: 300; line-height: 1.2;
+  color: var(--ink); margin-bottom:1.4rem;
+  animation: riseIn 0.9s 0.28s both;
+}
+.hero__title em { font-style:italic; color:var(--moss); font-weight:400; }
+.hero__sub {
+  font-size:0.9rem; line-height:2; color:var(--bark);
+  max-width:400px; margin-bottom:2.2rem;
+  animation: riseIn 0.9s 0.42s both;
+}
+.hero__pills {
+  display:flex; flex-wrap:wrap; gap:0.5rem;
+  margin-bottom:2.4rem;
+  animation: riseIn 0.9s 0.54s both;
+}
+.pill {
+  display:inline-flex; align-items:center; gap:0.32rem;
+  background:rgba(253,246,235,0.85); border:1px solid var(--biscuit);
+  padding:0.3rem 0.85rem; border-radius:var(--r-full);
+  font-size:0.7rem; letter-spacing:0.04em; color:var(--bark);
+  backdrop-filter:blur(6px);
+}
+.pill-dot { width:4px; height:4px; border-radius:50%; background:var(--sage); }
+.hero__cta { display:flex; gap:0.9rem; flex-wrap:wrap; animation:riseIn 0.9s 0.66s both; }
+
+.btn-primary {
+  display:inline-flex; align-items:center; gap:0.45rem;
+  background:var(--moss); color:white;
+  padding:0.9rem 2.1rem; border-radius:var(--r-full);
+  font-size:0.84rem; letter-spacing:0.06em; font-family:var(--sans);
+  text-decoration:none; border:none; cursor:pointer;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+.btn-primary:hover {
+  background:var(--sage); transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(74,107,62,0.3);
+}
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:0.45rem;
+  background:rgba(253,246,235,0.7); color:var(--bark);
+  padding:0.9rem 2.1rem; border-radius:var(--r-full);
+  font-size:0.84rem; letter-spacing:0.06em;
+  border:1.5px solid var(--biscuit); text-decoration:none;
+  backdrop-filter:blur(8px);
+  transition:border-color 0.2s, color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color:var(--moss); color:var(--moss); background:rgba(74,107,62,0.06); }
+
+/* scroll hint */
+.hero__scroll-hint {
+  position:absolute; right:2.5rem; bottom:2.5rem; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  animation:riseIn 1.2s 1s both;
+}
+.scroll-text {
+  font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--clay); writing-mode:vertical-lr;
+}
+.scroll-track {
+  width:1px; height:48px; background:var(--biscuit);
+  position:relative; overflow:hidden; border-radius:1px;
+}
+.scroll-track::after {
+  content:''; position:absolute; top:-100%; left:0;
+  width:1px; height:100%; background:var(--sage);
+  animation: ticker 2s 1.2s infinite;
+}
+@keyframes ticker { to { top:200%; } }
+
+/* ════════════════════════════════
+   CERT STRIP
+════════════════════════════════ */
+.cert-strip {
+  background:var(--linen);
+  border-top:1px solid var(--biscuit);
+  border-bottom:1px solid var(--biscuit);
+  padding: 0;
+}
+.cert-strip__row {
+  max-width:1100px; margin:0 auto;
+  display:flex; align-items:stretch; flex-wrap:wrap;
+}
+.cert-item {
+  flex:1; min-width:180px;
+  display:flex; align-items:center; gap:0.75rem;
+  padding:1.4rem 1.6rem;
+  border-right:1px solid var(--biscuit);
+  transition:background 0.25s;
+}
+.cert-item:last-child { border-right:none; }
+.cert-item:hover { background:rgba(201,168,122,0.08); }
+.cert-item__img { height:38px; width:38px; object-fit:contain; flex-shrink:0; }
+.cert-item__icon { font-size:1.35rem; flex-shrink:0; }
+.cert-item__name { font-size:0.78rem; font-weight:500; color:var(--moss); letter-spacing:0.03em; }
+.cert-item__note { font-size:0.64rem; color:var(--clay); margin-top:0.1rem; }
+
+/* ════════════════════════════════
+   SECTION BASE
+════════════════════════════════ */
+.section { padding:96px 2rem; }
+.section--linen   { background:var(--linen);   }
+.section--parchment { background:var(--parchment); }
+.section--butter  { background:var(--butter);  }
+.section--dark    { background:#2a2118;         }
+.wrap { max-width:1200px; margin:0 auto; }
+
+.label {
+  display:block; font-size:0.66rem; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--sage); margin-bottom:0.7rem;
+}
+.hdg {
+  font-family:var(--serif);
+  font-size:clamp(1.9rem,3.2vw,2.8rem);
+  font-weight:300; line-height:1.3; color:var(--ink);
+}
+.hdg em { font-style:italic; color:var(--moss); font-weight:400; }
+.hdg strong { font-weight:600; }
+.body-copy {
+  font-size:0.87rem; line-height:1.95; color:var(--bark);
+  margin-top:0.9rem;
+}
+/* wavy divider */
+.wave-divider {
+  margin:1.3rem 0;
+  width:52px; height:8px;
+  background:none;
+  position:relative;
+}
+.wave-divider::after {
+  content:''; display:block; position:absolute; inset:0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='8' viewBox='0 0 52 8'%3E%3Cpath d='M0 4 Q6.5 0 13 4 Q19.5 8 26 4 Q32.5 0 39 4 Q45.5 8 52 4' stroke='%237a9e7e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat;
+}
+.sec-header { text-align:center; margin-bottom:3.5rem; }
+.sec-header .hdg { max-width:520px; margin:0 auto; }
+.sec-header .body-copy { max-width:480px; margin:0.9rem auto 0; }
+.sec-header .wave-divider { margin:1.3rem auto; }
+
+/* ════════════════════════════════
+   MATERIAL STORY
+════════════════════════════════ */
+.material-section {
+  background: #2e2016;
+  position:relative; overflow:hidden;
+  padding:100px 2rem;
+}
+/* warm parchment grain */
+.material-section::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 90% 10%, rgba(201,168,122,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 5% 90%, rgba(122,158,126,0.06) 0%, transparent 60%);
+}
+.mat-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+
+.mat-top { text-align:center; margin-bottom:4rem; }
+.mat-label {
+  font-size:0.66rem; letter-spacing:0.26em; text-transform:uppercase;
+  color:rgba(245,234,216,0.5); margin-bottom:0.9rem; display:block;
+}
+.mat-title {
+  font-family:var(--serif); font-size:clamp(2rem,3.8vw,3rem);
+  font-weight:300; color:var(--linen); line-height:1.3; margin-bottom:1.1rem;
+}
+.mat-title em { font-style:italic; color:var(--wheat); }
+.mat-desc { font-size:0.88rem; line-height:2; color:rgba(245,234,216,0.65); max-width:600px; margin:0 auto; }
+.mat-wave {
+  margin:1.3rem auto;
+  width:52px; height:8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='8' viewBox='0 0 52 8'%3E%3Cpath d='M0 4 Q6.5 0 13 4 Q19.5 8 26 4 Q32.5 0 39 4 Q45.5 8 52 4' stroke='%23c9a87a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat center;
+}
+
+/* Factory photos */
+.factory-duo {
+  display:grid; grid-template-columns:3fr 2fr; gap:1rem;
+  margin-bottom:2.5rem;
+}
+.factory-frame {
+  border-radius: var(--r-lg); overflow:hidden; position:relative;
+}
+.factory-frame img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform 0.7s var(--ease-spring);
+}
+.factory-frame:hover img { transform:scale(1.04); }
+.factory-caption {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:0.9rem 1.1rem;
+  background:linear-gradient(to top, rgba(20,12,5,0.65), transparent);
+  font-size:0.68rem; letter-spacing:0.1em; color:rgba(245,234,216,0.8);
+}
+
+/* Sanryu badge */
+.sanryu {
+  display:flex; align-items:center; gap:2rem;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(201,168,122,0.22);
+  border-radius:var(--r-lg); padding:1.8rem 2.2rem;
+  margin-bottom:3.5rem; flex-wrap:wrap;
+}
+.sanryu img { height:76px; width:76px; object-fit:contain; flex-shrink:0; }
+.sanryu__name {
+  font-family:var(--serif); font-size:1.05rem; font-weight:500;
+  color:var(--wheat); margin-bottom:0.55rem; letter-spacing:0.04em;
+}
+.sanryu__body { font-size:0.8rem; line-height:1.95; color:rgba(245,234,216,0.62); }
+
+/* Feature cards */
+.mat-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; }
+.mat-card {
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r-md); padding:1.75rem 1.4rem; text-align:center;
+  transition:background 0.3s, transform 0.3s;
+}
+.mat-card:hover { background:rgba(201,168,122,0.1); transform:translateY(-3px); }
+.mat-card__ico { font-size:2rem; margin-bottom:0.85rem; display:block; }
+.mat-card__name {
+  font-family:var(--serif); font-size:1rem; color:var(--linen);
+  font-weight:500; margin-bottom:0.5rem;
+}
+.mat-card__text { font-size:0.77rem; color:rgba(245,234,216,0.58); line-height:1.85; }
+
+/* ════════════════════════════════
+   PRODUCTS
+════════════════════════════════ */
+.filter-bar { display:flex; justify-content:center; gap:0.4rem; flex-wrap:wrap; margin-bottom:3rem; }
+.filt {
+  padding:0.4rem 1.15rem; border-radius:var(--r-full);
+  font-size:0.77rem; letter-spacing:0.06em; font-family:var(--sans);
+  border:1.5px solid var(--biscuit); color:var(--clay);
+  background:transparent; cursor:pointer;
+  transition:all 0.22s;
+}
+.filt:hover { border-color:var(--sage); color:var(--moss); }
+.filt.on { background:var(--moss); color:white; border-color:var(--moss); }
+
+.prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+.prod-card {
+  background:white; border-radius:var(--r-xl);
+  overflow:hidden; text-decoration:none; color:inherit;
+  display:block; position:relative;
+  transition:transform 0.4s var(--ease-spring), box-shadow 0.4s;
+  box-shadow: var(--sh-xs);
+}
+.prod-card:hover { transform:translateY(-7px); box-shadow:var(--sh-lg); }
+
+.prod-card__photo { position:relative; aspect-ratio:1; overflow:hidden; background:var(--linen); }
+.prod-card__photo img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.65s var(--ease-spring);
+}
+.prod-card:hover .prod-card__photo img { transform:scale(1.08); }
+
+.prod-badge {
+  position:absolute; top:0.85rem; left:0.85rem; z-index:2;
+  font-size:0.61rem; letter-spacing:0.1em; font-weight:500;
+  padding:0.22rem 0.72rem; border-radius:var(--r-full);
+}
+.b-best { background:var(--moss); color:white; }
+.b-hot  { background:var(--cinnamon); color:white; }
+.b-new  { background:var(--sage); color:white; }
+.b-set  { background:var(--wheat); color:white; }
+
+.prod-heart {
+  position:absolute; top:0.85rem; right:0.85rem; z-index:2;
+  width:30px; height:30px; border-radius:50%;
+  background:rgba(253,246,235,0.88); border:none; cursor:pointer;
+  font-size:0.85rem; display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(4px); transition:transform 0.2s, background 0.2s;
+}
+.prod-heart:hover { transform:scale(1.15); background:white; }
+.prod-heart.on { color:var(--cinnamon); }
+
+.swatches { position:absolute; bottom:0.85rem; left:0.85rem; display:flex; gap:4px; }
+.sw { width:11px; height:11px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.8); box-shadow:0 1px 4px rgba(0,0,0,0.18); }
+
+.prod-card__body { padding:1.15rem 1.15rem 1.4rem; }
+.prod-cat { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); margin-bottom:0.28rem; }
+.prod-name { font-family:var(--serif); font-size:1.01rem; font-weight:500; color:var(--ink); line-height:1.42; margin-bottom:0.3rem; }
+.prod-desc { font-size:0.73rem; color:var(--clay); line-height:1.65; margin-bottom:0.65rem; }
+.prod-tags { display:flex; flex-wrap:wrap; gap:0.28rem; margin-bottom:0.9rem; }
+.ptag {
+  font-size:0.62rem; background:var(--linen); color:var(--bark);
+  padding:0.18rem 0.55rem; border-radius:var(--r-xs);
+}
+.prod-foot { display:flex; align-items:center; justify-content:space-between; padding-top:0.8rem; border-top:1px solid var(--parchment); }
+.prod-price { font-family:var(--serif); font-size:1.05rem; font-weight:500; color:var(--moss); }
+.prod-price s { font-size:0.7rem; color:var(--clay); font-weight:400; margin-left:0.3rem; }
+.btn-cart {
+  font-size:0.7rem; letter-spacing:0.04em;
+  background:var(--moss); color:white;
+  border:none; border-radius:var(--r-md); padding:0.36rem 0.9rem;
+  cursor:pointer; font-family:var(--sans);
+  transition:background 0.2s, transform 0.15s;
+}
+.btn-cart:hover { background:var(--sage); transform:translateY(-1px); }
+
+/* ════════════════════════════════
+   FEATURE SPLIT
+════════════════════════════════ */
+.feature { padding:96px 2rem; }
+.feature--linen { background:var(--linen); }
+.feature--butter { background:var(--butter); }
+.feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:5.5rem; align-items:center; max-width:1120px; margin:0 auto; }
+.feat-grid.flip { direction:rtl; }
+.feat-grid.flip > * { direction:ltr; }
+
+.feat-img { position:relative; border-radius:var(--r-xl); overflow:hidden; }
+.feat-img img {
+  width:100%; display:block; aspect-ratio:4/5; object-fit:cover;
+  transition:transform 0.7s var(--ease-spring);
+}
+.feat-img:hover img { transform:scale(1.04); }
+
+/* organic frame accent */
+.feat-img::before {
+  content:''; position:absolute; z-index:1; pointer-events:none;
+  inset:-1px; border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(201,168,122,0.25);
+}
+.feat-tag {
+  position:absolute; bottom:1.4rem; left:1.4rem; z-index:2;
+  background:rgba(253,246,235,0.95); backdrop-filter:blur(12px);
+  border-radius:var(--r-md); padding:0.9rem 1.1rem;
+  box-shadow:var(--sh-sm);
+}
+.feat-tag__name { font-family:var(--serif); font-size:0.88rem; font-weight:500; color:var(--ink); margin-bottom:0.15rem; }
+.feat-tag__sub { font-size:0.64rem; color:var(--sage); letter-spacing:0.1em; }
+
+.feat-content {}
+.feat-label { font-size:0.66rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--sage); margin-bottom:0.8rem; display:block; }
+.feat-title {
+  font-family:var(--serif); font-size:clamp(1.7rem,2.8vw,2.3rem);
+  font-weight:300; line-height:1.38; color:var(--ink); margin-bottom:0.5rem;
+}
+.feat-title em { font-style:italic; color:var(--moss); }
+.feat-desc { font-size:0.86rem; line-height:2; color:var(--bark); margin-bottom:1.5rem; margin-top:1rem; }
+.feat-specs { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:1.8rem; }
+.spec {
+  font-size:0.72rem; background:var(--linen); border:1px solid var(--biscuit);
+  color:var(--bark); padding:0.28rem 0.82rem; border-radius:var(--r-full);
+}
+.feat-price {
+  font-family:var(--serif); font-size:1.55rem; font-weight:300;
+  color:var(--moss); margin-bottom:1.5rem; letter-spacing:-0.01em;
+}
+.feat-price sup { font-size:0.9rem; margin-right:2px; vertical-align:super; }
+.feat-price small { font-size:0.78rem; color:var(--clay); font-weight:300; margin-left:0.5rem; }
+.feat-cta { display:flex; gap:0.85rem; flex-wrap:wrap; }
+
+/* ════════════════════════════════
+   ILLUS SWATCHES
+════════════════════════════════ */
+.illus-row { display:grid; grid-template-columns:repeat(6,1fr); gap:1rem; }
+.illus-tile {
+  background:white; border-radius:var(--r-md); overflow:hidden;
+  box-shadow:var(--sh-xs);
+  transition:transform 0.32s var(--ease-spring), box-shadow 0.32s;
+  text-align:center;
+}
+.illus-tile:hover { transform:translateY(-5px) rotate(-0.5deg); box-shadow:var(--sh-md); }
+.illus-tile img { width:100%; aspect-ratio:1; object-fit:contain; background:var(--linen); padding:0.6rem; }
+.illus-tile__lbl { font-size:0.68rem; color:var(--moss); padding:0.5rem 0.3rem; font-weight:500; letter-spacing:0.04em; }
+
+/* ════════════════════════════════
+   360° USAGE CARDS
+════════════════════════════════ */
+.usage-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.usage-card {
+  background:white; border-radius:var(--r-xl); overflow:hidden;
+  box-shadow:var(--sh-xs);
+  transition:transform 0.36s var(--ease-spring), box-shadow 0.36s;
+}
+.usage-card:hover { transform:translateY(-6px); box-shadow:var(--sh-md); }
+.usage-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+.usage-card__body { padding:1.3rem 1.4rem 1.7rem; }
+.usage-num { font-family:var(--serif); font-size:2.2rem; font-weight:300; color:var(--biscuit); line-height:1; margin-bottom:0.55rem; }
+.usage-name { font-family:var(--serif); font-size:1rem; font-weight:500; color:var(--ink); margin-bottom:0.4rem; }
+.usage-desc { font-size:0.78rem; color:var(--bark); line-height:1.85; }
+
+/* ════════════════════════════════
+   PHOTO MOSAIC
+════════════════════════════════ */
+.mosaic {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:0.9rem;
+  height:560px;
+}
+.mosaic__cell { border-radius:var(--r-lg); overflow:hidden; position:relative; }
+.mosaic__cell img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s var(--ease-spring); }
+.mosaic__cell:hover img { transform:scale(1.06); }
+.mosaic__cell:nth-child(1) { grid-row:1/3; }
+
+/* ════════════════════════════════
+   REVIEWS
+════════════════════════════════ */
+.review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.review-card {
+  background:white; border-radius:var(--r-xl);
+  padding:1.9rem 1.8rem;
+  box-shadow:var(--sh-xs);
+  display:flex; flex-direction:column;
+  transition:transform 0.35s, box-shadow 0.35s;
+  border-top:3px solid var(--fern);
+}
+.review-card:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
+.review-stars { color:#d4924a; font-size:0.74rem; letter-spacing:0.12em; margin-bottom:0.9rem; }
+.review-tag {
+  display:inline-block; font-size:0.65rem; letter-spacing:0.08em;
+  background:var(--linen); border:1px solid var(--biscuit);
+  color:var(--moss); padding:0.2rem 0.68rem; border-radius:var(--r-full);
+  margin-bottom:1rem;
+}
+.review-body { font-size:0.85rem; line-height:1.95; color:var(--ink); flex:1; margin-bottom:1.3rem; }
+.review-author { display:flex; align-items:center; gap:0.75rem; margin-top:auto; }
+.review-avatar {
+  width:34px; height:34px; border-radius:50%; background:var(--parchment);
+  display:flex; align-items:center; justify-content:center; font-size:0.88rem; flex-shrink:0;
+}
+.review-name { font-size:0.8rem; font-weight:500; color:var(--ink); }
+.review-role { font-size:0.67rem; color:var(--clay); }
+
+/* ════════════════════════════════
+   GIFT CTA
+════════════════════════════════ */
+.gift-band {
+  background: linear-gradient(140deg, #3b2e1e 0%, #2e4428 60%, #2e3c20 100%);
+  padding:96px 2rem; text-align:center; position:relative; overflow:hidden;
+}
+.gift-band::before {
+  content:''; position:absolute; pointer-events:none;
+  top:-220px; right:-140px; width:560px; height:560px; border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,122,0.1) 0%, transparent 65%);
+}
+.gift-band::after {
+  content:''; position:absolute; pointer-events:none;
+  bottom:-200px; left:-100px; width:480px; height:480px; border-radius:50%;
+  background:radial-gradient(circle, rgba(122,158,126,0.08) 0%, transparent 65%);
+}
+.gift-inner { max-width:620px; margin:0 auto; position:relative; z-index:1; }
+.gift-icon { font-size:3.2rem; margin-bottom:1.6rem; display:block; }
+.gift-label { font-size:0.66rem; letter-spacing:0.26em; text-transform:uppercase; color:rgba(245,234,216,0.45); margin-bottom:0.9rem; display:block; }
+.gift-title {
+  font-family:var(--serif); font-size:clamp(1.9rem,3.2vw,2.8rem);
+  font-weight:300; color:var(--linen); line-height:1.4; margin-bottom:1rem;
+}
+.gift-title em { font-style:italic; color:var(--wheat); }
+.gift-desc { font-size:0.88rem; line-height:2; color:rgba(245,234,216,0.68); margin-bottom:2.3rem; }
+.btn-cream {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  background:var(--linen); color:var(--moss);
+  padding:0.9rem 2.3rem; border-radius:var(--r-full);
+  font-size:0.84rem; font-weight:500; letter-spacing:0.06em; text-decoration:none;
+  transition:transform 0.2s, box-shadow 0.25s;
+}
+.btn-cream:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.22); }
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+.site-footer { background:#1c1509; color:rgba(245,234,216,0.55); padding:5.5rem 2rem 2.5rem; }
+.footer-inner { max-width:1200px; margin:0 auto; }
+.footer-top {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3.5rem;
+  padding-bottom:3.5rem; margin-bottom:2.5rem;
+  border-bottom:1px solid rgba(245,234,216,0.08);
+}
+.footer-brand__name {
+  font-family:var(--serif); font-size:1.3rem; font-weight:400;
+  color:var(--linen); margin-bottom:0.2rem; letter-spacing:0.06em;
+}
+.footer-brand__tag { font-size:0.63rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,234,216,0.3); margin-bottom:1.2rem; }
+.footer-brand__info { font-size:0.78rem; line-height:1.9; color:rgba(245,234,216,0.48); margin-bottom:1.5rem; }
+.socials { display:flex; gap:0.5rem; }
+.soc {
+  width:32px; height:32px; border-radius:var(--r-xs);
+  background:rgba(245,234,216,0.07); display:flex; align-items:center;
+  justify-content:center; color:rgba(245,234,216,0.5);
+  text-decoration:none; font-size:0.74rem;
+  transition:background 0.2s, color 0.2s;
+}
+.soc:hover { background:var(--sage); color:white; }
+.footer-col h5 { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(245,234,216,0.85); margin-bottom:1.1rem; }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:0.65rem; }
+.footer-col a { font-size:0.78rem; color:rgba(245,234,216,0.42); text-decoration:none; transition:color 0.2s; }
+.footer-col a:hover { color:var(--fern); }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:0.7rem; color:rgba(245,234,216,0.22); flex-wrap:wrap; gap:0.5rem;
+}
+
+/* ════════════════════════════════
+   ANIMATIONS
+════════════════════════════════ */
+@keyframes riseIn {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.75s var(--ease-spring), transform 0.75s var(--ease-spring); }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media (max-width:1024px) {
+  .prod-grid  { grid-template-columns:repeat(2,1fr); }
+  .mat-cards  { grid-template-columns:repeat(2,1fr); }
+  .footer-top { grid-template-columns:1fr 1fr; gap:2rem; }
+  .illus-row  { grid-template-columns:repeat(3,1fr); }
+  .main-nav   { display:none; }
+  .hamburger  { display:flex; }
+}
+@media (max-width:768px) {
+  .section, .feature { padding:64px 1.25rem; }
+  .material-section { padding:64px 1.25rem; }
+  .feat-grid  { grid-template-columns:1fr; gap:2.5rem; }
+  .feat-grid.flip { direction:ltr; }
+  .mosaic     { grid-template-columns:1fr 1fr; height:auto; }
+  .mosaic__cell:nth-child(1) { grid-row:auto; aspect-ratio:4/3; }
+  .usage-row  { grid-template-columns:1fr; }
+  .review-grid{ grid-template-columns:1fr; }
+  .factory-duo{ grid-template-columns:1fr; }
+  .illus-row  { grid-template-columns:repeat(2,1fr); }
+  .hero__scroll-hint { display:none; }
+}
+@media (max-width:480px) {
+  .prod-grid { grid-template-columns:1fr; }
+  .hero__cta { flex-direction:column; }
+  .footer-top { grid-template-columns:1fr; }
+  .cert-strip__row { flex-direction:column; }
+  .cert-item { border-right:none; border-bottom:1px solid var(--biscuit); }
+  .cert-item:last-child { border-bottom:none; }
+}
+@media (min-width:1025px) { .hamburger { display:none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="images/logo.png" alt="HiBOU 喜福生活苑">
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">首頁</a>
+      <a href="#" class="active">六重紗系列</a>
+      <a href="#">外出防護</a>
+      <a href="#">寢具床品</a>
+      <a href="#">清潔沐浴</a>
+      <a href="#">品牌故事</a>
+    </nav>
+    <div class="header-end">
+      <a href="#products" class="btn-shop">立即選購</a>
+      <button class="hamburger" id="hbg" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mNav">
+  <a href="index.html">首頁</a>
+  <a href="#" class="active">六重紗系列</a>
+  <a href="#">外出防護</a>
+  <a href="#">寢具床品</a>
+  <a href="#">清潔沐浴</a>
+  <a href="#">品牌故事</a>
+  <a href="#products" class="m-shop" onclick="closeNav()">立即選購 →</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <img class="hero__photo" src="images/hero.jpg" alt="六重紗防踢被 寶寶熟睡" onload="document.getElementById('hero').classList.add('loaded')">
+  <div class="hero__veil"></div>
+  <div class="hero__blob hero__blob--1"></div>
+  <div class="hero__blob hero__blob--2"></div>
+  <div class="hero__inner">
+    <span class="hero__kicker"><span class="hero__kicker-dot"></span>日本三河木綿 · 六重紗精品</span>
+    <h1 class="hero__title">
+      六層紗的<em>溫柔</em>，<br>
+      包裹每一刻純真
+    </h1>
+    <p class="hero__sub">嚴選日本三河木綿六重紗工藝，六層精細棉紗交疊織造，越洗越柔軟，給寶寶最安心的肌膚守護。</p>
+    <div class="hero__pills">
+      <span class="pill"><span class="pill-dot"></span>日本三河木綿</span>
+      <span class="pill"><span class="pill-dot"></span>六層棉紗結構</span>
+      <span class="pill"><span class="pill-dot"></span>越洗越柔軟</span>
+      <span class="pill"><span class="pill-dot"></span>SGS 安全認證</span>
+      <span class="pill"><span class="pill-dot"></span>MIT 台灣製造</span>
+    </div>
+    <div class="hero__cta">
+      <a href="#products" class="btn-primary">探索全系列 →</a>
+      <a href="#material" class="btn-ghost">了解六重紗</a>
+    </div>
+  </div>
+  <div class="hero__scroll-hint">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-track"></div>
+  </div>
+</section>
+
+<!-- ── CERT STRIP ── -->
+<div class="cert-strip">
+  <div class="cert-strip__row">
+    <div class="cert-item reveal">
+      <img class="cert-item__img" src="images/sanryu.gif" alt="三河木綿認證">
+      <div><div class="cert-item__name">三河木綿認證</div><div class="cert-item__note">日本地域品牌認定品</div></div>
+    </div>
+    <div class="cert-item reveal">
+      <span class="cert-item__icon">🔬</span>
+      <div><div class="cert-item__name">SGS 檢驗合格</div><div class="cert-item__note">有害物質零殘留</div></div>
+    </div>
+    <div class="cert-item reveal">
+      <span class="cert-item__icon">🇹🇼</span>
+      <div><div class="cert-item__name">MIT 台灣製造</div><div class="cert-item__note">嚴格品質把關</div></div>
+    </div>
+    <div class="cert-item reveal">
+      <span class="cert-item__icon">💧</span>
+      <div><div class="cert-item__name">超強吸水速乾</div><div class="cert-item__note">六層立體吸水結構</div></div>
+    </div>
+    <div class="cert-item reveal">
+      <span class="cert-item__icon">🌿</span>
+      <div><div class="cert-item__name">天然純棉原料</div><div class="cert-item__note">無螢光劑 · 無防腐劑</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MATERIAL ── -->
+<section class="material-section" id="material">
+  <div class="mat-inner">
+    <div class="mat-top reveal">
+      <span class="mat-label">Material Story · 材質故事</span>
+      <h2 class="mat-title">為何選擇<em>日本六重紗</em>？</h2>
+      <div class="mat-wave"></div>
+      <p class="mat-desc">我們親赴日本愛知縣三河產地，選用最高等級三河木綿原料。六層棉紗以特殊工藝交疊織造，賦予布料超卓的吸水性、透氣性，以及越洗越柔軟的獨特特質。</p>
+    </div>
+    <div class="factory-duo reveal">
+      <div class="factory-frame">
+        <img src="images/factory1.jpg" alt="三河 織造現場">
+        <div class="factory-caption">AICHI, JAPAN · 愛知縣 三河 織造現場</div>
+      </div>
+      <div class="factory-frame">
+        <img src="images/factory2.jpg" alt="自動織布機">
+        <div class="factory-caption">自動織布機 · 精密控制每一絲棉紗</div>
+      </div>
+    </div>
+    <div class="sanryu reveal">
+      <img src="images/sanryu.gif" alt="三河木綿">
+      <div>
+        <div class="sanryu__name">三河木綿® 地域ブランド認定品</div>
+        <div class="sanryu__body">來自日本愛知縣三河地區的頂級棉紗認證，以細緻柔軟、吸水力強著稱，是日本嬰幼兒用品最高標準原料。HiBOU 六重紗系列全系列採用此認證原料，品質有憑有據，讓每位媽媽用得放心。</div>
+      </div>
+    </div>
+    <div class="mat-cards">
+      <div class="mat-card reveal"><span class="mat-card__ico">💧</span><div class="mat-card__name">超強吸水力</div><p class="mat-card__text">六層棉紗立體吸水，速度比一般棉布快 3 倍，口水汗水秒吸收，寶寶時刻乾爽。</p></div>
+      <div class="mat-card reveal"><span class="mat-card__ico">🌬️</span><div class="mat-card__name">卓越透氣性</div><p class="mat-card__text">疏鬆棉紗結構讓空氣自由流通，不悶熱不刺激，新生兒最嬌嫩肌膚也能安心。</p></div>
+      <div class="mat-card reveal"><span class="mat-card__ico">✨</span><div class="mat-card__name">越洗越柔軟</div><p class="mat-card__text">不同於一般棉布越洗越硬，六重紗洗滌後棉纖維更蓬鬆，觸感越來越像雲朵。</p></div>
+      <div class="mat-card reveal"><span class="mat-card__ico">🌡️</span><div class="mat-card__name">四季恆溫</div><p class="mat-card__text">夏天吸濕排汗、冬天保暖蓄熱，特殊結構讓寶寶無論哪個季節都享受舒適溫度。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="section section--linen" id="products">
+  <div class="wrap">
+    <div class="sec-header reveal">
+      <span class="label">Full Collection · 六重紗全系列</span>
+      <h2 class="hdg">精選 <em>八款</em> 商品</h2>
+      <div class="wave-divider"></div>
+      <p class="body-copy">從寢具到日用，六重紗的溫柔無所不在</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filt on" onclick="doFilter('all',this)">全部商品</button>
+      <button class="filt" onclick="doFilter('sleep',this)">寢具系列</button>
+      <button class="filt" onclick="doFilter('bib',this)">圍兜系列</button>
+      <button class="filt" onclick="doFilter('daily',this)">日用品</button>
+    </div>
+    <div class="prod-grid" id="pGrid">
+
+      <a href="#blanket" class="prod-card reveal" data-c="sleep">
+        <div class="prod-card__photo">
+          <img src="images/blanket.jpg" alt="呼呼大睡被">
+          <span class="prod-badge b-best">人氣首選</span>
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#a8c8b8"></span><span class="sw" style="background:#e0b8bc"></span><span class="sw" style="background:#a8c0e0"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">寢具系列</div>
+          <div class="prod-name">六重紗 呼呼大睡被</div>
+          <div class="prod-desc">加厚六重紗，冬暖夏涼，讓寶寶一覺到天亮</div>
+          <div class="prod-tags"><span class="ptag">100×140cm</span><span class="ptag">純棉</span><span class="ptag">四季適用</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;1,580</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#antikick" class="prod-card reveal" data-c="sleep">
+        <div class="prod-card__photo">
+          <img src="images/antikick_green.jpg" alt="防踢被">
+          <span class="prod-badge b-hot">熱銷推薦</span>
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#a8c0e0"></span><span class="sw" style="background:#c8dfd4"></span><span class="sw" style="background:#f0d4d8"></span><span class="sw" style="background:#dcc8a8"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">寢具系列</div>
+          <div class="prod-name">六重紗 防踢被背心</div>
+          <div class="prod-desc">包覆式設計，怎麼翻滾都不怕著涼</div>
+          <div class="prod-tags"><span class="ptag">0-3歲款</span><span class="ptag">3-7歲款</span><span class="ptag">10款花色</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;980<small> 起</small></div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#carrier" class="prod-card reveal" data-c="daily">
+        <div class="prod-card__photo">
+          <img src="images/carrier_stroller1.jpg" alt="背帶口水巾">
+          <span class="prod-badge b-new">新品上市</span>
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#dcc8a8"></span><span class="sw" style="background:#f0d4d8"></span><span class="sw" style="background:#c8dfd4"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">日用品</div>
+          <div class="prod-name">六重紗 背帶口水巾</div>
+          <div class="prod-desc">保護背帶又吸口水，啃咬族必備</div>
+          <div class="prod-tags"><span class="ptag">2入組</span><span class="ptag">通用各品牌</span><span class="ptag">背巾∕推車</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;480 <s>580</s></div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="prod-card reveal" data-c="daily">
+        <div class="prod-card__photo">
+          <img src="images/illus_hk_blue.jpg" alt="萬用小手帕" style="object-fit:contain;background:var(--linen);padding:1rem">
+          <span class="prod-badge b-set">超值組合</span>
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">日用品</div>
+          <div class="prod-name">六重紗 萬用小手帕</div>
+          <div class="prod-desc">全家都適用，擦臉擦身兩相宜</div>
+          <div class="prod-tags"><span class="ptag">30×30cm</span><span class="ptag">5入組</span><span class="ptag">10款花色</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;580</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="prod-card reveal" data-c="bib">
+        <div class="prod-card__photo">
+          <img src="images/bib_tri_green.jpg" alt="三角圍兜">
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#a8c8b8"></span><span class="sw" style="background:#c0b4d8"></span><span class="sw" style="background:#f0d4d8"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">圍兜系列</div>
+          <div class="prod-name">六重紗 三角圍兜</div>
+          <div class="prod-desc">經典三角造型，吸水強，百搭好看</div>
+          <div class="prod-tags"><span class="ptag">3入組</span><span class="ptag">按扣式</span><span class="ptag">雙面可用</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;460</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="prod-card reveal" data-c="bib">
+        <div class="prod-card__photo">
+          <img src="images/bib_round_outdoor.jpg" alt="圓形圍兜">
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#f0d4d8"></span><span class="sw" style="background:#c8dfd4"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">圍兜系列</div>
+          <div class="prod-name">六重紗 圓形圍兜</div>
+          <div class="prod-desc">圓潤造型，全面守護頸部肌膚</div>
+          <div class="prod-tags"><span class="ptag">直徑28cm</span><span class="ptag">魔鬼氈</span><span class="ptag">六層吸水</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;380</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#bib360" class="prod-card reveal" data-c="bib">
+        <div class="prod-card__photo">
+          <img src="images/bib360_main.jpg" alt="360度拍嗝巾圍兜">
+          <span class="prod-badge b-hot">超熱銷</span>
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#a8c4a8"></span><span class="sw" style="background:#f0d4d8"></span><span class="sw" style="background:#a8c0e0"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">圍兜系列</div>
+          <div class="prod-name">六重紗 360° 拍嗝巾圍兜</div>
+          <div class="prod-desc">加大全包覆，拍嗝圍兜口水巾三合一</div>
+          <div class="prod-tags"><span class="ptag">50×20cm</span><span class="ptag">新生兒起</span><span class="ptag">360°包覆</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;520</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="prod-card reveal" data-c="daily">
+        <div class="prod-card__photo">
+          <img src="images/belly.jpg" alt="嬰兒肚圍">
+          <button class="prod-heart" onclick="heart(event,this)">♡</button>
+          <div class="swatches"><span class="sw" style="background:#e8bca0"></span><span class="sw" style="background:#c8dfd4"></span><span class="sw" style="background:#f0d4d8"></span></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-cat">日用品</div>
+          <div class="prod-name">六重紗 嬰兒肚圍</div>
+          <div class="prod-desc">保護小肚肚，睡覺不著涼不束縛</div>
+          <div class="prod-tags"><span class="ptag">S/M/L</span><span class="ptag">鬆緊調節</span><span class="ptag">0-3歲</span></div>
+          <div class="prod-foot"><div class="prod-price">NT$&thinsp;320</div><button class="btn-cart" onclick="cart(event,this)">加入購物車</button></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: 呼呼大睡被 ── -->
+<section class="feature feature--butter" id="blanket">
+  <div class="wrap">
+    <div class="feat-grid reveal">
+      <div class="feat-img">
+        <img src="images/blanket.jpg" alt="呼呼大睡被">
+        <div class="feat-tag"><div class="feat-tag__name">六重紗 呼呼大睡被</div><div class="feat-tag__sub">BEST SELLER · 年度熱銷 No.1</div></div>
+      </div>
+      <div class="feat-content">
+        <span class="feat-label">Featured · 明星商品</span>
+        <h2 class="feat-title">讓寶寶睡得<br><em>呼呼又甜甜</em></h2>
+        <div class="wave-divider"></div>
+        <p class="feat-desc">六重紗呼呼大睡被採用最高規格六層棉紗結構，厚實而不悶熱。冬天像擁抱一樣溫暖，夏天幫助散熱排汗，真正四季皆宜。雙面設計隨心切換，機洗不變形。</p>
+        <div class="feat-specs"><span class="spec">100 × 140 cm</span><span class="spec">六重紗結構</span><span class="spec">雙面設計</span><span class="spec">四季皆宜</span><span class="spec">機洗不變形</span><span class="spec">SGS 認證</span></div>
+        <div class="feat-price"><sup>NT$</sup>1,580 <small>含稅免運</small></div>
+        <div class="feat-cta"><a href="#" class="btn-primary">立即購買 →</a><a href="#" class="btn-ghost">了解更多</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: 防踢被 ── -->
+<section class="feature feature--linen" id="antikick">
+  <div class="wrap">
+    <div class="feat-grid flip reveal">
+      <div class="feat-img">
+        <img src="images/antikick_pink.jpg" alt="防踢被">
+        <div class="feat-tag"><div class="feat-tag__name">六重紗 防踢被背心</div><div class="feat-tag__sub">0–7 歲適用 · 10 款花色</div></div>
+      </div>
+      <div class="feat-content">
+        <span class="feat-label">Featured · 寢具推薦</span>
+        <h2 class="feat-title">防踢防著涼，<br><em>安心一夜好眠</em></h2>
+        <div class="wave-divider"></div>
+        <p class="feat-desc">包覆式防踢被設計，無論寶寶怎麼翻滾踢腳都能完整包覆。六重紗輕薄透氣，活動自如不束縛，側邊四合扣穿脫輕鬆，手繪插畫花色多款可選。</p>
+        <div class="feat-specs"><span class="spec">0-3歲款</span><span class="spec">3-7歲款</span><span class="spec">10 款花色</span><span class="spec">側開四合扣</span><span class="spec">六重紗透氣</span></div>
+        <div class="feat-price"><sup>NT$</sup>980 <small>起</small></div>
+        <div class="feat-cta"><a href="#" class="btn-primary">立即購買 →</a><a href="#" class="btn-ghost">查看花色</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 防踢被花色 -->
+<section class="section section--parchment">
+  <div class="wrap">
+    <div class="sec-header reveal">
+      <span class="label">Pattern Guide · 花色選擇</span>
+      <h2 class="hdg">防踢被 <em>花色一覽</em></h2>
+      <div class="wave-divider"></div>
+    </div>
+    <div class="illus-row">
+      <div class="illus-tile reveal"><img src="images/illus_ak_coffee.jpg" alt="咖啡白點"><div class="illus-tile__lbl">咖啡白點</div></div>
+      <div class="illus-tile reveal"><img src="images/illus_ak_camo.jpg" alt="迷彩藍"><div class="illus-tile__lbl">迷彩藍</div></div>
+      <div class="illus-tile reveal"><img src="images/illus_ak_leaf.jpg" alt="綠葉"><div class="illus-tile__lbl">綠 葉</div></div>
+      <div class="illus-tile reveal"><img src="images/illus_ak_eagle.jpg" alt="粉紅小鷹"><div class="illus-tile__lbl">粉紅小鷹</div></div>
+      <div class="illus-tile reveal"><img src="images/illus_ak_squirrel.jpg" alt="彩色松鼠"><div class="illus-tile__lbl">彩色松鼠</div></div>
+      <div class="illus-tile reveal"><img src="images/illus_ak_apple.jpg" alt="蘋果紅"><div class="illus-tile__lbl">蘋果紅</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: 360°圍兜 ── -->
+<section class="feature feature--butter" id="bib360">
+  <div class="wrap">
+    <div class="feat-grid reveal">
+      <div class="feat-img">
+        <img src="images/bib360_photo.jpg" alt="360°拍嗝巾圍兜">
+        <div class="feat-tag"><div class="feat-tag__name">360° 拍嗝巾圍兜</div><div class="feat-tag__sub">全包覆零死角 · 三合一設計</div></div>
+      </div>
+      <div class="feat-content">
+        <span class="feat-label">Featured · 創新設計</span>
+        <h2 class="feat-title">一巾多用，<br><em>360° 全包覆守護</em></h2>
+        <div class="wave-divider"></div>
+        <p class="feat-desc">加大防汙範圍，360度全包覆無死角，拍嗝時溢奶滴哪裡都接得住。扣上扣帶即變身圍兜，適合副食品階段。六重紗吸濕速乾，不含甲醛螢光劑，媽媽放心、寶寶安心。</p>
+        <div class="feat-specs"><span class="spec">50 × 20 cm</span><span class="spec">新生兒適用</span><span class="spec">360° 全包覆</span><span class="spec">拍嗝巾∕圍兜雙用</span><span class="spec">不含甲醛</span></div>
+        <div class="feat-price"><sup>NT$</sup>520</div>
+        <div class="feat-cta"><a href="#" class="btn-primary">立即購買 →</a><a href="#" class="btn-ghost">了解更多</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 360°情境 -->
+<section class="section section--linen">
+  <div class="wrap">
+    <div class="sec-header reveal">
+      <span class="label">How to Use · 使用情境</span>
+      <h2 class="hdg"><em>一條</em>抵多用</h2>
+      <div class="wave-divider"></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-card reveal">
+        <img src="images/bib360_howto.jpg" alt="圍兜使用">
+        <div class="usage-card__body">
+          <div class="usage-num">01</div>
+          <div class="usage-name">圍兜使用</div>
+          <div class="usage-desc">扣上扣帶，圍在脖子上即成圍兜，適合副食品階段或口水多的寶寶。</div>
+        </div>
+      </div>
+      <div class="usage-card reveal">
+        <img src="images/bib360_feedback.jpg" alt="拍嗝使用">
+        <div class="usage-card__body">
+          <div class="usage-num">02</div>
+          <div class="usage-name">拍嗝∕餵奶巾</div>
+          <div class="usage-desc">展開披在肩膀上，加大範圍360度接住溢奶，媽媽衣服不再被染到。</div>
+        </div>
+      </div>
+      <div class="usage-card reveal">
+        <img src="images/carrier_sleep.jpg" alt="安撫使用">
+        <div class="usage-card__body">
+          <div class="usage-num">03</div>
+          <div class="usage-name">安撫∕口水巾</div>
+          <div class="usage-desc">六重紗柔軟無刺激，寶寶拿著啃咬、當安撫巾也很適合，不易滋生細菌。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: 背帶口水巾 ── -->
+<section class="feature feature--butter" id="carrier">
+  <div class="wrap">
+    <div class="feat-grid flip reveal">
+      <div class="feat-img">
+        <img src="images/carrier_mom2.jpg" alt="背帶口水巾">
+        <div class="feat-tag"><div class="feat-tag__name">六重紗 背帶口水巾</div><div class="feat-tag__sub">推車 · 背巾 · 汽座 通用</div></div>
+      </div>
+      <div class="feat-content">
+        <span class="feat-label">Featured · 外出必備</span>
+        <h2 class="feat-title">啃咬族必備，<br><em>愛啃咬寶貝的最佳守護</em></h2>
+        <div class="wave-divider"></div>
+        <p class="feat-desc">專為愛啃咬背帶的寶寶設計，六重紗超強吸水不悶濕，安全無染料可放心啃咬。磁釦固定穩固不移位，適用各品牌背巾、推車及汽座，隨時替換簡易穿脫。</p>
+        <div class="feat-specs"><span class="spec">2入組</span><span class="spec">通用各品牌</span><span class="spec">背巾∕推車∕汽座</span><span class="spec">六重紗柔軟</span><span class="spec">安全無染料</span></div>
+        <div class="feat-price"><sup>NT$</sup>480 <small>2入組</small></div>
+        <div class="feat-cta"><a href="#" class="btn-primary">立即購買 →</a><a href="#" class="btn-ghost">了解更多</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 背帶口水巾 情境照 -->
+<section class="section section--parchment">
+  <div class="wrap">
+    <div class="sec-header reveal">
+      <span class="label">In Use · 使用情境</span>
+      <h2 class="hdg">各種場合<em>都適用</em></h2>
+    </div>
+    <div class="mosaic reveal">
+      <div class="mosaic__cell"><img src="images/carrier_main.jpg" alt="媽媽背著使用"></div>
+      <div class="mosaic__cell"><img src="images/carrier_stroller2.jpg" alt="推車使用"></div>
+      <div class="mosaic__cell"><img src="images/carrier_gnaw1.jpg" alt="啃咬使用"></div>
+      <div class="mosaic__cell"><img src="images/carrier_mom.jpg" alt="新生兒使用"></div>
+      <div class="mosaic__cell"><img src="images/carrier_stroller1.jpg" alt="外出推車"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section class="section section--linen">
+  <div class="wrap">
+    <div class="sec-header reveal">
+      <span class="label">Reviews · 媽咪好評</span>
+      <h2 class="hdg">真實媽咪的<em>心聲</em></h2>
+      <div class="wave-divider"></div>
+      <p class="body-copy">來自 600+ 位媽咪的真實使用心得</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <span class="review-tag">六重紗 呼呼大睡被</span>
+        <p class="review-body">第一次摸到就愛上了！摸起來超超超軟，覆蓋在寶寶身上不會太重，夏天蓋著也不悶。買了之後家裡老人家直誇說質感好，完全是送禮自用兩相宜！</p>
+        <div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">慵懶媽の育兒日記</div><div class="review-role">寶寶 7 個月 · 台中</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <span class="review-tag">六重紗 360° 拍嗝巾</span>
+        <p class="review-body">這條拍嗝巾圍兜防禦範圍超廣，幾乎百分百防守！吸水力比一般材質的紗布巾還棒耶！一巾可以多用，CP值很高唷。</p>
+        <div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">栗卡媽咪</div><div class="review-role">新生兒媽媽 · 台北</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <span class="review-tag">六重紗 防踢被背心</span>
+        <p class="review-body">我家寶寶超愛踢被，試過很多方法都沒用，買了六重紗防踢被之後終於可以安心睡覺了！材質超軟，寶寶活動自如，而且洗完之後更柔軟，越洗越好！</p>
+        <div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">鴨捲媽的育兒生活</div><div class="review-role">寶寶 1 歲 · 高雄</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GIFT CTA ── -->
+<div class="gift-band">
+  <div class="gift-inner reveal">
+    <span class="gift-icon">🎁</span>
+    <span class="gift-label">Gift Sets · 彌月禮盒</span>
+    <h2 class="gift-title">六重紗系列<br><em>彌月禮盒客製服務</em></h2>
+    <p class="gift-desc">精選多款六重紗商品，自由搭配組合成專屬禮盒。附上精美提袋與客製化祝福卡，給新生寶寶最溫柔的第一份禮物。</p>
+    <a href="#" class="btn-cream">了解禮盒服務 →</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand__name">HiBOU 喜福生活苑</div>
+        <div class="footer-brand__tag">Born for Babies</div>
+        <p class="footer-brand__info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：hibou@hibou.com.tw<br>營業時間：週一至週五 11:00–17:00</p>
+        <div class="socials"><a href="#" class="soc">f</a><a href="#" class="soc">ig</a><a href="#" class="soc">yt</a></div>
+      </div>
+      <div class="footer-col">
+        <h5>六重紗系列</h5>
+        <ul>
+          <li><a href="#">呼呼大睡被</a></li>
+          <li><a href="#">防踢被背心</a></li>
+          <li><a href="#">背帶口水巾</a></li>
+          <li><a href="#">萬用小手帕</a></li>
+          <li><a href="#">360°拍嗝巾</a></li>
+          <li><a href="#">圍兜系列</a></li>
+          <li><a href="#">嬰兒肚圍</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>服務資訊</h5>
+        <ul>
+          <li><a href="#">購物說明</a></li>
+          <li><a href="#">退換貨政策</a></li>
+          <li><a href="#">配送說明</a></li>
+          <li><a href="#">常見問題</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>關於喜福</h5>
+        <ul>
+          <li><a href="#">品牌故事</a></li>
+          <li><a href="#">親子旅遊誌</a></li>
+          <li><a href="#">媽咪育兒教室</a></li>
+          <li><a href="#">部落客推薦</a></li>
+          <li><a href="#">HiBOU 會員</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span>
+      <span>隱私權政策　使用條款</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Header */
+const hdr = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('solid', window.scrollY > 20);
+  if (window.scrollY > 60) closeNav();
+}, { passive:true });
+
+/* Nav */
+function toggleNav(){
+  const n=document.getElementById('mNav'), h=document.getElementById('hbg');
+  const o=n.classList.contains('open');
+  n.classList.toggle('open',!o); h.classList.toggle('open',!o);
+  document.body.style.overflow = o?'':'hidden';
+}
+function closeNav(){
+  document.getElementById('mNav').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('click', e=>{
+  const n=document.getElementById('mNav');
+  if(n.classList.contains('open') && !n.contains(e.target) && !document.getElementById('hbg').contains(e.target)) closeNav();
+});
+
+/* Reveal */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
+    const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.in)'));
+    const idx = siblings.indexOf(entry.target);
+    setTimeout(()=>entry.target.classList.add('in'), Math.max(0,idx)*80);
+    io.unobserve(entry.target);
+  });
+},{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Filter */
+function doFilter(cat, btn){
+  document.querySelectorAll('.filt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.prod-card').forEach(c=>{
+    const show = cat==='all'||c.dataset.c===cat;
+    c.style.display = show?'block':'none';
+  });
+}
+
+/* Wishlist */
+function heart(e, btn){
+  e.preventDefault(); e.stopPropagation();
+  btn.classList.toggle('on');
+  btn.textContent = btn.classList.contains('on') ? '♥' : '♡';
+}
+
+/* Cart */
+function cart(e, btn){
+  e.preventDefault(); e.stopPropagation();
+  const orig = btn.textContent;
+  btn.textContent = '✓ 已加入';
+  btn.style.background = '#7a9e7e';
+  setTimeout(()=>{ btn.textContent=orig; btn.style.background=''; }, 1600);
+}
+</script>
+</body>
+</html>
