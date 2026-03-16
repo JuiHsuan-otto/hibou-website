@@ -9,15 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
 <style>
-  html, body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-  }
-  img { max-width: 100%; height: auto; }
-
   :root {
     --sage: #7A9A7E;
     --moss: #4A6741;
@@ -31,55 +22,37 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
+  html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
   body {
     font-family: 'Noto Sans TC', sans-serif;
     background: var(--warm-white);
     color: var(--charcoal);
     overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   /* ── HEADER ── */
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(255,254,249,0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(122,154,126,0.15);
-    transition: box-shadow 0.3s;
+    height: 72px;
   }
-  header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-
   .header-inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 72px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-  }
-  .logo-owl {
-    width: 42px;
-    height: 42px;
-  }
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-  .logo-text .brand { font-family: 'Zen Antique', serif; font-size: 1.35rem; color: var(--moss); letter-spacing: 0.05em; }
-  .logo-text .sub { font-size: 0.65rem; color: var(--soft-gray); letter-spacing: 0.12em; }
+  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
 
   nav { display: flex; align-items: center; gap: 0.15rem; }
   nav a {
@@ -98,58 +71,47 @@
   .btn-shop {
     background: var(--moss);
     color: white;
-    border: none;
     padding: 0.5rem 1.25rem;
     border-radius: 20px;
     font-size: 0.82rem;
     cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
     text-decoration: none;
+    transition: all 0.2s;
   }
   .btn-shop:hover { background: var(--sage); transform: translateY(-1px); }
-
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 1001; }
   .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; }
 
   /* ── HERO ── */
   .hero {
-    position: relative; 
+    position: relative;
     margin-top: 72px;
     height: calc(100vh - 72px);
     min-height: 600px;
-    position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
   }
-
   .hero-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    filter: brightness(0.92);
   }
-
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      120deg,
-      rgba(255,254,249,0.82) 0%,
-      rgba(255,254,249,0.55) 45%,
-      rgba(255,254,249,0.1) 100%
-    );
+    background: linear-gradient(120deg, rgba(255,254,249,0.85) 0%, rgba(255,254,249,0.4) 60%, transparent 100%);
+    z-index: 1;
   }
-
   .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 8%;
-    transform: translateY(-50%);
-    max-width: 500px;
+    position: relative;
+    z-index: 2;
+    margin-left: 8%;
+    max-width: 550px;
   }
-
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -158,633 +120,108 @@
     border: 1px solid rgba(122,154,126,0.3);
     color: var(--moss);
     font-size: 0.75rem;
-    letter-spacing: 0.15em;
     padding: 0.35rem 0.9rem;
     border-radius: 20px;
     margin-bottom: 1.5rem;
-    animation: fadeUp 0.8s ease both;
   }
-
   .hero-title {
     font-family: 'Noto Serif TC', serif;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     font-weight: 700;
     line-height: 1.3;
-    color: var(--charcoal);
-    margin-bottom: 1rem;
-    animation: fadeUp 0.8s 0.15s ease both;
-  }
-  .hero-title em {
-    font-style: normal;
-    color: var(--moss);
-  }
-
-  .hero-desc {
-    font-size: 0.95rem;
-    color: var(--soft-gray);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    animation: fadeUp 0.8s 0.45s ease both;
-  }
-  .btn-primary {
-    background: var(--moss);
-    color: white;
-    padding: 0.85rem 2rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    transition: all 0.25s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .btn-primary:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,103,65,0.25); }
-  .btn-secondary {
-    background: transparent;
-    color: var(--charcoal);
-    padding: 0.85rem 2rem;
-    border-radius: 30px;
-    border: 1.5px solid rgba(44,44,44,0.25);
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    transition: all 0.25s;
-  }
-  .btn-secondary:hover { border-color: var(--moss); color: var(--moss); }
-
-  .hero-badges {
-    position: absolute;
-    bottom: 3rem;
-    left: 8%;
-    display: flex;
-    gap: 1rem;
-    animation: fadeUp 0.8s 0.6s ease both;
-  }
-  .badge {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(255,254,249,0.9);
-    border: 1px solid rgba(122,154,126,0.2);
-    padding: 0.4rem 0.9rem;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    color: var(--moss);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── SECTION COMMON ── */
-  section { padding: 80px 2rem; }
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-label {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    color: var(--sage);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    font-weight: 700;
-    color: var(--charcoal);
-    line-height: 1.4;
-  }
-  .section-desc {
-    font-size: 0.9rem;
-    color: var(--soft-gray);
-    margin-top: 0.75rem;
-    line-height: 1.8;
-  }
-  .container { max-width: 1200px; margin: 0 auto; width: 90%; }
-
-  /* ── CATEGORIES ── */
-  .categories { background: var(--cream); }
-
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .cat-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-  }
-  .cat-card:hover .cat-img { transform: scale(1.06); }
-  .cat-card:hover .cat-overlay { background: linear-gradient(to top, rgba(44,44,44,0.7) 0%, rgba(44,44,44,0.1) 60%); }
-
-  .cat-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  /* 床品圖片裁切掉右上角水印 */
-  .cat-card.bedding .cat-img {
-    object-position: center 60%;
-  }
-
-  .cat-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(44,44,44,0.6) 0%, rgba(44,44,44,0.05) 55%);
-    transition: background 0.3s;
-  }
-
-  .cat-info {
-    position: absolute;
-    bottom: 1.25rem;
-    left: 1.25rem;
-    right: 1.25rem;
-  }
-  .cat-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 0.2rem;
-  }
-  .cat-sub {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.75);
-    letter-spacing: 0.1em;
-  }
-  .cat-arrow {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 32px;
-    height: 32px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .cat-card:hover .cat-arrow { opacity: 1; }
-
-  /* placeholder card */
-  .cat-placeholder {
-    background: linear-gradient(135deg, var(--sage) 0%, var(--moss) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .cat-placeholder-icon { font-size: 2.5rem; }
-  .cat-placeholder-text { color: rgba(255,255,255,0.8); font-size: 0.8rem; letter-spacing: 0.1em; }
-
-  /* ── FEATURED ── */
-  .featured { background: var(--warm-white); }
-
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .featured-visual {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-  }
-  .featured-visual img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    display: block;
-  }
-  .featured-tag {
-    position: absolute;
-    top: 1.25rem;
-    left: 1.25rem;
-    background: var(--accent-orange);
-    color: white;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
-  }
-
-  .featured-content { padding: 1rem 1rem 1rem 2rem; }
-  .featured-cat {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    color: var(--sage);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .featured-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-    color: var(--charcoal);
-  }
-  .featured-desc {
-    font-size: 0.88rem;
-    line-height: 1.9;
-    color: var(--soft-gray);
-    margin-bottom: 1.5rem;
-  }
-  .featured-specs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  .spec-tag {
-    background: var(--light-gray);
-    color: var(--charcoal);
-    font-size: 0.75rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-  }
-  .featured-price {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--moss);
-    margin-bottom: 1.5rem;
-  }
-  .featured-price span { font-size: 0.85rem; font-weight: 400; color: var(--soft-gray); }
-
-  /* ── BRAND STORY ── */
-  .brand-story {
-    background: var(--moss);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    padding: 100px 2rem;
-  }
-  .brand-story::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -120px;
-    width: 480px; height: 480px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 50%;
-  }
-  .brand-story::after {
-    content: '';
-    position: absolute;
-    bottom: -180px; left: -100px;
-    width: 560px; height: 560px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 50%;
-  }
-
-  .brand-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .brand-owl {
-    width: 80px; height: 80px;
-    margin: 0 auto 2rem;
-    opacity: 0.9;
-  }
-
-  .brand-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    color: rgba(255,255,255,0.6);
-    text-transform: uppercase;
     margin-bottom: 1rem;
   }
+  .hero-title em { font-style: normal; color: var(--moss); }
+  .hero-desc { font-size: 1rem; color: var(--soft-gray); line-height: 1.8; margin-bottom: 2rem; }
+  .hero-cta { display: flex; gap: 1rem; }
+  .btn-primary { background: var(--moss); color: white; padding: 0.85rem 2rem; border-radius: 30px; text-decoration: none; font-size: 0.9rem; transition: all 0.25s; }
+  .btn-secondary { background: transparent; color: var(--charcoal); padding: 0.85rem 2rem; border-radius: 30px; border: 1.5px solid rgba(44,44,44,0.25); text-decoration: none; font-size: 0.9rem; transition: all 0.25s; }
+  .hero-badges { position: absolute; bottom: 3rem; left: 8%; display: flex; gap: 1rem; z-index: 2; }
+  .badge { background: rgba(255,254,249,0.9); border: 1px solid rgba(122,154,126,0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.72rem; color: var(--moss); }
 
-  .brand-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(1.6rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
-    color: white;
-  }
+  /* ── SECTIONS ── */
+  section { padding: 100px 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 2.2rem; color: var(--charcoal); }
 
-  .brand-desc {
-    font-size: 0.97rem;
-    line-height: 2.1;
-    color: rgba(255,255,255,0.78);
-    max-width: 720px;
-    margin: 0 auto 2rem;
+  /* ── GRID SYSTEM ── */
+  .cat-grid, .news-grid, .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .cat-card, .product-card, .news-card, .testimonial-card { 
+    background: white; border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.3s, box-shadow 0.3s;
   }
+  .cat-card:hover, .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
 
-  /* 品牌故事三段落 */
-  .brand-paragraphs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 3rem 0;
-    text-align: left;
-  }
-  .brand-para-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 16px;
-    padding: 1.75rem 1.5rem;
-    transition: background 0.3s;
-  }
-  .brand-para-card:hover { background: rgba(255,255,255,0.13); }
-  .brand-para-icon {
-    font-size: 1.6rem;
-    margin-bottom: 0.85rem;
-    display: block;
-  }
-  .brand-para-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-  }
-  .brand-para-text {
-    font-size: 0.83rem;
-    line-height: 1.9;
-    color: rgba(255,255,255,0.7);
-  }
+  .product-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--light-gray); }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .product-info { padding: 1.25rem; }
+  .product-name { font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .product-price { color: var(--moss); font-weight: 700; font-size: 1.1rem; }
 
-  /* 安心三認證 */
-  .cert-divider {
-    width: 48px; height: 2px;
-    background: rgba(201,169,122,0.6);
-    margin: 3rem auto;
-    border-radius: 2px;
-  }
-
-  .certs-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-  }
-
-  .brand-certs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    text-align: left;
-  }
-  .cert-item {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(201,169,122,0.25);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .cert-item:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(201,169,122,0.5);
-  }
-  .cert-icon {
-    width: 44px; height: 44px;
-    background: rgba(201,169,122,0.2);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  .cert-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--sand);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-  }
-  .cert-text {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.8;
-    letter-spacing: 0.02em;
-  }
-
-    
-  /* ── MOBILE OVERHAUL (Mobile First / Optimized) ── */
-  
-  /* ── STANDARD MOBILE STYLES ── */
-  
-  /* ── REFINED MOBILE OVERHAUL ── */
+  /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
-    /* Reset layout */
-    section { padding: 50px 20px !important; clear: both; }
-    .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; }
-
-    /* Header Fix */
-    header { position: fixed !important; height: 60px !important; z-index: 1000 !important; }
-    .header-inner { height: 60px !important; }
+    header { height: 64px; }
+    .header-inner { padding: 0 1.25rem; }
+    .logo img { height: 34px; }
     nav { display: none !important; }
-    .hamburger { display: flex !important; }
+    .hamburger { display: flex; }
 
-    /* Hero Section Fix - Robust */
-    .hero {
-      margin-top: 60px !important;
-      height: 450px !important;
-      position: relative !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      overflow: hidden !important;
-      background: #fdf6eb !important;
-    }
-    .hero-img {
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      width: 100% !important;
-      height: 100% !important;
-      transform: translate(-50%, -50%) !important;
-      object-fit: cover !important;
-      object-position: 45% center !important;
-      z-index: 1 !important;
-      display: block !important;
-    }
-    .hero-overlay {
-      position: absolute !important;
-      inset: 0 !important;
-      background: rgba(255, 254, 249, 0.6) !important;
-      z-index: 2 !important;
-    }
-    .hero-content {
-      position: relative !important;
-      z-index: 3 !important;
-      width: 90% !important;
-      text-align: center !important;
-      margin: 0 auto !important;
-      left: auto !important;
-      top: auto !important;
-      transform: none !important;
-    }
-    .hero-title { 
-      font-size: 2rem !important; 
-      color: #2c2c2c !important; 
-      margin-bottom: 10px !important;
-      text-shadow: 0 0 10px #fff !important;
-    }
-    .hero-desc { 
-      font-size: 0.95rem !important; 
-      color: #4a4a4a !important; 
-      line-height: 1.6 !important;
-      text-shadow: 0 0 10px #fff !important;
-    }
-    .hero-cta { 
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 12px !important;
-      margin-top: 20px !important;
-    }
-    .btn-primary, .btn-secondary {
-      width: 100% !important;
-      padding: 12px !important;
-      font-size: 0.9rem !important;
-      border-radius: 30px !important;
-    }
-    .hero-badges { display: none !important; }
+    /* Mobile Hero */
+    .hero { margin-top: 64px; height: 500px; min-height: 500px; justify-content: center; text-align: center; }
+    .hero-img { object-position: 45% center; }
+    .hero-overlay { background: linear-gradient(to bottom, rgba(255,254,249,0.9) 0%, rgba(255,254,249,0.6) 50%, rgba(255,254,249,0.4) 100%); }
+    .hero-content { margin-left: 0; padding: 0 1.5rem; width: 100%; }
+    .hero-title { font-size: 2.1rem; }
+    .hero-desc { font-size: 0.95rem; }
+    .hero-cta { justify-content: center; }
+    .hero-badges { position: relative; bottom: auto; left: auto; margin-top: 2.5rem; justify-content: center; flex-wrap: wrap; }
 
-    /* Categories - List on mobile */
-    .cat-grid { 
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 15px !important; 
-    }
-    .cat-card { width: 100% !important; height: 180px !important; }
-
-    /* Products - Responsive Grid */
-    .products-grid { 
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important; 
-      gap: 12px !important; 
-    }
-    .product-card { width: 100% !important; }
+    /* Mobile Grid Reset */
+    .cat-grid, .news-grid, .testimonial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
     
-    /* Other Sections Stack */
-    .featured-grid, .brand-paragraphs, .brand-certs, .news-grid, .blogger-featured, .testimonial-grid {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 20px !important;
-    }
-    .footer-top { display: flex !important; flex-direction: column !important; gap: 30px !important; }
-  }
+    section { padding: 60px 1.25rem; }
+    .section-title { font-size: 1.8rem; }
 
-    body { overflow-x: hidden; }
+    /* Featured Block (Horizontal to Vertical) */
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-visual img { height: 320px; }
+    .featured-content { padding: 2rem 0 0; text-align: center; }
+    .featured-specs { justify-content: center; }
     
-    section { padding: 40px 15px !important; }
-    .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
-
-    /* Header & Nav */
-    header { height: 60px !important; }
-    .header-inner { height: 60px !important; padding: 0 15px !important; }
-    .logo img { height: 32px !important; }
-    nav { display: none !important; }
-    .hamburger { display: flex !important; }
-
-    /* Hero Section Fix */
-    .hero {
-      height: auto !important;
-      min-height: 400px !important;
-      margin-top: 60px !important;
-      padding: 60px 20px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-    }
-    .hero-img {
-      position: absolute !important;
-      top: 0; left: 0;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      z-index: -1;
-    }
-    .hero-content {
-      position: relative !important;
-      width: 100% !important;
-      left: 0 !important;
-      top: 0 !important;
-      transform: none !important;
-      padding: 0 !important;
-    }
-    .hero-title { font-size: 1.8rem !important; line-height: 1.3 !important; }
-    .hero-desc { font-size: 0.9rem !important; margin-bottom: 1.5rem !important; }
-    .hero-cta { flex-direction: column !important; width: 100% !important; gap: 10px !important; }
-    .btn-primary, .btn-secondary { width: 100% !important; justify-content: center !important; padding: 12px !important; }
-    .hero-badges { display: none !important; }
-
-    /* Categories */
-    .cat-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
-    .cat-card { aspect-ratio: 16/9 !important; }
-
-    /* Featured Products (熱銷商品) */
-    .products-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    .product-card { display: flex !important; flex-direction: column !important; }
-    .product-img-wrap { aspect-ratio: 1/1 !important; }
-    
-    /* Featured Section (橫向大圖區) */
-    .featured-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    .featured-visual img { height: 250px !important; }
-    .featured-content { padding: 0 !important; text-align: center !important; }
-    .featured-title { font-size: 1.4rem !important; }
-    .featured-specs { justify-content: center !important; }
-
-    /* Brand Story */
-    .brand-paragraphs { grid-template-columns: 1fr !important; }
-    .brand-certs { grid-template-columns: 1fr !important; }
-    .brand-title { font-size: 1.5rem !important; }
-
-    /* News & Blogger */
-    .news-grid { grid-template-columns: 1fr !important; }
-    .blogger-featured { grid-template-columns: 1fr !important; }
-    .blogger-stats-row { flex-direction: column !important; align-items: center !important; gap: 20px !important; }
-
-    /* Footer */
-    .footer-top { grid-template-columns: 1fr !important; text-align: center !important; }
-    .social-links { justify-content: center !important; }
+    /* Blogger Stats */
+    .blogger-stats-row { gap: 1rem; }
+    .bstat { flex: 1 1 45%; }
   }
 
-    .hero-title { font-size: 1.9rem !important; }
-    .hero { height: 480px !important; }
+  @media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 1.8rem; }
   }
+
+  /* ── MOBILE NAV OVERLAY ── */
+  .mobile-nav {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: rgba(255,254,249,0.98); backdrop-filter: blur(15px);
+    z-index: 999; flex-direction: column; padding: 2rem; gap: 0.5rem;
+    overflow-y: auto;
   }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { 
+    font-size: 1.1rem; color: var(--charcoal); text-decoration: none; padding: 1rem;
+    border-bottom: 1px solid rgba(122,154,126,0.1); 
+  }
+  .mobile-nav .mobile-shop-btn { background: var(--moss); color: white; text-align: center; border-radius: 30px; margin-top: 1rem; }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <header id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+      <img src="images/logo.png" alt="HiBOU Logo">
     </a>
-
     <nav>
       <a href="index.html">首頁</a>
       <a href="hibou-6gauze.html">六重紗系列</a>
@@ -794,7 +231,6 @@
       <a href="news-list.html">最新消息</a>
       <a href="contact.html">聯絡我們</a>
     </nav>
-
     <div class="header-actions">
       <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -803,16 +239,15 @@
     </div>
   </div>
 </header>
-<!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html" onclick="closeMobileMenu()">首頁</a>
   <a href="hibou-6gauze.html" onclick="closeMobileMenu()">六重紗系列</a>
   <a href="hibou-windshield.html" onclick="closeMobileMenu()">寶寶我最罩</a>
   <a href="hibou-clips.html" onclick="closeMobileMenu()">隨身配件</a>
-  <a href="hibou-journal.html" onclick="closeMobileMenu()">喜福生活誌（親子旅遊、媽媽教室、部落客推薦）</a>
+  <a href="hibou-journal.html" onclick="closeMobileMenu()">喜福生活誌</a>
   <a href="news-list.html" onclick="closeMobileMenu()">最新消息</a>
   <a href="contact.html" onclick="closeMobileMenu()">聯絡我們</a>
-  <a href="hibou_landing_page_v10.html" class="mobile-shop-btn">立即選購 →</a>
+  <a href="hibou_landing_page_v10.html" class="mobile-shop-btn" onclick="closeMobileMenu()">立即選購 →</a>
 </nav>
 <section class="hero">
   <img src="./images/015_9336.jpg" alt="HiBOU 喜福嬰幼兒精品" class="hero-img">
@@ -1482,26 +917,9 @@
   });
 
   // ── Mobile Menu ──
-  function toggleMenu() {
-    const nav = document.getElementById('mobileNav');
-    const burger = document.getElementById('hamburger');
-    const isOpen = nav.classList.contains('open');
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      nav.classList.add('open');
-      burger.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-  }
+  
 
-  function closeMobileMenu() {
-    const nav = document.getElementById('mobileNav');
-    const burger = document.getElementById('hamburger');
-    nav.classList.remove('open');
-    burger.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  
 
   // Close menu on outside click
   document.addEventListener('click', (e) => {
@@ -1583,5 +1001,25 @@
       });
     }
   });
+
+  // ── Mobile Menu ──
+  function toggleMenu(){
+    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
+    if(!nav)return;
+    if(nav.classList.contains('open')){closeMobileMenu();}
+    else{nav.classList.add('open');if(burger)burger.classList.add('active');document.body.style.overflow='hidden';}
+  }
+  function closeMobileMenu(){
+    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
+    if(nav)nav.classList.remove('open');
+    if(burger)burger.classList.remove('active');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('click',function(e){
+    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
+    if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&burger&&!burger.contains(e.target))closeMobileMenu();
+  });
+  window.addEventListener('scroll',function(){if(window.scrollY>120)closeMobileMenu();},{passive:true});
+
 </script></body>
 </html>
