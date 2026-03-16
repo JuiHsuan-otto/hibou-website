@@ -255,7 +255,7 @@
     margin-top: 0.75rem;
     line-height: 1.8;
   }
-  .container { max-width: 1200px; margin: 0 auto; }
+  .container { max-width: 1200px; margin: 0 auto; width: 90%; }
 
   /* ── CATEGORIES ── */
   .categories { background: var(--cream); }
@@ -578,126 +578,88 @@
 
     
   /* ── MOBILE OVERHAUL (Mobile First / Optimized) ── */
+  
+  /* ── STANDARD MOBILE STYLES ── */
   @media (max-width: 768px) {
-    /* Global Section Spacing */
-    section { padding: 60px 1.25rem; }
-    .section-header { margin-bottom: 2.5rem; }
-    .container { padding: 0; }
+    * { max-width: 100vw; }
+    body { overflow-x: hidden; }
+    
+    section { padding: 40px 15px !important; }
+    .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
 
-    /* Header */
+    /* Header & Nav */
+    header { height: 60px !important; }
+    .header-inner { height: 60px !important; padding: 0 15px !important; }
+    .logo img { height: 32px !important; }
     nav { display: none !important; }
     .hamburger { display: flex !important; }
-    header { height: 64px !important; }
-    .header-inner { height: 64px !important; padding: 0 1.25rem !important; }
-    .logo img { height: 34px !important; }
 
-    /* Hero Section - Boutique Mobile Style */
+    /* Hero Section Fix */
     .hero {
-      height: 540px !important;
-      margin-top: 64px !important;
+      height: auto !important;
+      min-height: 400px !important;
+      margin-top: 60px !important;
+      padding: 60px 20px !important;
       display: flex !important;
+      flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      position: relative !important;
-      overflow: hidden !important;
+      text-align: center !important;
     }
     .hero-img {
-      object-position: center center !important;
-    }
-    .hero-overlay {
-      background: linear-gradient(to bottom, rgba(255,254,249,0.9) 0%, rgba(255,254,249,0.5) 60%, rgba(255,254,249,0.3) 100%) !important;
+      position: absolute !important;
+      top: 0; left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      z-index: -1;
     }
     .hero-content {
       position: relative !important;
-      top: 0 !important;
-      left: 0 !important;
-      transform: none !important;
       width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 1.5rem !important;
-      text-align: center !important;
-      z-index: 10 !important;
-    }
-    .hero-eyebrow { font-size: 0.68rem !important; padding: 0.25rem 0.75rem !important; margin-bottom: 1.25rem !important; }
-    .hero-title { font-size: 2.2rem !important; line-height: 1.25 !important; margin-bottom: 1rem !important; }
-    .hero-desc { font-size: 0.9rem !important; line-height: 1.7 !important; color: var(--charcoal) !important; opacity: 0.85 !important; }
-    .hero-cta { justify-content: center !important; gap: 0.75rem !important; }
-    .btn-primary, .btn-secondary { padding: 0.75rem 1.5rem !important; font-size: 0.85rem !important; }
-    .hero-badges {
-      position: relative !important;
-      bottom: 0 !important;
       left: 0 !important;
-      margin-top: 2.5rem !important;
-      justify-content: center !important;
+      top: 0 !important;
+      transform: none !important;
       padding: 0 !important;
-      gap: 0.5rem !important;
     }
-    .badge { font-size: 0.6rem !important; padding: 0.25rem 0.6rem !important; }
+    .hero-title { font-size: 1.8rem !important; line-height: 1.3 !important; }
+    .hero-desc { font-size: 0.9rem !important; margin-bottom: 1.5rem !important; }
+    .hero-cta { flex-direction: column !important; width: 100% !important; gap: 10px !important; }
+    .btn-primary, .btn-secondary { width: 100% !important; justify-content: center !important; padding: 12px !important; }
+    .hero-badges { display: none !important; }
 
-    /* Categories Grid */
-    .cat-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
-    .cat-card { aspect-ratio: 16/9 !important; border-radius: 12px !important; }
-    .cat-name { font-size: 1rem !important; }
-    .cat-sub { font-size: 0.65rem !important; }
+    /* Categories */
+    .cat-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+    .cat-card { aspect-ratio: 16/9 !important; }
 
-    /* Products Grid (Featured 熱銷商品) */
-    .products-grid { 
-      grid-template-columns: repeat(2, 1fr) !important; 
-      gap: 1rem !important; 
-    }
-    .product-card { border-radius: 12px !important; }
-    .product-info { padding: 0.85rem !important; }
-    .product-name { font-size: 0.88rem !important; }
-    .product-sub { font-size: 0.68rem !important; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-    .product-price { font-size: 0.95rem !important; }
-
-    /* Featured Section (機能防風罩 橫向區塊) */
-    .featured-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-    .featured-visual img { height: 300px !important; border-radius: 12px !important; }
-    .featured-content { padding: 0 !important; text-align: center; }
-    .featured-title { font-size: 1.5rem !important; }
-    .featured-desc { font-size: 0.85rem !important; line-height: 1.8 !important; }
+    /* Featured Products (熱銷商品) */
+    .products-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .product-card { display: flex !important; flex-direction: column !important; }
+    .product-img-wrap { aspect-ratio: 1/1 !important; }
+    
+    /* Featured Section (橫向大圖區) */
+    .featured-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .featured-visual img { height: 250px !important; }
+    .featured-content { padding: 0 !important; text-align: center !important; }
+    .featured-title { font-size: 1.4rem !important; }
     .featured-specs { justify-content: center !important; }
-    .featured-price { font-size: 1.3rem !important; }
 
     /* Brand Story */
-    .brand-story { padding: 80px 1.25rem !important; }
-    .brand-owl { width: 60px !important; height: 60px !important; }
-    .brand-title { font-size: 1.75rem !important; line-height: 1.4 !important; }
-    .brand-desc { font-size: 0.9rem !important; line-height: 1.9 !important; }
-    .brand-paragraphs { grid-template-columns: 1fr !important; gap: 1rem !important; margin: 2rem 0 !important; }
-    .brand-para-card { padding: 1.25rem !important; }
-    .brand-certs { grid-template-columns: 1fr !important; gap: 1rem !important; }
-    .cert-item { padding: 1.25rem !important; }
+    .brand-paragraphs { grid-template-columns: 1fr !important; }
+    .brand-certs { grid-template-columns: 1fr !important; }
+    .brand-title { font-size: 1.5rem !important; }
 
-    /* Testimonials */
-    .testimonial-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
-
-    /* News Grid (喜福生活誌) */
-    .news-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
-    .news-card-cover { height: 180px !important; }
-    .news-card-body { padding: 1.25rem !important; }
-
-    /* Blogger Wall */
-    .blogger-stats-row { gap: 1rem !important; margin-bottom: 2rem !important; }
-    .bstat { flex: 1 1 40% !important; }
-    .bstat-num { font-size: 1.6rem !important; }
-    .blogger-featured { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    /* News & Blogger */
+    .news-grid { grid-template-columns: 1fr !important; }
+    .blogger-featured { grid-template-columns: 1fr !important; }
+    .blogger-stats-row { flex-direction: column !important; align-items: center !important; gap: 20px !important; }
 
     /* Footer */
-    .footer-top { grid-template-columns: 1fr !important; gap: 2.5rem !important; text-align: center; }
+    .footer-top { grid-template-columns: 1fr !important; text-align: center !important; }
     .social-links { justify-content: center !important; }
-    .footer-bottom { flex-direction: column !important; gap: 1rem !important; text-align: center !important; }
-    
-    /* Stats Section */
-    .stats-inner { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
-    .stat-card { padding: 1.5rem 0.75rem !important; }
-    .stat-number { font-size: 1.8rem !important; }
-    .stat-label { font-size: 0.72rem !important; }
   }
 
-  @media (max-width: 480px) {
-    .products-grid { grid-template-columns: 1fr !important; }
     .hero-title { font-size: 1.9rem !important; }
     .hero { height: 480px !important; }
   }
