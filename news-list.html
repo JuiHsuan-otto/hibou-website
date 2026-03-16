@@ -111,25 +111,6 @@
 
   footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 60px 2rem 40px; text-align: center; }
   footer p { font-size: 0.75rem; letter-spacing: 0.05em; }
-
-  /* ── HAMBURGER & MOBILE NAV ── */
-  .hamburger,.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
-  .hamburger span,.burger span{width:22px;height:2px;background:var(--charcoal,#2C2C2C);border-radius:2px;transition:.3s;display:block;}
-  .mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(255,254,249,.98);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(122,154,126,.18);padding:1.25rem 2rem 1.75rem;z-index:499;flex-direction:column;gap:.2rem;box-shadow:0 10px 36px rgba(0,0,0,.09);transform:translateY(-8px);opacity:0;transition:opacity .28s ease,transform .28s ease;}
-  .mobile-nav.open{display:flex;opacity:1;transform:translateY(0);}
-  .mobile-nav a{font-size:.95rem;color:var(--charcoal,#2C2C2C);text-decoration:none;padding:.75rem .85rem;border-radius:10px;letter-spacing:.03em;border-bottom:1px solid rgba(122,154,126,.1);transition:background .2s,color .2s;}
-  .mobile-nav a:last-child{border-bottom:none;}
-  .mobile-nav a:hover,.mobile-nav a.cur,.mobile-nav a.active{background:rgba(122,154,126,.1);color:var(--moss,#4A6741);}
-  .mobile-nav .mobile-shop-btn{margin-top:.8rem;background:var(--moss,#4A6741);color:white!important;text-align:center;padding:.8rem;border-radius:20px;font-size:.9rem;border-bottom:none;letter-spacing:.06em;}
-  .mobile-nav .mobile-shop-btn:hover{background:var(--sage,#7A9A7E);}
-  .hamburger.active span:nth-child(1),.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-  .hamburger.active span:nth-child(2),.burger.active span:nth-child(2){opacity:0;}
-  .hamburger.active span:nth-child(3),.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-  @media(max-width:768px){
-    header nav,header .main-nav,.hdr .main-nav{display:none!important;}
-    header#header nav{display:none!important;}
-    .hamburger,.burger{display:flex!important;}
-  }
 </style>
 </head>
 <body>
@@ -158,18 +139,6 @@
     </div>
   </div>
 </header>
-<!-- MOBILE NAV -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html" onclick="closeMobileMenu()">首頁</a>
-  <a href="hibou-6gauze.html" onclick="closeMobileMenu()">六重紗系列</a>
-  <a href="hibou-windshield.html" onclick="closeMobileMenu()">寶寶我最罩</a>
-  <a href="hibou-clips.html" onclick="closeMobileMenu()">隨身配件</a>
-  <a href="hibou-journal.html" onclick="closeMobileMenu()">喜福生活誌</a>
-  <a href="news-list.html" class="cur" onclick="closeMobileMenu()">最新消息</a>
-  <a href="contact.html" onclick="closeMobileMenu()">聯絡我們</a>
-  <a href="hibou_landing_page_v10.html" class="mobile-shop-btn" onclick="closeMobileMenu()">立即選購 →</a>
-</nav>
-
 <main>
   <div class="section-hdr">
     <span class="section-lbl">Announcements</span>
@@ -223,26 +192,5 @@
   <p>© 2026 HiBOU 喜福生活苑 · 彰化縣鹿港鎮</p>
 </footer>
 
-<script>
-  // ── Mobile Menu ──
-  function toggleMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(!nav)return;
-    if(nav.classList.contains('open')){closeMobileMenu();}
-    else{nav.classList.add('open');if(burger)burger.classList.add('active');document.body.style.overflow='hidden';}
-  }
-  function closeMobileMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav)nav.classList.remove('open');
-    if(burger)burger.classList.remove('active');
-    document.body.style.overflow='';
-  }
-  document.addEventListener('click',function(e){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&burger&&!burger.contains(e.target))closeMobileMenu();
-  });
-  window.addEventListener('scroll',function(){if(window.scrollY>120)closeMobileMenu();},{passive:true});
-
-</script>
 </body>
 </html>

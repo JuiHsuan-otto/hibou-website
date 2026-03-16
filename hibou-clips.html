@@ -425,18 +425,15 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </header>
 <!-- MOBILE NAV -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html" onclick="closeMobileMenu()">首頁</a>
-  <a href="hibou-6gauze.html" onclick="closeMobileMenu()">六重紗系列</a>
-  <a href="hibou-windshield.html" onclick="closeMobileMenu()">寶寶我最罩</a>
-  <a href="hibou-clips.html" class="cur" onclick="closeMobileMenu()">隨身配件</a>
-  <a href="hibou-journal.html" onclick="closeMobileMenu()">喜福生活誌</a>
-  <a href="news-list.html" onclick="closeMobileMenu()">最新消息</a>
-  <a href="contact.html" onclick="closeMobileMenu()">聯絡我們</a>
-  <a href="hibou_landing_page_v10.html" class="mobile-shop-btn" onclick="closeMobileMenu()">立即選購 →</a>
-</nav>
-
-
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
 
 <!-- Header -->
 
@@ -1354,8 +1351,25 @@ function doFilt(cat,btn){document.querySelectorAll('.filt').forEach(function(b){
 window.addEventListener('load',function(){document.querySelector('.hero').classList.add('rdy');});
 
   // ── Mobile Menu (synced from index.html) ──
-  
-  
+  function toggleMenu() {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    const isOpen = nav.classList.contains('open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      nav.classList.add('open');
+      burger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeMobileMenu() {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    nav.classList.remove('open');
+    burger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
   document.addEventListener('click', (e) => {
     const nav = document.getElementById('mobileNav');
     const burger = document.getElementById('hamburger');
@@ -1368,26 +1382,6 @@ window.addEventListener('load',function(){document.querySelector('.hero').classL
     const hdr = document.getElementById('header');
     if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 10);
   }, { passive: true });
-
-
-  // ── Mobile Menu ──
-  function toggleMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(!nav)return;
-    if(nav.classList.contains('open')){closeMobileMenu();}
-    else{nav.classList.add('open');if(burger)burger.classList.add('active');document.body.style.overflow='hidden';}
-  }
-  function closeMobileMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav)nav.classList.remove('open');
-    if(burger)burger.classList.remove('active');
-    document.body.style.overflow='';
-  }
-  document.addEventListener('click',function(e){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&burger&&!burger.contains(e.target))closeMobileMenu();
-  });
-  window.addEventListener('scroll',function(){if(window.scrollY>120)closeMobileMenu();},{passive:true});
 
 </script>
 </body>

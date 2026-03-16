@@ -366,7 +366,23 @@
   header#header nav a.cur { font-weight:500; }
   .header-actions { display:flex; align-items:center; gap:0.75rem; }
   a.btn-shop { background:#4a6741; color:white; border:none; padding:0.5rem 1.25rem; border-radius:20px; font-size:0.82rem; cursor:pointer; font-family:inherit; letter-spacing:0.05em; transition:all 0.2s; text-decoration:none; display:inline-flex; align-items:center; }
-  a.btn-shop:hover { background:#7a9a7e; transform:translateY(-1px); }</style>
+  a.btn-shop:hover { background:#7a9a7e; transform:translateY(-1px); }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .hamburger span { width:22px; height:2px; background:var(--charcoal); border-radius:2px; transition:0.3s; display:block; }
+  .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(255,254,249,0.98); backdrop-filter:blur(12px); border-bottom:1px solid rgba(122,154,126,0.15); padding:1.25rem 2rem 1.5rem; z-index:499; flex-direction:column; gap:0.25rem; box-shadow:0 8px 32px rgba(0,0,0,0.08); transform:translateY(-8px); opacity:0; transition:opacity 0.25s, transform 0.25s; }
+  .mobile-nav.open { display:flex; opacity:1; transform:translateY(0); }
+  .mobile-nav a { font-size:0.95rem; color:var(--charcoal); text-decoration:none; padding:0.7rem 0.75rem; border-radius:10px; border-bottom:1px solid rgba(122,154,126,0.1); transition:background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom:none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background:rgba(122,154,126,0.08); color:#4a6741; }
+  .mobile-nav .mobile-shop-btn { margin-top:0.75rem; background:#4a6741; color:white; text-align:center; padding:0.75rem; border-radius:20px; font-size:0.9rem; border-bottom:none; letter-spacing:0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background:#7a9a7e; }
+  .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+  .hamburger.active span:nth-child(2) { opacity:0; }
+  .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+  @media (max-width:768px) { header#header nav { display:none; } .hamburger { display:flex; } }
+
+  /* ── end header sync ── */
+</style>
 </head>
 <body>
 <header id="header">
@@ -393,20 +409,17 @@
     </div>
   </div>
 </header>
+
 <!-- MOBILE NAV -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html" onclick="closeMobileMenu()">首頁</a>
-  <a href="hibou-6gauze.html" onclick="closeMobileMenu()">六重紗系列</a>
-  <a href="hibou-windshield.html" onclick="closeMobileMenu()">寶寶我最罩</a>
-  <a href="hibou-clips.html" onclick="closeMobileMenu()">隨身配件</a>
-  <a href="hibou-journal.html" onclick="closeMobileMenu()">喜福生活誌</a>
-  <a href="news-list.html" class="cur" onclick="closeMobileMenu()">最新消息</a>
-  <a href="contact.html" onclick="closeMobileMenu()">聯絡我們</a>
-  <a href="hibou_landing_page_v10.html" class="mobile-shop-btn" onclick="closeMobileMenu()">立即選購 →</a>
-</nav>
-
-
-
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
 
 <!-- HEADER -->
 
@@ -607,30 +620,10 @@
     });
   }
 
-  else{n.classList.add('open');b.classList.add('active');document.body.style.overflow='hidden';}}
-  
+  function toggleMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n.classList.contains('open')){closeMobileMenu();}else{n.classList.add('open');b.classList.add('active');document.body.style.overflow='hidden';}}
+  function closeMobileMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');n.classList.remove('open');b.classList.remove('active');document.body.style.overflow='';}
   document.addEventListener('click',(e)=>{const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n&&n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target))closeMobileMenu();});
   window.addEventListener('scroll',()=>{const h=document.getElementById('header');if(h)h.classList.toggle('scrolled',window.scrollY>10);},{passive:true});
-
-  // ── Mobile Menu ──
-  function toggleMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(!nav)return;
-    if(nav.classList.contains('open')){closeMobileMenu();}
-    else{nav.classList.add('open');if(burger)burger.classList.add('active');document.body.style.overflow='hidden';}
-  }
-  function closeMobileMenu(){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav)nav.classList.remove('open');
-    if(burger)burger.classList.remove('active');
-    document.body.style.overflow='';
-  }
-  document.addEventListener('click',function(e){
-    var nav=document.getElementById('mobileNav'),burger=document.getElementById('hamburger');
-    if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&burger&&!burger.contains(e.target))closeMobileMenu();
-  });
-  window.addEventListener('scroll',function(){if(window.scrollY>120)closeMobileMenu();},{passive:true});
-
 </script>
 </body>
 </html>
