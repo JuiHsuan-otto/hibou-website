@@ -9,6 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
 <style>
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+  img { max-width: 100%; height: auto; }
+
   :root {
     --sage: #7A9A7E;
     --moss: #4A6741;
@@ -580,8 +589,109 @@
   /* ── MOBILE OVERHAUL (Mobile First / Optimized) ── */
   
   /* ── STANDARD MOBILE STYLES ── */
+  
+  /* ── REFINED MOBILE OVERHAUL ── */
   @media (max-width: 768px) {
-    * { max-width: 100vw; }
+    /* Reset layout */
+    section { padding: 50px 20px !important; clear: both; }
+    .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; }
+
+    /* Header Fix */
+    header { position: fixed !important; height: 60px !important; z-index: 1000 !important; }
+    .header-inner { height: 60px !important; }
+    nav { display: none !important; }
+    .hamburger { display: flex !important; }
+
+    /* Hero Section Fix - Robust */
+    .hero {
+      margin-top: 60px !important;
+      height: 450px !important;
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      background: #fdf6eb !important;
+    }
+    .hero-img {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform: translate(-50%, -50%) !important;
+      object-fit: cover !important;
+      object-position: 45% center !important;
+      z-index: 1 !important;
+      display: block !important;
+    }
+    .hero-overlay {
+      position: absolute !important;
+      inset: 0 !important;
+      background: rgba(255, 254, 249, 0.6) !important;
+      z-index: 2 !important;
+    }
+    .hero-content {
+      position: relative !important;
+      z-index: 3 !important;
+      width: 90% !important;
+      text-align: center !important;
+      margin: 0 auto !important;
+      left: auto !important;
+      top: auto !important;
+      transform: none !important;
+    }
+    .hero-title { 
+      font-size: 2rem !important; 
+      color: #2c2c2c !important; 
+      margin-bottom: 10px !important;
+      text-shadow: 0 0 10px #fff !important;
+    }
+    .hero-desc { 
+      font-size: 0.95rem !important; 
+      color: #4a4a4a !important; 
+      line-height: 1.6 !important;
+      text-shadow: 0 0 10px #fff !important;
+    }
+    .hero-cta { 
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+      margin-top: 20px !important;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100% !important;
+      padding: 12px !important;
+      font-size: 0.9rem !important;
+      border-radius: 30px !important;
+    }
+    .hero-badges { display: none !important; }
+
+    /* Categories - List on mobile */
+    .cat-grid { 
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 15px !important; 
+    }
+    .cat-card { width: 100% !important; height: 180px !important; }
+
+    /* Products - Responsive Grid */
+    .products-grid { 
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important; 
+      gap: 12px !important; 
+    }
+    .product-card { width: 100% !important; }
+    
+    /* Other Sections Stack */
+    .featured-grid, .brand-paragraphs, .brand-certs, .news-grid, .blogger-featured, .testimonial-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 20px !important;
+    }
+    .footer-top { display: flex !important; flex-direction: column !important; gap: 30px !important; }
+  }
+
     body { overflow-x: hidden; }
     
     section { padding: 40px 15px !important; }
