@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本印花布 吸汗背克汗｜兒童吸汗巾・拍嗝巾｜HiBOU 喜福</title>
+<meta name="description" content="HiBOU喜福吸汗背克汗。孩子體育課與戶外跑跳必備神器！嚴選日本和歌山印花布，採高溫空壓技術加強蓬鬆柔軟。墊在背後瞬間吸汗，保持乾爽不著涼，亦可做為拍嗝巾與手帕。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741; --sage: #7A9A7E; --cream: #FAF7F2; --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C; --soft-gray: #8A8A8A; --light-gray: #F0EDE8;
+    --border: rgba(122,154,126,0.15);
+    --sand: #C9A97A; --biscuit: #e2d1b5;
+    --air-blue: #E3EEF4; /* 專屬清爽空氣藍背景 */
+    --air-dark: #6C92A6; /* 專屬空氣藍點綴色 */
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+    --spring: cubic-bezier(.22,1,.36,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--charcoal); line-height: 1.8; overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header#header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: rgba(255,254,249,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+  nav { display: flex; align-items: center; gap: 0.15rem; }
+  nav > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
+  nav > a:hover { background: var(--light-gray); color: var(--moss); }
+  nav > a.cur { color: var(--moss); font-weight: 500; }
+
+  /* ── Dropdown Menu ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s var(--spring); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,254,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(122,154,126,0.15); padding: 1.25rem 2rem 1.5rem; z-index: 499; flex-direction: column; gap: 0.25rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px); opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
+
+  @media (max-width: 768px) { header#header nav { display: none; } .hamburger { display: flex; } }
+
+  /* ── 購物車抽屜 ── */
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s var(--spring); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--biscuit); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--biscuit); background: var(--warm-white); }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--biscuit); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; border: 1px solid var(--biscuit); }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  /* ── PAGE HERO (清爽空氣藍) ── */
+  .page-hero {
+    margin-top: 72px;
+    background: linear-gradient(135deg, var(--air-blue) 0%, #F5FAFB 100%);
+    padding: 100px 2rem 110px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; top: -60px; right: -20px;
+    width: 300px; height: 300px; background: rgba(255,255,255,0.7);
+    border-radius: 50%; filter: blur(30px);
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.8); border: 1px solid rgba(108,146,166,0.3);
+    color: var(--air-dark); font-size: 0.72rem; letter-spacing: 0.18em;
+    padding: 0.35rem 1.2rem; border-radius: 20px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both; font-weight: 600;
+  }
+  .page-hero-title {
+    font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 700; color: var(--charcoal); line-height: 1.3;
+    margin-bottom: 1.2rem; animation: fadeUp 0.7s 0.15s ease both;
+  }
+  .page-hero-title em { font-style: italic; color: var(--air-dark); }
+  .page-hero-desc {
+    font-size: 0.95rem; color: var(--charcoal); opacity: 0.85;
+    line-height: 1.9; animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-label {
+    display: inline-block; font-size: 0.72rem;
+    letter-spacing: 0.2em; color: var(--air-dark); text-transform: uppercase;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700; color: var(--charcoal); line-height: 1.4;
+  }
+  .wavy {
+    margin: 1.2rem auto; width: 56px; height: 8px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='8'%3E%3Cpath d='M0 4Q7 0 14 4Q21 8 28 4Q35 0 42 4Q49 8 56 4' stroke='%236C92A6' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat;
+  }
+
+  /* ── 產品特色交錯區塊 ── */
+  .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 5rem; }
+  .feat-row.flip { direction: rtl; }
+  .feat-row.flip > * { direction: ltr; }
+  .feat-row:last-child { margin-bottom: 0; }
+  .feat-img { border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.06); position: relative; background: var(--light-gray); }
+  .feat-img img { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.8s var(--spring); }
+  .feat-img:hover img { transform: scale(1.05); }
+  
+  .feat-text-box h3 { font-family: var(--serif); font-size: 1.8rem; color: var(--charcoal); margin-bottom: 1rem; line-height: 1.3; }
+  .feat-text-box h3 em { color: var(--air-dark); font-style: normal; }
+  .feat-text-box p { font-size: 0.9rem; color: var(--soft-gray); line-height: 1.9; margin-bottom: 1.5rem; }
+  .feat-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .feat-tag { background: white; border: 1px solid var(--biscuit); color: var(--charcoal); font-size: 0.75rem; padding: 0.3rem 0.9rem; border-radius: 20px; }
+
+  /* ── 規格與細節 ── */
+  .specs-section { background: var(--cream); }
+  .specs-box { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); max-width: 900px; margin: 0 auto; border: 1px solid var(--light-gray); }
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .spec-col h4 { font-family: var(--serif); font-size: 1.2rem; color: var(--air-dark); border-bottom: 1px solid var(--light-gray); padding-bottom: 0.8rem; margin-bottom: 1.2rem; }
+  .spec-col ul { list-style: none; }
+  .spec-col ul li { font-size: 0.88rem; color: var(--charcoal); margin-bottom: 0.8rem; padding-left: 1.2rem; position: relative; line-height: 1.6; }
+  .spec-col ul li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-size: 0.8rem; }
+
+  /* ── BUY PANEL ── */
+  .buy-section { padding: 100px 2rem; background: white; }
+  .buy-card { max-width: 800px; margin: 0 auto; background: var(--warm-white); border: 1px solid var(--biscuit); border-radius: 24px; padding: 3.5rem 2rem; text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.05); }
+  .buy-card h2 { font-family: var(--serif); font-size: 1.8rem; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .buy-card p { font-size: 0.9rem; color: var(--soft-gray); margin-bottom: 2rem; }
+  .buy-price { font-family: var(--serif); font-size: 2.5rem; color: var(--air-dark); font-weight: 700; margin-bottom: 1.5rem; }
+  .buy-price s { font-size: 1.2rem; color: var(--soft-gray); font-weight: 400; text-decoration: line-through; margin-left: 0.5rem; }
+  .btn-buy-large { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--charcoal); color: white; padding: 1.2rem 4rem; border-radius: 50px; font-size: 1.1rem; letter-spacing: 0.1em; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+  .btn-buy-large:hover:not(:disabled) { background: var(--air-dark); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(108,146,166,0.3); }
+  .btn-buy-large:disabled { background: var(--light-gray); color: var(--soft-gray); cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ── 底部懸浮購買條 ── */
+  .buy-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 400; background: rgba(254,252,247,0.97); backdrop-filter: blur(24px); border-top: 1px solid var(--biscuit); padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transform: translateY(100%); transition: transform 0.4s var(--spring); box-shadow: 0 -4px 24px rgba(42,33,24,0.08); }
+  .buy-bar.visible { transform: translateY(0); }
+  .buy-bar-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--charcoal); }
+  .buy-bar-price { font-size: 0.85rem; color: var(--air-dark); font-weight: 500; }
+  .buy-bar-btn { background: var(--charcoal); color: white; padding: 0.6rem 1.8rem; border-radius: 50px; font-size: 0.85rem; text-decoration: none; cursor: pointer; transition: 0.3s; border: none; }
+  .buy-bar-btn:hover { background: var(--air-dark); }
+
+  /* ── MODAL ── */
+  .modal-bg { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(42,33,24,0.55); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1.5rem; }
+  .modal-bg.open { display: flex; }
+  .modal { background: var(--warm-white); border-radius: var(--r-xl); width: 100%; max-width: 900px; max-height: 92vh; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; box-shadow: 0 32px 80px rgba(42,33,24,0.25); animation: mopen 0.38s var(--spring) both; position: relative; }
+  @keyframes mopen { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
+  .modal-l { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 420px; }
+  .modal-photo { width: 100%; max-height: 380px; object-fit: contain; transition: opacity 0.25s, transform 0.3s var(--spring); }
+  .modal-photo.fade { opacity: 0; transform: scale(0.96); }
+  .modal-r { padding: 2.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+  .modal-x { position: absolute; top: 1rem; right: 1rem; z-index: 10; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,0.05); border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+  .modal-x:hover { background: rgba(0,0,0,0.1); }
+  .m-cat { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); }
+  .m-name { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--charcoal); line-height: 1.3; }
+  .m-desc { font-size: 0.85rem; color: var(--soft-gray); line-height: 1.8; }
+  .opt-lbl { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--charcoal); display: block; margin-bottom: 0.6rem; font-weight: 500; }
+  .col-sel-nm { color: var(--air-dark); font-size: 0.8rem; margin-left: 0.3rem; font-weight: 400; text-transform: none; letter-spacing: normal; }
+  .col-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .col-sw { border-radius: 12px; overflow: hidden; border: 2px solid transparent; cursor: pointer; position: relative; transition: 0.2s; width: 64px; }
+  .col-sw.on { border-color: var(--air-dark); }
+  .col-sw.sold { opacity: 0.45; cursor: not-allowed; }
+  .col-sw img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .col-sw-nm { font-size: 0.6rem; text-align: center; padding: 0.25rem 0.1rem; color: var(--charcoal); background: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .s-ok { background: rgba(108,146,166,0.15); color: var(--air-dark); }
+  .s-low { background: rgba(212,132,90,0.15); color: var(--accent-orange); }
+  .s-out { background: rgba(0,0,0,0.1); color: var(--soft-gray); }
+  .sz-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .sz-btn { font-size: 0.8rem; padding: 0.4rem 1rem; border-radius: 20px; border: 1.5px solid var(--light-gray); background: white; cursor: pointer; color: var(--charcoal); transition: 0.2s; }
+  .sz-btn:hover { border-color: var(--air-dark); color: var(--air-dark); }
+  .sz-btn.on { background: var(--air-dark); color: white; border-color: var(--air-dark); }
+  .sz-btn.sold { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+  .qty-row-m { display: flex; align-items: center; gap: 0.75rem; }
+  .qty-btn-m { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--light-gray); background: white; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--charcoal); transition: 0.2s; }
+  .qty-btn-m:hover { border-color: var(--air-dark); color: var(--air-dark); }
+  .qty-n { font-family: var(--serif); font-size: 1.2rem; min-width: 28px; text-align: center; }
+  .modal-total { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--light-gray); }
+  .total-lbl { font-size: 0.85rem; color: var(--soft-gray); }
+  .total-amt { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--air-dark); }
+  .btn-checkout { width: 100%; background: var(--charcoal); color: white; border: none; border-radius: 50px; padding: 1.1rem; font-size: 0.95rem; letter-spacing: 0.08em; cursor: pointer; transition: 0.2s; }
+  .btn-checkout:hover:not(:disabled) { background: var(--air-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(108,146,166,0.25); }
+  .btn-checkout:disabled { background: var(--light-gray); color: var(--soft-gray); cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; text-align: center; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 3rem; text-align: left; }
+  .footer-brand .brand-name { font-family: 'Zen Antique', serif; font-size: 1.3rem; color: white; margin-bottom: 0.25rem; }
+  .footer-brand .brand-tagline { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-brand .brand-about { font-size: 0.82rem; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+  .social-links { display: flex; gap: 0.5rem; }
+  .social-link { width: 34px; height: 34px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: background 0.2s; }
+  .social-link:hover { background: var(--sage); color: white; }
+  .footer-col h4 { font-size: 0.8rem; letter-spacing: 0.1em; color: white; margin-bottom: 1rem; text-transform: uppercase; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--sage); }
+  .footer-bottom { padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+  /* RWD */
+  @media (max-width: 1024px) { .specs-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 768px) {
+    header nav { display: none; } .hamburger { display: flex; }
+    .feat-row { grid-template-columns: 1fr; gap: 2rem; }
+    .feat-row.flip { direction: ltr; }
+    .modal { grid-template-columns: 1fr; max-height: 85vh; }
+    .modal-l { display: none; }
+    .buy-panel { padding: 2rem 1.5rem; }
+    
+    /* Footer 手機版靠左整齊對齊 */
+    .footer-top { grid-template-columns: 1fr 1fr !important; gap: 2.5rem; text-align: left; }
+    .footer-brand { grid-column: 1 / -1; text-align: center; margin-bottom: 1rem; }
+    .social-links { justify-content: center; margin-top: 0.5rem; }
+    .footer-col h4 { margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+    .footer-col ul { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+    .footer-col ul li { margin-bottom: 0; }
+    .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing" class="cur">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">🌬️ BREATHABLE SWEAT PAD</div>
+    <h1 class="page-hero-title">告別背部濕黏，<br><em>會呼吸的吸汗背克汗</em></h1>
+    <p class="page-hero-desc">悶熱天氣與孩子體育課必備的吸汗神器！<br>墊在背後秒吸汗，維持一整天的乾爽，遠離吹風著涼與惱人汗疹。</p>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="container">
+    
+    <div class="feat-row reveal">
+      <div class="feat-img">
+        <div style="background:#ddd; height:300px; display:flex; align-items:center; justify-content:center; color:#888;">兒童背部墊吸汗巾實拍</div>
+      </div>
+      <div class="feat-text-box">
+        <span class="lbl">Instant Dry · 瞬間吸汗</span>
+        <h3>衣服不再濕答答，<br><em>保護孩子不著涼</em></h3>
+        <p>孩子在戶外跑跳或是上體育課，背部總是流得滿頭大汗。只要輕輕墊上「吸汗背克汗」，超強吸水力瞬間帶走汗水。流汗後只需抽出替換，免換衣服就能保持背部乾爽，是預防吹風感冒的絕佳法寶。</p>
+        <div class="feat-tags">
+          <span class="feat-tag">瞬間吸汗</span>
+          <span class="feat-tag">維持背部乾爽</span>
+          <span class="feat-tag">免換衣服超方便</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row flip reveal">
+      <div class="feat-img">
+        <div style="background:#ddd; height:300px; display:flex; align-items:center; justify-content:center; color:#888;">日本和歌山布料特寫</div>
+      </div>
+      <div class="feat-text-box">
+        <span class="lbl">Premium Fabric · 頂級工藝</span>
+        <h3>日本和歌山印花布，<br><em>極致柔軟蓬鬆</em></h3>
+        <p>嚴選日本和歌山進口的透氣印花布，並在台灣透過獨特的「高溫與空壓技術」，大幅提升了布料的柔軟度與蓬鬆感。墊在背後透氣不悶熱，給肌膚最頂級的呵護。</p>
+        <div class="feat-tags">
+          <span class="feat-tag">日本進口布料</span>
+          <span class="feat-tag">高溫空壓技術</span>
+          <span class="feat-tag">極致柔軟蓬鬆</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="feat-img">
+        <div style="background:#ddd; height:300px; display:flex; align-items:center; justify-content:center; color:#888;">多用途實境照(拍嗝/擦汗)</div>
+      </div>
+      <div class="feat-text-box">
+        <span class="lbl">Multi-purpose · 一巾多用</span>
+        <h3>是吸汗巾，<br><em>也是拍嗝巾與手帕</em></h3>
+        <p>因為布料極致柔軟且吸水力強，它不只是一件吸汗墊！對小嬰兒來說，它是完美的拍嗝巾與口水巾；對大童來說，折疊起來就是上學必備的隨身擦汗手帕，實用度滿分！</p>
+        <div class="feat-tags">
+          <span class="feat-tag">可當拍嗝巾</span>
+          <span class="feat-tag">可當隨身手帕</span>
+          <span class="feat-tag">0歲到小學都適用</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="specs-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Product Specs</span>
+      <h2 class="section-title">商品詳細規格</h2>
+      <div class="wavy"></div>
+    </div>
+    
+    <div class="specs-box reveal">
+      <div class="specs-grid">
+        <div class="spec-col">
+          <h4>📏 尺寸與用途</h4>
+          <ul>
+            <li>尺寸：標準適用尺寸（幼兒至學齡前皆可）</li>
+            <li>用途：背部吸汗巾、嬰兒拍嗝巾、隨身擦汗手帕</li>
+            <li>特色：輕薄易折疊，媽媽包必備，出門帶一件搞定</li>
+          </ul>
+        </div>
+        <div class="spec-col">
+          <h4>🧵 材質與產地</h4>
+          <ul>
+            <li>材質：日本和歌山進口 100% 純棉印花布</li>
+            <li>產地：<strong>台灣精工製造</strong>，品質有保障</li>
+            <li>洗滌：建議裝入洗衣袋後機洗，洗後自然平放晾乾，避免高溫烘乾</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="buy-section" id="buy-section">
+  <div class="buy-card reveal">
+    <span class="section-label">Get Yours Today</span>
+    <h2>日本印花布 吸汗背克汗</h2>
+    <p>多種精美花色，建議媽咪一次準備多條方便替換喔！</p>
+    <div class="buy-price" id="main-price-display">NT$ -- <s>NT$ 280</s></div>
+    <button class="btn-buy-large" id="main-buy-btn" onclick="openModal('sweat_pad')">選擇款式並加入購物車</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand" style="grid-column: 1 / -1; text-align: center; margin-bottom: 1rem;">
+        <div class="brand-name">HiBOU 喜福生活苑</div>
+        <div class="brand-tagline">BORN FOR BABIES</div>
+        <p class="brand-about">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247</p>
+        <div class="social-links" style="justify-content: center;"><a href="#" class="social-link">f</a><a href="#" class="social-link">ig</a><a href="#" class="social-link">yt</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>商品分類</h4>
+        <ul><li><a href="hibou-windshield.html">外出防護</a></li><li><a href="hibou-6gauze.html">寢具床品</a></li><li><a href="shop-all.html#clothing">穿著衣物</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>&nbsp;</h4>
+        <ul><li><a href="shop-all.html#cleaning">清潔沐浴</a></li><li><a href="hibou-clips.html">隨身配件</a></li><li><a href="hibou-giftbox.html">禮盒客製</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>服務資訊</h4>
+        <ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="contact.html">聯絡我們</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>關於喜福</h4>
+        <ul><li><a href="news-travel.html">親子旅遊誌</a></li><li><a href="news-parenting.html">媽咪育兒教室</a></li><li><a href="news-bloggers.html">部落客推薦</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HiBOU 喜福生活苑股份有限公司｜彰化縣鹿港鎮</span>
+      <span>隱私權政策｜使用條款</span>
+    </div>
+  </div>
+</footer>
+
+<div class="buy-bar" id="buyBar">
+  <div class="buy-bar-info">
+    <div class="buy-bar-name">日本印花布 吸汗背克汗</div>
+    <div class="buy-bar-price" id="buy-bar-price">NT$ --</div>
+  </div>
+  <button class="buy-bar-btn" onclick="document.getElementById('buy-section').scrollIntoView();">立即選購</button>
+</div>
+
+<div class="modal-bg" id="MODAL">
+  <div class="modal">
+    <div class="modal-l"><img class="modal-photo" id="MPHOTO" src="" alt=""></div>
+    <div class="modal-r">
+      <button class="modal-x" onclick="closeModal()">✕</button>
+      <div><div class="m-cat" id="MCAT"></div><div class="m-name" id="MNAME"></div></div>
+      <p class="m-desc" id="MDESC"></p>
+      <div><span class="opt-lbl">花色選擇 <span class="col-sel-nm" id="MCOLNM"></span></span><div class="col-grid" id="MCOLS"></div></div>
+      <div><span class="opt-lbl">尺寸規格</span><div class="sz-row" id="MSIZES"></div></div>
+      <div>
+        <span class="opt-lbl">數量</span>
+        <div class="qty-row-m"><button class="qty-btn-m" onclick="chQty(-1)">−</button><span class="qty-n" id="MQTY">1</span><button class="qty-btn-m" onclick="chQty(1)">+</button></div>
+      </div>
+      <div class="modal-total"><div class="total-lbl">合計金額</div><div class="total-amt" id="MTOTAL">NT$ 0</div></div>
+      <button class="btn-checkout" id="MBUY" onclick="doAddToCart()">加入購物車</button>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--charcoal); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+// ── 動態讀取 Google 試算表 API ──
+var PD = {}; 
+var SLB = {ok:'有貨', low:'少量', out:'售完'};
+var SCC = {ok:'s-ok', low:'s-low', out:'s-out'};
+var curProd = null, curCol = 0, curSz = 0, curQty = 1;
+
+const API_URL = 'https://script.google.com/macros/s/AKfycbzIWfBsLEs7Cqv0FIyuMgzqD5rYeWu9HDdnsZyBymgX4XxBDao1WtNaYsTHZTzrjjYu8A/exec';
+
+window.addEventListener('load', async function() {
+    try {
+        const response = await fetch(API_URL);
+        PD = await response.json();
+        
+        // 抓取吸汗墊的資料來更新價格顯示
+        const p = PD['sweat_pad'];
+        if(p) {
+            document.getElementById('main-price-display').innerHTML = `NT$ ${p.price.toLocaleString()} <s>NT$ 280</s>`;
+            document.getElementById('buy-bar-price').innerHTML = `NT$ ${p.price.toLocaleString()} <s>$280</s>`;
+            
+            let mainBtn = document.getElementById('main-buy-btn');
+            mainBtn.textContent = '選擇款式並加入購物車';
+            mainBtn.disabled = false;
+        } else {
+            document.getElementById('main-buy-btn').textContent = '商品未上架';
+            document.getElementById('main-buy-btn').disabled = true;
+            document.getElementById('main-price-display').innerHTML = '目前無資料';
+        }
+    } catch (error) {
+        console.error("❌ 載入失敗：", error);
+    }
+});
+
+// ── Modal 快速選購邏輯 ──
+function openModal(k){
+    var p=PD[k];if(!p)return;
+    curProd=p;curProd.key=k;curCol=0;
+    for(var i=0;i<p.colors.length;i++){if(p.colors[i].s!=='out'){curCol=i;break;}}
+    curSz=0;for(var j=0;j<p.sizes.length;j++){if(p.sizes[j].s!=='out'){curSz=j;break;}}
+    curQty=1;
+    renderModal();
+    document.getElementById('MODAL').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('MODAL').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('MODAL').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function renderModal(){
+    var p=curProd;var col=p.colors[curCol];var siz=p.sizes[curSz];
+    document.getElementById('MCAT').textContent=p.cat;
+    document.getElementById('MNAME').textContent=p.name;
+    document.getElementById('MDESC').textContent=p.desc;
+    document.getElementById('MQTY').textContent=curQty;
+    document.getElementById('MTOTAL').textContent='NT$ '+(p.price*curQty).toLocaleString();
+    document.getElementById('MCOLNM').textContent=col.n;
+    
+    var ph=document.getElementById('MPHOTO');
+    ph.classList.add('fade');
+    setTimeout(function(){
+        ph.src=col.i;
+        ph.onload=function(){ph.classList.remove('fade');};
+        setTimeout(function(){ph.classList.remove('fade');},400);
+    },150);
+    
+    var ch='';
+    for(var i=0;i<p.colors.length;i++){
+        var c=p.colors[i];
+        ch+=`<div class="col-sw${i===curCol?' on':''}${c.s==='out'?' sold':''}"${c.s!=='out'?` onclick="selCol(${i})"`:''}> <img src="${c.i}" alt="${c.n}" loading="lazy"> <span class="col-sw-stk ${SCC[c.s]}">${SLB[c.s]}</span> <div class="col-sw-nm" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.n}</div></div>`;
+    }
+    document.getElementById('MCOLS').innerHTML=ch;
+    
+    var sh='';
+    for(var j=0;j<p.sizes.length;j++){
+        var s=p.sizes[j];
+        sh+=`<button class="sz-btn${j===curSz?' on':''}${s.s==='out'?' sold':''}"${s.s==='out'?' disabled':` onclick="selSz(${j})"`}>${s.l}</button>`;
+    }
+    document.getElementById('MSIZES').innerHTML=sh;
+    
+    var ok=col.s!=='out'&&siz.s!=='out';
+    var bb=document.getElementById('MBUY');
+    bb.disabled=!ok;
+    bb.textContent=ok?'加入購物車':'此款式已售完';
+}
+function selCol(i){curCol=i;renderModal();}
+function selSz(i){curSz=i;renderModal();}
+function chQty(d){curQty=Math.max(1,Math.min(10,curQty+d));renderModal();}
+
+// ── 購物車共用邏輯 ──
+const CART_KEY = 'hibou_cart';
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+
+function doAddToCart() {
+    if(!curProd) return;
+    var col = curProd.colors[curCol];
+    if(col.s === 'out') { alert('此款式已售完，請選擇其他款式'); return; }
+    var siz = curProd.sizes[curSz];
+    
+    const item = {
+        productKey: curProd.key,
+        name: curProd.name,
+        color: col.n,
+        size: siz.l,
+        qty: curQty,
+        price: curProd.price,
+        image: col.i
+    };
+    
+    let cart = getCart();
+    let existing = cart.find(i => i.productKey === item.productKey && i.color === item.color && i.size === item.size);
+    if(existing) existing.qty += item.qty; else cart.push(item);
+    
+    saveCart(cart);
+    closeModal();
+    toggleCart(true); 
+}
+
+function updateCartQty(index, delta) {
+    let cart = getCart(); cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart(cart);
+}
+function removeFromCart(index) {
+    let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+}
+
+function toggleCart(forceOpen = false) {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    if(forceOpen || !drawer.classList.contains('open')) {
+        overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+    } else {
+        overlay.classList.remove('open'); drawer.classList.remove('open');
+    }
+}
+
+function updateCartUI() {
+    let cart = getCart();
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+
+    let container = document.getElementById('cartItemsContainer');
+    if(cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+        document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+    }
+
+    let html = ''; let subtotal = 0;
+    cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+        html += `
+        <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}">
+            <div class="cart-item-info">
+                <div style="display:flex; justify-content:space-between;">
+                    <div class="cart-item-title">${item.name}</div>
+                    <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                </div>
+                <div class="cart-item-var">${variantStr}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                    <div class="cart-qty-ctrl">
+                        <button onclick="updateCartQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateCartQty(${index}, 1)">+</button>
+                    </div>
+                    <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+}
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+// 動畫與滾動互動
+const rvObs = new IntersectionObserver((entries)=>{
+  entries.forEach((e)=>{
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    rvObs.unobserve(e.target);
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>rvObs.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  
+  const buyBar = document.getElementById('buyBar');
+  const buySection = document.getElementById('buy-section');
+  if(buySection && buyBar) {
+      const showPoint = buySection.offsetTop - window.innerHeight;
+      buyBar.classList.toggle('visible', window.scrollY > 300 && window.scrollY < showPoint);
+  }
+});
+
+// 手機選單
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  const burger = document.getElementById('hamburger');
+  const isOpen = nav.classList.contains('open');
+  nav.classList.toggle('open', !isOpen);
+  burger.classList.toggle('active', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+</script>
+</body>
+</html>
