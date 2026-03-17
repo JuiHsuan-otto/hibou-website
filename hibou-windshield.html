@@ -255,8 +255,33 @@ header#header nav > a.cur { font-weight: 500; }
 @keyframes risein{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--spring),transform .8s var(--spring)}.rv.in{opacity:1;transform:translateY(0)}
 @media(max-width:1024px){.usage-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
-@media(max-width:768px){.sec,.feat-sec{padding:68px 1.25rem}.feat-grid{grid-template-columns:1fr;gap:2.8rem}.feat-grid.flip{direction:ltr}.style-grid{grid-template-columns:1fr}}
-@media(max-width:480px){.hero-cta{flex-direction:column}.footer-top{grid-template-columns:1fr}.cert-row{flex-direction:column}.cert-it{border-right:none;border-bottom:1px solid rgba(226,209,181,.4)}.usage-grid{grid-template-columns:1fr}.specs-card{padding:1.8rem 1.6rem}}
+
+/* ── 手機版排版修正 (寶寶我最罩專屬) ── */
+@media(max-width:768px){
+  .sec,.feat-sec{padding:68px 1.5rem}
+  .feat-grid{grid-template-columns:1fr;gap:2.5rem}
+  .feat-grid.flip{direction:ltr}
+  .style-grid{grid-template-columns:1fr;gap:1.5rem}
+  .usage-grid{grid-template-columns:1fr;gap:1.5rem}
+  .cert-row{flex-direction:column}
+  .cert-it{border-right:none;border-bottom:1px solid rgba(226,209,181,.55)}
+  .cert-it:last-child{border-bottom:none}
+  
+  /* 修正「品質嚴控」的 5 個特點區塊為單行排列 */
+  .specs-grid{grid-template-columns:1fr;}
+  .spec-item-v2{border-right:none !important; border-bottom:1px solid rgba(245,234,216,.8);}
+  .spec-item-v2:last-child{border-bottom:none;}
+  .specs-card{padding:2rem 1.5rem;}
+  
+  /* 修正英雄區塊文字重疊問題 */
+  .hero-title{font-size: 2.2rem;}
+  .hero-sub{font-size: 0.85rem;}
+  .hero-pills{gap: 0.4rem;}
+}
+@media(max-width:480px){
+  .hero-cta{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -300,7 +325,6 @@ header#header nav > a.cur { font-weight: 500; }
     </div>
   </div>
 </header>
-
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html">首頁</a>
   <a href="hibou-6gauze.html">六重紗系列</a>
@@ -542,7 +566,7 @@ header#header nav > a.cur { font-weight: 500; }
       </div>
       <div class="fcol"><h5>機能防風罩</h5><ul><li><a href="#">品牌價值</a></li><li><a href="#">工藝細節</a></li><li><a href="#">安全認證</a></li><li><a href="#">清潔指南</a></li></ul></div>
       <div class="fcol"><h5>服務資訊</h5><ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="#">常見問題</a></li></ul></div>
-      <div class="fcol"><h5>關於喜福</h5><ul><li><a href="#">職人故事</a></li><li><a href="#">六重紗系列</a></li><li><a href="#">部落客推薦</a></li></ul></div>
+      <div class="fcol"><h5>關於喜福</h5><ul><li><a href="#">職人故事</a></li><li><a href="hibou-6gauze.html">六重紗系列</a></li><li><a href="news-bloggers.html">部落客推薦</a></li></ul></div>
     </div>
     <div class="footer-bot">
       <span>© 2026 HiBOU 喜福生活苑 ｜ 建立在信賴上的質感育兒</span>

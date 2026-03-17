@@ -161,6 +161,18 @@
   .cert-name { font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 700; color: var(--sand); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
   .cert-text { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.8; letter-spacing: 0.02em; }
 
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--cream); }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card { background: white; border-radius: 16px; padding: 1.75rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s; }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .stars { color: var(--sand); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .testimonial-text { font-size: 0.875rem; line-height: 1.85; color: var(--charcoal); margin-bottom: 1.25rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .author-avatar { width: 36px; height: 36px; background: var(--light-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .author-info .name { font-size: 0.82rem; font-weight: 500; }
+  .author-info .role { font-size: 0.72rem; color: var(--soft-gray); }
+
   /* ── HIBOU NEWS ── */
   .hibou-news { background: var(--warm-white); }
   .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
@@ -208,22 +220,10 @@
   .ticker-item .ti-sep { color: var(--light-gray); }
   .blogger-cta-row { text-align: center; }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials { background: var(--cream); }
-  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .testimonial-card { background: white; border-radius: 16px; padding: 1.75rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s; }
-  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
-  .stars { color: var(--sand); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-  .testimonial-text { font-size: 0.875rem; line-height: 1.85; color: var(--charcoal); margin-bottom: 1.25rem; }
-  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
-  .author-avatar { width: 36px; height: 36px; background: var(--light-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
-  .author-info .name { font-size: 0.82rem; font-weight: 500; }
-  .author-info .role { font-size: 0.72rem; color: var(--soft-gray); }
-
   /* ── FOOTER ── */
   footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; }
   .footer-inner { max-width: 1200px; margin: 0 auto; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 3rem; }
   .footer-brand .brand-name { font-family: 'Zen Antique', serif; font-size: 1.3rem; color: white; margin-bottom: 0.25rem; }
   .footer-brand .brand-tagline { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
   .footer-brand .brand-about { font-size: 0.82rem; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
@@ -235,7 +235,7 @@
   .footer-col ul li { margin-bottom: 0.6rem; }
   .footer-col ul li a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
   .footer-col ul li a:hover { color: var(--sage); }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+  .footer-bottom { padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -284,9 +284,40 @@
   .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  @media (max-width: 768px) { nav { display: none; } .hamburger { display: flex; } .hero-content { left: 5%; right: 5%; max-width: none; } .hero-badges { left: 5%; flex-wrap: wrap; } .cat-grid { grid-template-columns: 1fr; } .featured-grid { grid-template-columns: 1fr; } .featured-content { padding: 1rem 0; } .testimonial-grid { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } .brand-certs { gap: 1rem; } .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1rem; } .stat-number { font-size: 1.8rem; } }
-  @media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) { 
+    .cat-grid { grid-template-columns: repeat(2, 1fr); } 
+    .brand-paragraphs, .brand-certs, .news-grid, .blogger-featured, .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) { 
+    nav { display: none; } 
+    .hamburger { display: flex; } 
+    .hero-content { left: 5%; right: 5%; max-width: none; } 
+    .hero-badges { left: 5%; flex-wrap: wrap; } 
+    .cat-grid { grid-template-columns: 1fr; } 
+    .featured-grid { grid-template-columns: 1fr; } 
+    .featured-content { padding: 1rem 0; } 
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } 
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1rem; } 
+    .stat-number { font-size: 1.8rem; } 
+    
+    /* 修復長條狀問題：在手機版改為單欄滿版 */
+    .brand-paragraphs, .brand-certs, .news-grid, .blogger-featured, .testimonial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .brand-certs { gap: 1.2rem; }
+    section { padding: 60px 1.5rem; }
+    .brand-story { padding: 60px 1.5rem; }
+
+    /* 頁尾手機版修復：靠左整齊對齊 */
+    .footer-top { grid-template-columns: 1fr !important; gap: 2.5rem; text-align: left; }
+    .footer-brand { text-align: center; margin-bottom: 1rem; }
+    .social-links { justify-content: center; margin-top: 0.5rem; }
+    .footer-col h4 { margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+    .footer-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .footer-col ul li { margin-bottom: 0; }
+    .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+  @media (max-width: 480px) { 
+    .products-grid { grid-template-columns: 1fr; } 
+  }
 </style>
 </head>
 <body>
@@ -631,7 +662,7 @@
       </div>
       <div class="footer-col">
         <h4>商品分類</h4>
-        <ul><li><a href="hibou-windshield.html">外出防護</a></li><li><a href="hibou-6gauze.html">寢具床品</a></li><li><a href="#">穿著衣物</a></li><li><a href="#">清潔沐浴</a></li><li><a href="hibou-clips.html">隨身配件</a></li><li><a href="#">禮盒客製</a></li></ul>
+        <ul><li><a href="hibou-windshield.html">外出防護</a></li><li><a href="hibou-6gauze.html">寢具床品</a></li><li><a href="shop-all.html#clothing">穿著衣物</a></li><li><a href="shop-all.html#cleaning">清潔沐浴</a></li><li><a href="hibou-clips.html">隨身配件</a></li><li><a href="shop-all.html#giftbox">禮盒客製</a></li></ul>
       </div>
       <div class="footer-col">
         <h4>服務資訊</h4>
@@ -675,11 +706,11 @@
     categories: [
       { name: "外出防護", sub: "推車罩・背巾罩・汽座罩", img: "./images/喜福-09049-jpg.webp", link: "hibou-windshield.html", objPos: "center" },
       { name: "寢具床品", sub: "防踢被・被子・肚圍・枕頭", img: "./images/21-6重紗_呼呼防踢被_3-7歲KEWE.jpg", link: "hibou-6gauze.html", objPos: "center 60%" },
-      { name: "穿著衣物", sub: "日式甚平・紗布衣・有機棉", img: "./images/015_9336.jpg", link: "javascript:void(0)", objPos: "center 30%" },
-      { name: "清潔沐浴", sub: "紗布巾・斗篷浴巾・吸汗巾", img: "./images/Hibou_6.jpg", link: "javascript:void(0)", objPos: "center 70%" },
-      { name: "早教玩具", sub: "童趣骰子・黑白卡・感官玩具", img: "./images/fb-02.png", link: "javascript:void(0)", objPos: "center" },
+      { name: "穿著衣物", sub: "日式甚平・紗布衣・有機棉", img: "./images/015_9336.jpg", link: "shop-all.html#clothing", objPos: "center 30%" },
+      { name: "清潔沐浴", sub: "紗布巾・斗篷浴巾・吸汗巾", img: "./images/Hibou_6.jpg", link: "shop-all.html#cleaning", objPos: "center 70%" },
+      { name: "早教玩具", sub: "童趣骰子・黑白卡・感官玩具", img: "./images/fb-02.png", link: "shop-all.html#toys", objPos: "center" },
       { name: "隨身配件", sub: "奶嘴夾・手帕夾・雙頭長夾", img: "./images/手帕夾籃紫.jpg", link: "hibou-clips.html", objPos: "center" },
-      { name: "禮盒客製", sub: "彌月禮・生日禮・客製刺繡", isPlaceholder: true, icon: "🎁" },
+      { name: "禮盒客製", sub: "彌月禮・生日禮・客製刺繡", isPlaceholder: false, img: "./images/1773581384088_123141152_352289172532974_2462622683789832787_n.jpg", link: "shop-all.html#giftbox", objPos: "center" },
       { name: "媽咪專區", sub: "媽媽包・哺乳巾・育兒好物", isPlaceholder: true, icon: "👩‍👧" }
     ],
 
@@ -687,8 +718,8 @@
     featured: [
       { cat: "外出防護", name: "機能防風罩", sub: "1件抵5用・抗UV・防潑水", price: "NT$ 1,880", img: "./images/喜福-09049-jpg.webp", badge: "熱銷 NO.1", badgeClass: "badge-hot", link: "hibou-windshield.html" },
       { cat: "寢具床品", name: "6重紗呼呼防踢被", sub: "適用 3–7 歲・純棉六層紗", price: "NT$ 1,280", img: "./images/21-6重紗_呼呼防踢被_3-7歲KEWE.jpg", badge: "推薦精選", badgeClass: "badge-best", link: "hibou-6gauze.html" },
-      { cat: "穿著衣物", name: "日式甚平套裝", sub: "有機棉材質・台灣夏日首選", price: "NT$ 980", img: "./images/015_9336.jpg", badge: "新品上市", badgeClass: "badge-new", link: "javascript:void(0)" },
-      { cat: "清潔沐浴", name: "紗布斗篷浴巾", sub: "六層紗布・附可愛帽型設計", price: "NT$ 760", img: "./images/Hibou_6.jpg", badge: "媽媽推薦", badgeClass: "badge-best", link: "javascript:void(0)" }
+      { cat: "穿著衣物", name: "日式甚平套裝", sub: "有機棉材質・台灣夏日首選", price: "NT$ 980", img: "./images/015_9336.jpg", badge: "新品上市", badgeClass: "badge-new", link: "shop-all.html#clothing" },
+      { cat: "清潔沐浴", name: "紗布斗篷浴巾", sub: "六層紗布・附可愛帽型設計", price: "NT$ 760", img: "./images/Hibou_6.jpg", badge: "媽媽推薦", badgeClass: "badge-best", link: "shop-all.html#cleaning" }
     ]
   };
 

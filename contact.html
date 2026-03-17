@@ -55,7 +55,7 @@
   nav > a:hover { background: var(--light-gray); color: var(--moss); }
   nav > a.cur { color: var(--moss); font-weight: 500; }
 
-  /* ── Dropdown Menu ── */
+  /* ── Dropdown Menu (下拉選單) ── */
   .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
   .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
   .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
@@ -92,6 +92,10 @@
   /* ── MOBILE NAV ── */
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
   .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
   .mobile-nav {
     display: none; position: fixed; top: 72px; left: 0; right: 0;
     background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
@@ -101,34 +105,34 @@
     opacity: 0; transition: opacity 0.25s, transform 0.25s;
   }
   .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
-  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.75rem; border-radius: 10px; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
   .mobile-nav a:last-child { border-bottom: none; }
   .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
   .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
   .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
-  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger.active span:nth-child(2) { opacity: 0; }
-  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  @media (max-width: 768px) {
+    header nav { display: none; }
+    .hamburger { display: flex; }
+  }
 
   /* ── 聯絡我們質感設計 ── */
   .contact-hero {
     margin-top: 72px;
-    background: url('images/015_9336.jpg') center 30%/cover no-repeat;
-    position: relative;
-    padding: 100px 2rem 200px;
+    background: linear-gradient(135deg, rgba(232,240,233,0.8) 0%, rgba(201,169,122,0.15) 100%);
+    padding: 80px 2rem 160px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .contact-hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(253,246,235,0.92) 0%, rgba(253,246,235,0.7) 100%);
-  }
-  .contact-hero-content {
-    position: relative; z-index: 2; max-width: 600px; margin: 0 auto;
+  .contact-hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+    background: linear-gradient(to top, var(--warm-white), transparent);
   }
   .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.72rem; letter-spacing: 0.25em; color: var(--moss); text-transform: uppercase;
-    margin-bottom: 1.2rem; font-weight: 500;
+    display: inline-block; font-size: 0.72rem; letter-spacing: 0.25em;
+    color: var(--moss); text-transform: uppercase; margin-bottom: 1rem;
+    font-weight: 500;
   }
   .contact-hero h1 {
     font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.5rem);
@@ -136,79 +140,70 @@
   }
   .contact-hero h1 em { font-style: italic; color: var(--moss); }
   .contact-hero p {
-    font-size: 0.95rem; color: var(--soft-gray);
-    line-height: 1.8;
+    font-size: 0.95rem; color: var(--soft-gray); max-width: 500px;
+    margin: 0 auto; line-height: 1.8;
   }
 
-  /* ── 內容區塊 (雜誌排版) ── */
+  /* ── 內容區塊 ── */
   .contact-main {
-    max-width: 1100px; margin: -120px auto 100px; padding: 0 2rem;
+    max-width: 1000px; margin: -80px auto 100px; padding: 0 2rem;
     position: relative; z-index: 10;
   }
-  .contact-card {
-    display: grid; grid-template-columns: 1fr 1.5fr;
-    background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-    overflow: hidden; border: 1px solid var(--light-gray);
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px;
+    background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    overflow: hidden;
   }
   
-  /* 左側資訊區 (深色精品感) */
+  /* 左側資訊區 */
   .contact-info {
-    background: var(--moss);
-    color: white;
-    padding: 4rem 3rem;
+    background: var(--cream);
+    padding: 3.5rem 3rem;
     display: flex; flex-direction: column; justify-content: center;
-    position: relative; overflow: hidden;
   }
-  .contact-info::after {
-    content: ''; position: absolute; bottom: -50px; right: -50px;
-    width: 250px; height: 250px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-  }
-  .info-group { margin-bottom: 2.5rem; position: relative; z-index: 2; }
+  .info-group { margin-bottom: 2.5rem; }
   .info-group:last-child { margin-bottom: 0; }
-  .info-icon { font-size: 1.5rem; margin-bottom: 0.8rem; display: block; opacity: 0.9; }
+  .info-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; opacity: 0.8; }
   .info-lbl {
-    font-size: 0.7rem; letter-spacing: 0.15em; color: var(--sand);
-    text-transform: uppercase; margin-bottom: 0.5rem; display: block; font-weight: 500;
+    font-size: 0.7rem; letter-spacing: 0.15em; color: var(--sage);
+    text-transform: uppercase; margin-bottom: 0.4rem; display: block; font-weight: 600;
   }
-  .info-val { font-family: var(--serif); font-size: 1.15rem; color: var(--cream); font-weight: 400; letter-spacing: 0.05em; }
+  .info-val { font-family: var(--serif); font-size: 1.15rem; color: var(--charcoal); font-weight: 500; }
   .info-val a { color: inherit; text-decoration: none; transition: color 0.2s; }
-  .info-val a:hover { color: white; text-decoration: underline; text-underline-offset: 4px; }
-  .info-sub { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.4rem; display: block; }
+  .info-val a:hover { color: var(--moss); }
+  .info-sub { font-size: 0.8rem; color: var(--soft-gray); margin-top: 0.3rem; display: block; }
   
   /* 社交按鈕 */
-  .social-row { display: flex; gap: 0.8rem; margin-top: 3rem; position: relative; z-index: 2; }
+  .social-row { display: flex; gap: 0.8rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
   .s-btn {
-    width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center; text-decoration: none; color: white;
-    font-size: 0.85rem; font-weight: 500; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+    width: 40px; height: 40px; border-radius: 50%; background: white; border: 1px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--moss);
+    font-size: 0.8rem; font-weight: 600; transition: all 0.3s;
   }
-  .s-btn:hover { background: var(--sand); border-color: var(--sand); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+  .s-btn:hover { background: var(--moss); color: white; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,103,65,0.15); }
 
-  /* 右側表單區 (純白極簡) */
-  .contact-form-area { padding: 4rem 4rem 4rem 3rem; background: white; }
-  .form-title { font-family: var(--serif); font-size: 1.6rem; color: var(--charcoal); margin-bottom: 0.5rem; font-weight: 700; }
-  .form-desc { font-size: 0.85rem; color: var(--soft-gray); margin-bottom: 2.5rem; }
-  
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-  .form-group { margin-bottom: 1.5rem; }
-  .form-group label { display: block; font-size: 0.75rem; color: var(--charcoal); margin-bottom: 0.6rem; letter-spacing: 0.05em; font-weight: 500; }
+  /* 右側表單區 */
+  .contact-form-area { padding: 3.5rem 4rem 3.5rem 2rem; }
+  .form-title { font-family: var(--serif); font-size: 1.4rem; color: var(--charcoal); margin-bottom: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.75rem; color: var(--soft-gray); margin-bottom: 0.5rem; letter-spacing: 0.05em; font-weight: 500; }
   .form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 1rem 1.2rem; border: 1px solid #e0e0e0; border-radius: 12px;
+    width: 100%; padding: 0.9rem 1rem; border: 1.5px solid var(--light-gray); border-radius: 12px;
     font-family: var(--sans); font-size: 0.9rem; outline: none; transition: all 0.3s;
-    background: #fbfbfb; color: var(--charcoal);
+    background: #fafaf8; color: var(--charcoal);
   }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--sage); background: white; box-shadow: 0 4px 16px rgba(122,154,126,0.08);
+    border-color: var(--sage); background: white; box-shadow: 0 4px 12px rgba(122,154,126,0.06);
   }
   .form-group textarea { resize: vertical; min-height: 120px; }
   
   .btn-submit {
-    width: 100%; padding: 1.2rem; background: var(--charcoal); color: white; border: none; border-radius: 50px;
+    width: 100%; padding: 1.1rem; background: var(--moss); color: white; border: none; border-radius: 30px;
     font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s; letter-spacing: 0.1em;
     margin-top: 1rem; font-family: var(--sans); display: flex; align-items: center; justify-content: center; gap: 0.5rem;
   }
-  .btn-submit:hover { background: var(--moss); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,103,65,0.25); }
+  .btn-submit:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,103,65,0.25); }
 
   /* ── 頁尾 Footer ── */
   footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; text-align: center; }
@@ -217,23 +212,17 @@
 
   /* RWD */
   @media (max-width: 900px) {
-    .contact-card { grid-template-columns: 1fr; }
-    .contact-info { padding: 3rem 2.5rem; text-align: center; }
-    .contact-info::after { display: none; }
-    .social-row { justify-content: center; }
+    .contact-layout { grid-template-columns: 1fr; gap: 0; }
     .contact-form-area { padding: 3rem 2.5rem; }
   }
   @media (max-width: 600px) {
-    .form-row { grid-template-columns: 1fr; gap: 1.5rem; }
-    .contact-main { margin-top: -60px; padding: 0 1.2rem; }
-    .contact-hero { padding: 80px 1.5rem 120px; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-main { margin-top: -50px; padding: 0 1.2rem; }
+    .contact-hero { padding: 60px 1.5rem 120px; }
     .contact-hero h1 { font-size: 2rem; }
-    .contact-form-area { padding: 2.5rem 1.5rem; }
     .contact-info { padding: 2.5rem 1.5rem; }
+    .contact-form-area { padding: 2.5rem 1.5rem; }
   }
-
-  .reveal { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s cubic-bezier(.22,1,.36,1) forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -291,15 +280,13 @@
 </nav>
 
 <div class="contact-hero">
-  <div class="contact-hero-content reveal">
-    <span class="hero-eyebrow">🦉 Contact HiBOU</span>
-    <h1>我們隨時為您<em>解答</em></h1>
-    <p>無論是商品選購建議、訂單查詢或是合作提案，<br>喜福生活苑都非常期待聽見您的聲音。</p>
-  </div>
+  <span class="hero-eyebrow">Contact Us</span>
+  <h1>我們隨時為您<em>解答</em></h1>
+  <p>無論是商品選購建議、訂單查詢或是合作提案，<br>喜福生活苑都非常期待聽見您的聲音。</p>
 </div>
 
 <main class="contact-main">
-  <div class="contact-card reveal" style="animation-delay: 0.1s;">
+  <div class="contact-layout">
     
     <div class="contact-info">
       <div class="info-group">
@@ -313,7 +300,6 @@
         <span class="info-icon">✉️</span>
         <span class="info-lbl">電子信箱</span>
         <div class="info-val"><a href="mailto:service@hibou.com.tw">service@hibou.com.tw</a></div>
-        <span class="info-sub">我們將於 24 小時內回覆</span>
       </div>
 
       <div class="info-group">
@@ -331,16 +317,15 @@
     </div>
 
     <div class="contact-form-area">
-      <h2 class="form-title">留下您的訊息</h2>
-      <p class="form-desc">請填寫下方表單，我們的客服專員會盡快協助您處理。</p>
+      <h2 class="form-title">傳送訊息給我們</h2>
       <form>
         <div class="form-row">
           <div class="form-group">
-            <label>姓名 Name</label>
+            <label>您的姓名 Name</label>
             <input type="text" placeholder="王小明">
           </div>
           <div class="form-group">
-            <label>電話 Phone</label>
+            <label>聯絡電話 Phone</label>
             <input type="tel" placeholder="09XX-XXX-XXX">
           </div>
         </div>
@@ -351,21 +336,20 @@
         <div class="form-group">
           <label>諮詢類別 Category</label>
           <select>
-            <option>請選擇您想詢問的事項...</option>
-            <option>產品選購與尺寸諮詢</option>
-            <option>訂單與配送進度</option>
+            <option>請選擇...</option>
+            <option>產品選購諮詢</option>
+            <option>訂單配送進度</option>
             <option>售後服務 / 退換貨</option>
-            <option>彌月禮盒客製化</option>
-            <option>商業合作 / 經銷洽談</option>
+            <option>商業合作洽談</option>
             <option>其他事項</option>
           </select>
         </div>
         <div class="form-group">
           <label>訊息內容 Message</label>
-          <textarea placeholder="請寫下您的疑問或需求..."></textarea>
+          <textarea placeholder="請寫下您的疑問或需求，我們將盡快回覆您..."></textarea>
         </div>
         <button type="button" class="btn-submit" onclick="alert('訊息已成功送出！客服人員會盡快與您聯繫。')">
-          送出訊息 <span>→</span>
+          傳送訊息 <span style="font-size: 1.2rem;">→</span>
         </button>
       </form>
     </div>
