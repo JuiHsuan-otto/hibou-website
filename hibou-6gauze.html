@@ -5,22 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>喜福六重紗系列｜呼呼大睡被・防踢背心・圍兜｜MIT台灣製造・SGS認證・越洗越柔軟</title>
 <meta name="description" content="喜福六重紗系列－呼呼大睡被、防踢背心、360°拍嗝巾、背帶口水巾。採用日本三河棉紗，MIT台灣職人製造，SGS有害物質零殘留。越洗越柔軟，四款尺寸自由選，守護每個寶寶的恆溫好眠。">
-<meta name="keywords" content="六重紗,呼呼大睡被,防踢被,防踢背心,嬰兒被,寶寶被子,六層紗布,三河木綿,MIT台灣製造,嬰兒寢具,HiBOU,喜福,背帶口水巾,拍嗝巾,嬰兒圍兜,嬰兒肚圍">
-<link rel="canonical" href="https://hibou.tw/6gauze">
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org/",
-  "@type":"ItemList",
-  "name":"喜福六重紗系列",
-  "description":"HiBOU 喜福六重紗系列嬰幼兒寢具與日用品",
-  "itemListElement":[
-    {"@type":"ListItem","position":1,"name":"喜福六重紗 呼呼大睡被","url":"https://hibou.tw/6gauze#blanket"},
-    {"@type":"ListItem","position":2,"name":"喜福六重紗 防踢背心","url":"https://hibou.tw/6gauze#antikick"},
-    {"@type":"ListItem","position":3,"name":"喜福六重紗 360° 拍嗝巾圍兜","url":"https://hibou.tw/6gauze#bib360"},
-    {"@type":"ListItem","position":4,"name":"喜福六重紗 背帶口水巾","url":"https://hibou.tw/6gauze#carrier"}
-  ]
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
@@ -30,25 +14,67 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--butter)}::-webkit-scrollbar-thumb{background:var(--biscuit);border-radius:2px}
+
+/* ── Header ── */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;transition:background .5s,box-shadow .5s}
 .hdr.solid{background:rgba(253,246,235,.96);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);box-shadow:0 1px 0 var(--biscuit),0 4px 24px rgba(42,33,24,.07)}
-.hdr-in{max-width:1260px;margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between}
+.hdr-in{max-width:1260px;margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:501}
 .logo-a{text-decoration:none;display:flex;align-items:center}.logo-a img{height:46px;width:auto}
 .main-nav{display:flex;align-items:center;gap:.15rem}
-.main-nav a{font-size:.79rem;letter-spacing:.08em;color:var(--bark);text-decoration:none;padding:.42rem .95rem;border-radius:var(--r-f);transition:background .2s,color .2s;white-space:nowrap}
-.main-nav a:hover,.main-nav a.cur{background:rgba(74,107,62,.08);color:var(--moss)}.main-nav a.cur{font-weight:500}
+.main-nav > a, .nav-item-dropdown > a {font-size:.79rem;letter-spacing:.08em;color:var(--bark);text-decoration:none;padding:.42rem .95rem;border-radius:var(--r-f);transition:background .2s,color .2s;white-space:nowrap;cursor:pointer;}
+.main-nav > a:hover, .main-nav > a.cur, .nav-item-dropdown > a:hover {background:rgba(74,107,62,.08);color:var(--moss)}
+.main-nav > a.cur {font-weight:500}
+
+/* ── Dropdown Menu (下拉選單) ── */
+.nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+.dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(253,246,235,0.98); backdrop-filter: blur(16px); border: 1px solid var(--biscuit); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s var(--spring); min-width: 150px; pointer-events: none; z-index: 600; }
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--bark); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+.dropdown-menu a:hover { background: rgba(74,107,62,.08); color: var(--moss); }
+.dropdown-divider { height: 1px; background: var(--biscuit); margin: 0.4rem 0.5rem; }
+
 .hdr-end{display:flex;align-items:center;gap:.9rem}
-.btn-shop{display:inline-flex;align-items:center;background:var(--moss);color:white;padding:.52rem 1.35rem;border-radius:var(--r-f);font-size:.79rem;letter-spacing:.07em;font-family:var(--sans);text-decoration:none;border:none;cursor:pointer;transition:background .25s,transform .2s}
-.btn-shop:hover{background:var(--sage);transform:translateY(-1px)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none}
+
+/* ── Cart Drawer CSS ── */
+.btn-cart-nav {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--linen); color: var(--moss); border: none;
+    cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none;
+}
+.btn-cart-nav:hover { background: var(--biscuit); transform: translateY(-1px); }
+.cart-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: #C0614A; color: white; font-size: 0.6rem;
+    width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff;
+}
+.cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--butter); z-index: 10001; transform: translateX(100%); transition: transform 0.35s var(--spring); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+.cart-drawer.open { transform: translateX(0); }
+.cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--biscuit); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+.cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+.cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--biscuit); background: var(--butter); }
+.cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+.cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--biscuit); }
+.cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); line-height: 1.3; }
+.cart-item-var { font-size: 0.75rem; color: var(--clay); margin-top: 0.25rem; }
+.cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+.cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--linen); padding: 0.2rem 0.5rem; border-radius: 20px; border: 1px solid var(--biscuit); }
+.cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+.cart-remove { color: var(--clay); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;z-index:1001;position:relative}
 .burger span{display:block;width:21px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s}
 .burger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
 .burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
-.mob-nav{display:none;position:fixed;top:70px;left:0;right:0;z-index:499;background:rgba(253,246,235,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--biscuit);padding:1.5rem 2rem 2rem;flex-direction:column;gap:.1rem;box-shadow:0 12px 40px rgba(42,33,24,.1);opacity:0;transform:translateY(-8px);transition:opacity .28s,transform .28s}
+.mob-nav{display:none;position:fixed;top:70px;left:0;right:0;z-index:1000;background:rgba(253,246,235,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--biscuit);padding:1.5rem 2rem 2rem;flex-direction:column;gap:.1rem;box-shadow:0 12px 40px rgba(42,33,24,.1);opacity:0;transform:translateY(-8px);transition:opacity .28s,transform .28s}
 .mob-nav.open{display:flex;opacity:1;transform:translateY(0)}
 .mob-nav a{font-size:.95rem;color:var(--bark);text-decoration:none;padding:.8rem .5rem;border-bottom:1px solid var(--biscuit);transition:color .2s}
 .mob-nav a:last-child{border-bottom:none}.mob-nav a:hover{color:var(--moss)}
-.mob-cta{margin-top:1.1rem!important;background:var(--moss)!important;color:white!important;text-align:center;padding:.9rem .5rem!important;border-radius:var(--r-f)!important;border-bottom:none!important;font-size:.9rem;letter-spacing:.07em}
+
 .hero{margin-top:70px;min-height:calc(100vh - 70px);max-height:900px;position:relative;overflow:hidden;display:flex;align-items:center}
 .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(.88) saturate(.92);transform:scale(1.06);transition:transform 9s var(--spring)}
 .hero.rdy .hero-photo{transform:scale(1)}
@@ -216,20 +242,10 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
 .qty-row-m{display:flex;align-items:center;gap:.75rem}
 .qty-btn-m{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--biscuit);background:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--sans);color:var(--bark);transition:border-color .2s,background .2s}
 .qty-btn-m:hover{border-color:var(--moss);background:var(--linen)}.qty-n{font-family:var(--serif);font-size:1.15rem;min-width:28px;text-align:center;color:var(--ink)}
-.pay-opts{display:flex;flex-direction:column;gap:.6rem}
-.pay-opt{display:flex;align-items:center;gap:.85rem;border:1.5px solid var(--biscuit);border-radius:var(--r-md);padding:.85rem 1rem;cursor:pointer;transition:border-color .2s,background .2s;background:white}
-.pay-opt:hover{border-color:var(--sage)}.pay-opt.on{border-color:var(--moss);background:rgba(74,107,62,.04)}
-.pay-icon{width:40px;height:40px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0}
-.pay-ecpay{background:#1a8a3a;color:white}.pay-linepay{background:#00c300;color:white}
-.pay-label strong{display:block;font-size:.82rem;color:var(--ink)}.pay-label span{font-size:.68rem;color:var(--clay)}
-.pay-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--biscuit);margin-left:auto;flex-shrink:0;transition:border-color .2s,background .2s;position:relative}
-.pay-opt.on .pay-radio{border-color:var(--moss);background:var(--moss)}.pay-opt.on .pay-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:white}
 .modal-total{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid var(--parchment);border-bottom:1px solid var(--parchment);margin:.5rem 0 1rem}
 .total-lbl{font-size:.8rem;color:var(--bark)}.total-amt{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--moss)}
 .btn-checkout{width:100%;padding:1rem;border-radius:var(--r-f);background:var(--moss);color:white;border:none;cursor:pointer;font-size:.9rem;letter-spacing:.08em;font-family:var(--sans);transition:background .25s,transform .2s;margin-bottom:.6rem}
 .btn-checkout:hover:not(:disabled){background:var(--sage);transform:translateY(-1px)}.btn-checkout:disabled{background:var(--biscuit);color:var(--clay);cursor:not-allowed;transform:none}
-.checkout-note{font-size:.68rem;color:var(--clay);text-align:center;line-height:1.8}
-.dev-notice{background:#fff8e1;border:1px solid #ffe082;border-radius:var(--r-sm);padding:.75rem 1rem;font-size:.72rem;color:#7a6000;line-height:1.7;margin-top:1rem}
 .col-sel-nm{font-size:.75rem;color:var(--moss);font-weight:500;margin-left:.3rem}
 @keyframes risein{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .75s var(--spring),transform .75s var(--spring)}.rv.in{opacity:1;transform:translateY(0)}
@@ -251,19 +267,45 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <a href="hibou-6gauze.html" class="cur">六重紗系列</a>
       <a href="hibou-windshield.html">寶寶我最罩</a>
       <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
       <a href="hibou-journal.html">喜福生活誌</a>
       <a href="news-list.html">最新消息</a>
       <a href="contact.html">聯絡我們</a>
     </nav>
 
     <div class="hdr-end">
-      <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
-      <button class="burger" id="hamburger" onclick="toggleMenu()">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <button class="burger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
+<nav class="mob-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html" class="cur">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+</nav>
+
 <section class="hero" id="HERO">
   <img class="hero-photo" src="images/hero.jpg" alt="六重紗防踢被 寶寶熟睡" onload="document.getElementById('HERO').classList.add('rdy')">
   <div class="hero-veil"></div>
@@ -285,53 +327,22 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
   <div class="hero-scroll"><span class="scroll-txt">Scroll</span><div class="scroll-track"></div></div>
 </section>
-<div class="cert-strip">
-  <div class="cert-row">
-    <div class="cert-it rv"><img src="images/sanryu.gif" alt="三河木綿"><div><div class="cert-nm">產地溯源認證</div><div class="cert-nt">嚴選高品質三河棉紗</div></div></div>
-    <div class="cert-it rv"><span class="cert-ico">🔬</span><div><div class="cert-nm">SGS 檢驗合格</div><div class="cert-nt">有害物質零殘留</div></div></div>
-    <div class="cert-it rv"><span class="cert-ico">🇹🇼</span><div><div class="cert-nm">MIT 台灣製造</div><div class="cert-nt">喜福在地職人工藝</div></div></div>
-    <div class="cert-it rv"><span class="cert-ico">💧</span><div><div class="cert-nm">品牌信譽保證</div><div class="cert-nt">數萬媽咪真實口碑</div></div></div>
-    <div class="cert-it rv"><span class="cert-ico">🌿</span><div><div class="cert-nm">天然純棉守護</div><div class="cert-nt">無螢光劑 · 無甲醛</div></div></div>
-  </div>
-</div>
+
+<div class="cert-strip"><div class="cert-row"><div class="cert-it rv"><img src="images/sanryu.gif" alt="三河木綿"><div><div class="cert-nm">產地溯源認證</div><div class="cert-nt">嚴選高品質三河棉紗</div></div></div><div class="cert-it rv"><span class="cert-ico">🔬</span><div><div class="cert-nm">SGS 檢驗合格</div><div class="cert-nt">有害物質零殘留</div></div></div><div class="cert-it rv"><span class="cert-ico">🇹🇼</span><div><div class="cert-nm">MIT 台灣製造</div><div class="cert-nt">喜福在地職人工藝</div></div></div><div class="cert-it rv"><span class="cert-ico">💧</span><div><div class="cert-nm">品牌信譽保證</div><div class="cert-nt">數萬媽咪真實口碑</div></div></div><div class="cert-it rv"><span class="cert-ico">🌿</span><div><div class="cert-nm">天然純棉守護</div><div class="cert-nt">無螢光劑 · 無甲醛</div></div></div></div></div>
+
 <section class="mat-sec" id="material">
   <div class="mat-in">
-    <div class="mat-top rv">
-      <span class="mat-lbl">Brand Philosophy · 品牌精神</span>
-      <h2 class="mat-hdg">為什麼選擇<em>喜福六重紗</em>？</h2>
-      <div class="mat-wavy"></div>
-      <p class="mat-desc">對喜福而言，產地只是高品質的起點，真正的價值在於我們對「睡眠安全」與「肌膚觸感」的極致追求。透過獨家交織技術，讓每一件產品都承載著品牌的信譽與對寶寶的愛。</p>
-    </div>
-    <div class="fac-duo rv">
-      <div class="fac-fr"><img src="images/factory1.jpg" alt="三河織造現場"><div class="fac-cap">匠心研發 · 對每一個織紋細節的堅持</div></div>
-      <div class="fac-fr"><img src="images/factory2.jpg" alt="自動織布機"><div class="fac-cap">品質嚴控 · 確保每一件成品的純淨安全</div></div>
-    </div>
-    <div class="sanryu rv">
-      <img src="images/sanryu.gif" alt="三河木綿">
-      <div><div class="sanryu-nm">源自經典，更超越產地限制</div><div class="sanryu-body">雖然我們選用日本愛知縣頂級三河木綿作為核心原料，但喜福更專注於將這份天然素材，透過在地職人的細膩手作，轉化為更適合台灣氣候、更懂寶寶需求的精品寢具。我們賣的不只是紗布，而是喜福長久以來建立的專業與信賴。</div></div>
-    </div>
-    <div class="mat-cards">
-      <div class="mat-card rv"><span class="mat-ico">🛡️</span><div class="mat-nm">信譽與安全</div><p class="mat-txt">超越產地標籤，喜福以更嚴格的品牌內控，確保產品無螢光劑與有害添加，守護過敏兒肌膚。</p></div>
-      <div class="mat-card rv"><span class="mat-ico">🌬️</span><div class="mat-nm">獨家呼吸結構</div><p class="mat-txt">不僅是六層疊加，更是科學的密度配比。讓空氣在布料間自由流動，打造會呼吸的恆溫感。</p></div>
-      <div class="mat-card rv"><span class="mat-ico">✨</span><div class="mat-nm">時間萃取的柔軟</div><p class="mat-txt">喜福工法讓布料具備「記憶性柔軟」。隨著使用時間越長，棉纖維越顯蓬鬆，與寶寶共同成長。</p></div>
-      <div class="mat-card rv"><span class="mat-ico">🇹🇼</span><div class="mat-nm">職人在地傳承</div><p class="mat-txt">堅持 MIT 台灣製造，將傳統工藝賦予現代審美與實用性，建立屬於台灣的高質感嬰幼品牌。</p></div>
-    </div>
+    <div class="mat-top rv"><span class="mat-lbl">Brand Philosophy · 品牌精神</span><h2 class="mat-hdg">為什麼選擇<em>喜福六重紗</em>？</h2><div class="mat-wavy"></div><p class="mat-desc">對喜福而言，產地只是高品質的起點，真正的價值在於我們對「睡眠安全」與「肌膚觸感」的極致追求。透過獨家交織技術，讓每一件產品都承載著品牌的信譽與對寶寶的愛。</p></div>
+    <div class="fac-duo rv"><div class="fac-fr"><img src="images/factory1.jpg" alt="三河織造現場"><div class="fac-cap">匠心研發 · 對每一個織紋細節的堅持</div></div><div class="fac-fr"><img src="images/factory2.jpg" alt="自動織布機"><div class="fac-cap">品質嚴控 · 確保每一件成品的純淨安全</div></div></div>
+    <div class="sanryu rv"><img src="images/sanryu.gif" alt="三河木綿"><div><div class="sanryu-nm">源自經典，更超越產地限制</div><div class="sanryu-body">雖然我們選用日本愛知縣頂級三河木綿作為核心原料，但喜福更專注於將這份天然素材，透過在地職人的細膩手作，轉化為更適合台灣氣候、更懂寶寶需求的精品寢具。我們賣的不只是紗布，而是喜福長久以來建立的專業與信賴。</div></div></div>
+    <div class="mat-cards"><div class="mat-card rv"><span class="mat-ico">🛡️</span><div class="mat-nm">信譽與安全</div><p class="mat-txt">超越產地標籤，喜福以更嚴格的品牌內控，確保產品無螢光劑與有害添加，守護過敏兒肌膚。</p></div><div class="mat-card rv"><span class="mat-ico">🌬️</span><div class="mat-nm">獨家呼吸結構</div><p class="mat-txt">不僅是六層疊加，更是科學的密度配比。讓空氣在布料間自由流動，打造會呼吸的恆溫感。</p></div><div class="mat-card rv"><span class="mat-ico">✨</span><div class="mat-nm">時間萃取的柔軟</div><p class="mat-txt">喜福工法讓布料具備「記憶性柔軟」。隨著使用時間越長，棉纖維越顯蓬鬆，與寶寶共同成長。</p></div><div class="mat-card rv"><span class="mat-ico">🇹🇼</span><div class="mat-nm">職人在地傳承</div><p class="mat-txt">堅持 MIT 台灣製造，將傳統工藝賦予現代審美與實用性，建立屬於台灣的高質感嬰幼品牌。</p></div></div>
   </div>
 </section>
+
 <section class="sec sec-ln" id="products">
   <div class="wrap">
-    <div class="sec-hdr rv">
-      <span class="lbl">Full Collection · 喜福全系列</span>
-      <h2 class="hdg">精選 <em>八款</em> 品牌旗艦商品</h2>
-      <div class="wavy"></div>
-      <p class="bcopy">點擊商品即可選擇花色・尺寸・付款方式</p>
-    </div>
-    <div class="filt-bar rv">
-      <button class="filt on" onclick="doFilt('all',this)">全部商品</button>
-      <button class="filt" onclick="doFilt('sleep',this)">寢具系列</button>
-      <button class="filt" onclick="doFilt('bib',this)">圍兜系列</button>
-      <button class="filt" onclick="doFilt('daily',this)">日用品</button>
-    </div>
+    <div class="sec-hdr rv"><span class="lbl">Full Collection · 喜福全系列</span><h2 class="hdg">精選 <em>八款</em> 品牌旗艦商品</h2><div class="wavy"></div><p class="bcopy">點擊商品即可選擇花色・尺寸・數量</p></div>
+    <div class="filt-bar rv"><button class="filt on" onclick="doFilt('all',this)">全部商品</button><button class="filt" onclick="doFilt('sleep',this)">寢具系列</button><button class="filt" onclick="doFilt('bib',this)">圍兜系列</button><button class="filt" onclick="doFilt('daily',this)">日用品</button></div>
     <div class="prod-grid" id="PG">
       <div class="pc rv" data-c="sleep" onclick="openModal('blanket')"><div class="pc-photo"><img src="images/blanket.jpg" alt="喜福呼呼大睡被"><span class="pc-badge b-best">品牌明星單品</span><button class="pc-wish" onclick="doWish(event,this)">♡</button><div class="swatches"><span class="sw" style="background:#a8c8b8"></span><span class="sw" style="background:#e0b8bc"></span></div></div><div class="pc-body"><div class="pc-cat">寢具系列</div><div class="pc-name">喜福六重紗 呼呼大睡被</div><div class="pc-desc">加厚六重紗結構，冬暖夏涼，讓寶寶一覺到天亮</div><div class="pc-tags"><span class="ptag">100×140cm</span><span class="ptag">品牌信譽</span><span class="ptag">四季適用</span></div><div class="pc-foot"><div class="pc-price">NT$&thinsp;1,580</div><button class="btn-sel" onclick="openModal('blanket')">選購花色</button></div></div></div>
       <div class="pc rv" data-c="sleep" onclick="openModal('antikick')"><div class="pc-photo"><img src="images/antikick_green.jpg" alt="防踢被"><span class="pc-badge b-hot">家長好評推薦</span><button class="pc-wish" onclick="doWish(event,this)">♡</button><div class="swatches"><span class="sw" style="background:#e87060"></span><span class="sw" style="background:#8ab0d0"></span><span class="sw" style="background:#a8c890"></span></div></div><div class="pc-body"><div class="pc-cat">寢具系列</div><div class="pc-name">喜福六重紗 防踢背心</div><div class="pc-desc">全包覆式設計，解決踢被焦慮，守護寶寶睡眠安全</div><div class="pc-tags"><span class="ptag">0-3歲款</span><span class="ptag">3-7歲款</span><span class="ptag">防踢被首選</span></div><div class="pc-foot"><div class="pc-price">NT$&thinsp;980<small> 起</small></div><button class="btn-sel" onclick="openModal('antikick')">選購花色</button></div></div></div>
@@ -344,149 +355,31 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
     </div>
   </div>
 </section>
+
 <section class="feat-sec feat-sec-bt" id="blanket">
-  <div class="wrap">
-    <div class="feat-grid rv">
-      <div class="feat-img">
-        <img src="images/blanket.jpg" alt="喜福六重紗呼呼大睡被 - 寶寶腳丫從薄荷綠粉紅被子下伸出" style="aspect-ratio:3/2;object-position:center 60%">
-        <div class="feat-tag">
-          <div class="feat-tag-nm">喜福六重紗 呼呼大睡被</div>
-          <div class="feat-tag-sub">PREMIUM · 品牌信譽之作</div>
-        </div>
-      </div>
-      <div>
-        <span class="feat-lbl">Featured · 品牌明星商品</span>
-        <h2 class="feat-title">讓寶寶睡得<br><em>呼呼又甜甜</em></h2>
-        <div class="wavy"></div>
-        <p class="feat-desc">想像一下，寶寶在蓬鬆的喜福六重紗包覆下，露出甜甜微笑進入夢鄉。我們透過精密的密度配比，在布料間鎖住適溫、排走濕氣，打造「恆溫睡眠堡壘」——這是喜福對睡眠質感的極致定義。</p>
-
-        <!-- 四款尺寸卡片 -->
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;margin-bottom:1.8rem">
-          <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:.85rem 1rem">
-            <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">S 號</div>
-            <div style="font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink)">90 × 70 cm</div>
-            <div style="font-size:.72rem;color:var(--clay);margin-top:.2rem">新生兒至 3 個月</div>
-          </div>
-          <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:.85rem 1rem">
-            <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">M 號</div>
-            <div style="font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink)">82.5 × 105 cm</div>
-            <div style="font-size:.72rem;color:var(--clay);margin-top:.2rem">3 個月至 1 歲</div>
-          </div>
-          <div style="background:rgba(74,107,62,.06);border:1.5px solid rgba(74,107,62,.2);border-radius:var(--r-md);padding:.85rem 1rem">
-            <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">L 號 · 最熱賣</div>
-            <div style="font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--moss)">140 × 100 cm</div>
-            <div style="font-size:.72rem;color:var(--clay);margin-top:.2rem">1 歲以上・日用首選</div>
-          </div>
-          <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:.85rem 1rem">
-            <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">XL 號</div>
-            <div style="font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink)">140 × 200 cm</div>
-            <div style="font-size:.72rem;color:var(--clay);margin-top:.2rem">親子同床・加大全家用</div>
-          </div>
-        </div>
-
-        <div class="feat-specs">
-          <span class="spec">純棉六重紗</span>
-          <span class="spec">雙面設計</span>
-          <span class="spec">越洗越柔軟</span>
-          <span class="spec">SGS 認證</span>
-          <span class="spec">MIT 台灣製造</span>
-        </div>
+  <div class="wrap"><div class="feat-grid rv"><div class="feat-img"><img src="images/blanket.jpg" alt="喜福六重紗呼呼大睡被" style="aspect-ratio:3/2;object-position:center 60%"><div class="feat-tag"><div class="feat-tag-nm">喜福六重紗 呼呼大睡被</div><div class="feat-tag-sub">PREMIUM · 品牌信譽之作</div></div></div>
+    <div><span class="feat-lbl">Featured · 品牌明星商品</span><h2 class="feat-title">讓寶寶睡得<br><em>呼呼又甜甜</em></h2><div class="wavy"></div><p class="feat-desc">想像一下，寶寶在蓬鬆的喜福六重紗包覆下，露出甜甜微笑進入夢鄉...</p>
         <div class="feat-price"><sup>NT$</sup>1,580 <small>含稅免運</small></div>
-        <div class="feat-cta">
-          <button class="btn-p" onclick="openModal('blanket')">選購質感花色 →</button>
-          <a href="#" class="btn-g">查看品牌故事</a>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="feat-cta"><button class="btn-p" onclick="openModal('blanket')">選購質感花色 →</button></div>
+    </div></div></div>
 </section>
 
-<section class="feat-sec feat-sec-ln" id="antikick">
-  <div class="wrap"><div class="feat-grid flip rv">
-    <div class="feat-img"><img src="images/antikick_pink.jpg" alt="防踢被"><div class="feat-tag"><div class="feat-tag-nm">喜福六重紗 防踢背心</div><div class="feat-tag-sub">0–7 歲適用 · 職人精神產物</div></div></div>
-    <div><span class="feat-lbl">Featured · 寢具推薦</span><h2 class="feat-title">防踢防著涼，<br><em>安心一夜好眠</em></h2><div class="wavy"></div><p class="feat-desc">包覆式防踢被設計，無論寶寶怎麼翻滾踢腳都能完整包覆。六重紗輕薄透氣，活動自如不束縛，側邊四合扣穿脫輕鬆，8款真實布花花色可選。</p><div class="feat-specs"><span class="spec">0-3歲款</span><span class="spec">3-7歲款</span><span class="spec">8款花色</span><span class="spec">側開四合扣</span></div><div class="feat-price"><sup>NT$</sup>980 <small>起</small></div><div class="feat-cta"><button class="btn-p" onclick="openModal('antikick')">選購花色 →</button><a href="#" class="btn-g">查看花色</a></div></div>
-  </div></div>
-</section>
-<section class="sec sec-pc">
-  <div class="wrap">
-    <div class="sec-hdr rv"><span class="lbl">Pattern Guide · 花色選擇</span><h2 class="hdg">賦予每一件產品 <em>獨特靈魂</em></h2><div class="wavy"></div></div>
-    <div class="illus-g">
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_coffee.jpg" alt="咖啡白點"><div class="itile-lbl">咖啡白點</div></div>
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_camo.jpg" alt="迷彩藍"><div class="itile-lbl">迷彩藍</div></div>
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_leaf.jpg" alt="綠葉"><div class="itile-lbl">綠 葉</div></div>
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_eagle.jpg" alt="粉紅小鷹"><div class="itile-lbl">粉紅小鷹</div></div>
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_squirrel.jpg" alt="彩色松鼠"><div class="itile-lbl">彩色松鼠</div></div>
-      <div class="itile rv" onclick="openModal('antikick')"><img src="images/illus_ak_apple.jpg" alt="蘋果紅"><div class="itile-lbl">蘋果紅</div></div>
-    </div>
-  </div>
-</section>
-<section class="feat-sec feat-sec-bt" id="bib360">
-  <div class="wrap"><div class="feat-grid rv">
-    <div class="feat-img"><img src="images/bib360_photo.jpg" alt="360°拍嗝巾圍兜"><div class="feat-tag"><div class="feat-tag-nm">360° 拍嗝巾圍兜</div><div class="feat-tag-sub">全包覆零死角 · 三合一設計</div></div></div>
-    <div><span class="feat-lbl">Featured · 創新設計</span><h2 class="feat-title">一巾多用，<br><em>360° 全包覆守護</em></h2><div class="wavy"></div><p class="feat-desc">加大防汙範圍，360度全包覆無死角，拍嗝時溢奶滴哪裡都接得住。扣上扣帶即變身圍兜，六重紗吸濕速乾，不含甲醛螢光劑。</p><div class="feat-specs"><span class="spec">50×20cm</span><span class="spec">新生兒適用</span><span class="spec">360°全包覆</span><span class="spec">不含甲醛</span></div><div class="feat-price"><sup>NT$</sup>520</div><div class="feat-cta"><button class="btn-p" onclick="openModal('bib360')">選購花色 →</button><a href="#" class="btn-g">了解更多</a></div></div>
-  </div></div>
-</section>
-<section class="sec sec-ln">
-  <div class="wrap">
-    <div class="sec-hdr rv"><span class="lbl">How to Use · 使用情境</span><h2 class="hdg"><em>一條</em>抵多用</h2><div class="wavy"></div></div>
-    <div class="usage-row">
-      <div class="ucard rv"><img src="images/bib360_howto.jpg" alt="圍兜使用"><div class="ucard-body"><div class="ucard-num">01</div><div class="ucard-name">圍兜使用</div><div class="ucard-desc">扣上扣帶圍在脖子上即成圍兜，適合副食品階段或口水多的寶寶。</div></div></div>
-      <div class="ucard rv"><img src="images/bib360_feedback.jpg" alt="拍嗝使用"><div class="ucard-body"><div class="ucard-num">02</div><div class="ucard-name">拍嗝∕餵奶巾</div><div class="ucard-desc">展開披在肩膀上，加大範圍360度接住溢奶，媽媽衣服不再被染到。</div></div></div>
-      <div class="ucard rv"><img src="images/usage_03_carrier.jpg" alt="安撫口水巾" style="object-position:center 25%"><div class="ucard-body"><div class="ucard-num">03</div><div class="ucard-name">安撫∕口水巾</div><div class="ucard-desc">六重紗柔軟無刺激，寶寶拿著啃咬當安撫巾也很適合，吸濕速乾不易滋生細菌。</div></div></div>
-    </div>
-  </div>
-</section>
-<section class="feat-sec feat-sec-bt" id="carrier">
-  <div class="wrap"><div class="feat-grid flip rv">
-    <div class="feat-img"><img src="images/carrier_mom2.jpg" alt="背帶口水巾"><div class="feat-tag"><div class="feat-tag-nm">六重紗 背帶口水巾</div><div class="feat-tag-sub">推車 · 背巾 · 汽座 通用</div></div></div>
-    <div><span class="feat-lbl">Featured · 外出必備</span><h2 class="feat-title">啃咬族必備，<br><em>愛啃咬寶貝的最佳守護</em></h2><div class="wavy"></div><p class="feat-desc">專為愛啃咬背帶的寶寶設計，六重紗超強吸水不悶濕，安全無染料可放心啃咬。磁釦固定穩固不移位，適用各品牌背巾、推車及汽座安全帶。</p><div class="feat-specs"><span class="spec">2入組</span><span class="spec">通用各品牌</span><span class="spec">背巾∕推車∕汽座</span><span class="spec">安全無染料</span></div><div class="feat-price"><sup>NT$</sup>480 <small>2入組</small></div><div class="feat-cta"><button class="btn-p" onclick="openModal('carrier')">選購花色 →</button><a href="#" class="btn-g">了解更多</a></div></div>
-  </div></div>
-</section>
-<section class="sec sec-pc">
-  <div class="wrap">
-    <div class="sec-hdr rv"><span class="lbl">In Use · 使用情境</span><h2 class="hdg">各種場合<em>都適用</em></h2></div>
-    <div class="mosaic rv">
-      <div class="mc"><img src="images/carrier_main.jpg" alt="媽媽背著使用"></div>
-      <div class="mc"><img src="images/carrier_stroller2.jpg" alt="推車使用"></div>
-      <div class="mc"><img src="images/carrier_gnaw1.jpg" alt="啃咬使用"></div>
-      <div class="mc"><img src="images/carrier_mom.jpg" alt="新生兒使用"></div>
-      <div class="mc"><img src="images/carrier_stroller1.jpg" alt="外出推車"></div>
-    </div>
-  </div>
-</section>
-<section class="sec sec-ln">
-  <div class="wrap">
-    <div class="sec-hdr rv"><span class="lbl">Customer Reviews · 媽咪真實好評</span><h2 class="hdg">數萬媽咪的<em>真實心聲</em></h2><div class="wavy"></div><p class="bcopy">超過 10,000 位媽咪選擇喜福，口碑源自真實育兒體驗</p></div>
-    <div class="rev-grid">
-      <div class="rcard rv"><div class="rstars">★★★★★</div><span class="rtag">六重紗 呼呼大睡被</span><p class="rbody">第一次摸到就愛上了！摸起來超超超軟，覆蓋在寶寶身上不會太重，夏天蓋著也不悶。買了之後家裡老人家直誇說質感好，完全是送禮自用兩相宜！</p><div class="rauthor"><div class="ravatar">👩</div><div><div class="rname">慵懶媽の育兒日記</div><div class="rrole">寶寶 7 個月 · 台中</div></div></div></div>
-      <div class="rcard rv"><div class="rstars">★★★★★</div><span class="rtag">六重紗 360° 拍嗝巾</span><p class="rbody">這條拍嗝巾圍兜防禦範圍超廣，幾乎百分百防守！吸水力比一般材質的紗布巾還棒耶！一巾可以多用，CP值很高唷。</p><div class="rauthor"><div class="ravatar">👩</div><div><div class="rname">栗卡媽咪</div><div class="rrole">新生兒媽媽 · 台北</div></div></div></div>
-      <div class="rcard rv"><div class="rstars">★★★★★</div><span class="rtag">六重紗 防踢被背心</span><p class="rbody">我家寶寶超愛踢被，試過很多方法都沒用，買了六重紗防踢被之後終於可以安心睡覺了！材質超軟，活動自如，而且洗完之後更柔軟，越洗越好！</p><div class="rauthor"><div class="ravatar">👩</div><div><div class="rname">鴨捲媽的育兒生活</div><div class="rrole">寶寶 1 歲 · 高雄</div></div></div></div>
-    </div>
-  </div>
-</section>
-<div class="gift">
-  <div class="gift-in rv">
-    <span class="gift-ico">🎁</span><span class="gift-lbl">Gift Sets · 彌月禮盒</span>
-    <h2 class="gift-title">六重紗系列<br><em>彌月禮盒客製服務</em></h2>
-    <p class="gift-desc">精選多款六重紗商品，自由搭配組合成專屬禮盒。附上精美提袋與客製化祝福卡，給新生寶寶最溫柔的第一份禮物。</p>
-    <a href="#" class="btn-cream">了解禮盒服務 →</a>
-  </div>
-</div>
+<div class="gift"><div class="gift-in rv"><span class="gift-ico">🎁</span><span class="gift-lbl">Gift Sets · 彌月禮盒</span><h2 class="gift-title">六重紗系列<br><em>彌月禮盒客製服務</em></h2><p class="gift-desc">精選多款六重紗商品，自由搭配組合成專屬禮盒。</p><a href="#" class="btn-cream">了解禮盒服務 →</a></div></div>
+
 <footer class="footer">
   <div class="footer-in">
     <div class="footer-top">
-      <div><div class="fbrand-nm">HiBOU 喜福生活苑</div><div class="fbrand-tag">Born for Babies</div><p class="fbrand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：hibou@hibou.com.tw<br>營業時間：週一至週五 11:00–17:00</p><div class="fsocials"><a href="#" class="fsoc">f</a><a href="#" class="fsoc">ig</a><a href="#" class="fsoc">yt</a></div></div>
-      <div class="fcol"><h5>六重紗系列</h5><ul><li><a href="#">呼呼大睡被</a></li><li><a href="#">防踢被背心</a></li><li><a href="#">背帶口水巾</a></li><li><a href="#">萬用小手帕</a></li><li><a href="#">360°拍嗝巾</a></li><li><a href="#">圍兜系列</a></li><li><a href="#">嬰兒肚圍</a></li></ul></div>
-      <div class="fcol"><h5>服務資訊</h5><ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="#">配送說明</a></li><li><a href="#">常見問題</a></li><li><a href="#">聯絡我們</a></li></ul></div>
-      <div class="fcol"><h5>關於喜福</h5><ul><li><a href="#">品牌故事</a></li><li><a href="#">親子旅遊誌</a></li><li><a href="#">媽咪育兒教室</a></li><li><a href="#">部落客推薦</a></li><li><a href="#">HiBOU 會員</a></li></ul></div>
+      <div><div class="fbrand-nm">HiBOU 喜福生活苑</div><div class="fbrand-tag">Born for Babies</div><p class="fbrand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：hibou@hibou.com.tw</p></div>
     </div>
-    <div class="footer-bot"><span>© 2025 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span><span>隱私權政策　使用條款</span></div>
+    <div class="footer-bot"><span>© 2026 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span></div>
   </div>
 </footer>
+
 <div class="sticky-cta" id="STICKY">
   <div><div class="sticky-nm">喜福六重紗系列</div><div class="sticky-pr">NT$ 320 起・MIT 職人製造・SGS 認證</div></div>
   <button class="sticky-btn" onclick="openModal('antikick')">立即選購</button>
 </div>
+
 <div class="modal-bg" id="MODAL">
   <div class="modal">
     <div class="modal-l"><img class="modal-photo" id="MPHOTO" src="" alt=""></div>
@@ -496,46 +389,172 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <p class="m-desc" id="MDESC"></p>
       <div><span class="opt-lbl">花色選擇 <span class="col-sel-nm" id="MCOLNM"></span></span><div class="col-grid" id="MCOLS"></div></div>
       <div><span class="opt-lbl">尺寸選擇</span><div class="sz-row" id="MSIZES"></div></div>
-      <div><span class="opt-lbl">數量</span><div class="qty-row-m"><button class="qty-btn-m" onclick="chQty(-1)">−</button><span class="qty-n" id="MQTY">1</span><button class="qty-btn-m" onclick="chQty(1)">+</button></div></div>
-      <div><span class="opt-lbl">付款方式</span>
-        <div class="pay-opts">
-          <div class="pay-opt on" id="PAY-ecpay" onclick="selPay('ecpay')"><div class="pay-icon pay-ecpay">綠界</div><div class="pay-label"><strong>綠界 ECPay</strong><span>信用卡 / ATM / 超商代碼</span></div><div class="pay-radio"></div></div>
-          <div class="pay-opt" id="PAY-linepay" onclick="selPay('linepay')"><div class="pay-icon pay-linepay">LINE</div><div class="pay-label"><strong>LINE Pay</strong><span>LINE Pay 餘額 / 綁定信用卡</span></div><div class="pay-radio"></div></div>
-        </div>
+      <div><span class="opt-lbl">數量</span>
+          <div class="qty-row-m"><button class="qty-btn-m" onclick="chQty(-1)">−</button><span class="qty-n" id="MQTY">1</span><button class="qty-btn-m" onclick="chQty(1)">+</button></div>
       </div>
       <div class="modal-total"><div class="total-lbl">合計金額</div><div class="total-amt" id="MTOTAL">NT$ 0</div></div>
-      <button class="btn-checkout" id="MBUY" onclick="doCheckout()">前往付款</button>
-      <p class="checkout-note">點擊後將跳轉至安全付款頁面<br>SSL 加密傳輸 ｜ 不儲存卡號資訊</p>
-      <div class="dev-notice">⚙️ <strong>開發注意</strong>：金流後端尚未連接。需後端用綠界 HashKey/HashIV 產生 CheckMacValue，或 LINE Pay Channel Secret 產生 HMAC-SHA256，才能完成跳轉。API 金鑰絕對不能放前端。</div>
+      
+      <button class="btn-checkout" id="MBUY" onclick="doAddToCart()">加入購物車</button>
     </div>
   </div>
 </div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--ink);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--ink);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--ink);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
 <script>
 'use strict';
-var PD={antikick:{cat:'寢具系列',name:'六重紗 防踢被背心',desc:'包覆式設計，無論寶寶怎麼翻滾踢腳都能完整包覆。六重紗輕薄透氣，側邊四合扣穿脫輕鬆。',price:980,sizes:[{l:'S（60-70cm）',s:'ok'},{l:'M（70-85cm）',s:'ok'},{l:'L（85-100cm）',s:'low'},{l:'XL（100-120cm）',s:'low'}],colors:[{n:'紅白點',i:'images/ak_red_dot.jpg',s:'ok'},{n:'藍點',i:'images/ak_blue_dot.jpg',s:'ok'},{n:'木與鳥',i:'images/ak_bird.jpg',s:'ok'},{n:'摩卡',i:'images/ak_mocha.jpg',s:'low'},{n:'牛仔藍',i:'images/ak_denim.jpg',s:'low'},{n:'迷彩藍',i:'images/ak_camo.jpg',s:'ok'},{n:'蘋果紅',i:'images/ak_apple.jpg',s:'low'},{n:'彩松鼠',i:'images/ak_squirrel.jpg',s:'out'}]},blanket:{cat:'寢具系列',name:'喜福六重紗 呼呼大睡被',desc:'恆溫睡眠堡壘，六層密度配比鎖溫排濕。四款尺寸從新生兒到親子同床，雙面設計越洗越蓬鬆。',price:1580,sizes:[{l:'S（90×70cm）',s:'ok'},{l:'M（82.5×105cm）',s:'ok'},{l:'L（140×100cm）最熱賣',s:'ok'},{l:'XL（140×200cm）',s:'ok'}],colors:[{n:'薄荷綠',i:'images/antikick_green.jpg',s:'ok'},{n:'粉紅',i:'images/antikick_pink.jpg',s:'low'}]},bib360:{cat:'圍兜系列',name:'六重紗 360° 拍嗝巾圍兜',desc:'加大範圍360度全包覆，拍嗝圍兜口水巾三合一。不含甲醛螢光劑。',price:520,sizes:[{l:'新生兒～幼童通用',s:'ok'}],colors:[{n:'薄荷藍',i:'images/bib360_main.jpg',s:'ok'},{n:'粉紅',i:'images/bib360_howto.jpg',s:'low'},{n:'蘋果紅',i:'images/bib360_photo.jpg',s:'ok'}]},carrier:{cat:'日用品',name:'六重紗 背帶口水巾',desc:'專為愛啃咬背帶的寶寶設計，安全無染料可放心啃咬。通用各品牌背巾推車。',price:480,sizes:[{l:'通用款（2入組）',s:'ok'}],colors:[{n:'彩色ABC',i:'images/carrier_mom2.jpg',s:'ok'},{n:'藍條紋',i:'images/carrier_stroller1.jpg',s:'low'},{n:'米色點',i:'images/carrier_mom.jpg',s:'ok'}]},bib_tri:{cat:'圍兜系列',name:'六重紗 三角圍兜',desc:'經典三角造型，六重紗超強吸水，雙面可用，3入超值組合。',price:460,sizes:[{l:'3入組（按扣式）',s:'ok'}],colors:[{n:'薄荷綠',i:'images/bib_tri_green.jpg',s:'ok'},{n:'藍圓點',i:'images/bib_tri_dot.jpg',s:'ok'},{n:'橘紅點',i:'images/bib_tri_red.jpg',s:'low'},{n:'淡藍',i:'images/bib_tri_blue.jpg',s:'ok'}]},bib_round:{cat:'圍兜系列',name:'六重紗 圓形圍兜',desc:'圓潤造型，全面守護頸部肌膚，六層吸水，魔鬼氈調節領圍。',price:380,sizes:[{l:'直徑 28cm',s:'ok'}],colors:[{n:'小馬彩色',i:'images/bib_round_outdoor.jpg',s:'ok'},{n:'小馬條紋',i:'images/bib_round_lying.jpg',s:'low'},{n:'小馬單色',i:'images/bib_round_crawl.jpg',s:'ok'}]},belly:{cat:'日用品',name:'六重紗 嬰兒肚圍',desc:'保護寶寶小肚肚，睡覺不著涼，彈力鬆緊不束縛活動。',price:320,sizes:[{l:'S（腰圍34-44cm）',s:'ok'},{l:'M（腰圍44-54cm）',s:'ok'},{l:'L（腰圍54-64cm）',s:'low'}],colors:[{n:'橘紅點',i:'images/belly.jpg',s:'ok'}]},hanky:{cat:'日用品',name:'六重紗 萬用小手帕',desc:'柔軟細緻，全家都適用。擦臉擦身兩相宜，多款花色可選，5入超值組。',price:580,sizes:[{l:'30x30cm（5入組）',s:'ok'}],colors:[{n:'粉藍紫',i:'images/illus_hk_blue.jpg',s:'ok'},{n:'彩松鼠',i:'images/illus_hk_squirrel.jpg',s:'ok'},{n:'紅白點',i:'images/illus_hk_red.jpg',s:'low'},{n:'蘋果紅',i:'images/illus_hk_apple.jpg',s:'ok'}]}};
-var SLB={ok:'有貨',low:'少量',out:'售完'};
-var SCC={ok:'s-ok',low:'s-low',out:'s-out'};
-var curProd=null,curCol=0,curSz=0,curQty=1,curPay='ecpay';
-function openModal(k){var p=PD[k];if(!p)return;curProd=p;curProd.key=k;curCol=0;for(var i=0;i<p.colors.length;i++){if(p.colors[i].s!=='out'){curCol=i;break;}}curSz=0;for(var j=0;j<p.sizes.length;j++){if(p.sizes[j].s!=='out'){curSz=j;break;}}curQty=1;curPay='ecpay';document.getElementById('PAY-ecpay').classList.add('on');document.getElementById('PAY-linepay').classList.remove('on');renderModal();document.getElementById('MODAL').classList.add('open');document.body.style.overflow='hidden';}
+// 購物車邏輯
+const CART_KEY = 'hibou_cart';
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+function updateCartQty(index, delta) {
+    let cart = getCart(); cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart(cart);
+}
+function removeFromCart(index) { let cart = getCart(); cart.splice(index, 1); saveCart(cart); }
+function toggleCart(forceOpen = false) {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    if(forceOpen || !drawer.classList.contains('open')) { overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI(); } 
+    else { overlay.classList.remove('open'); drawer.classList.remove('open'); }
+}
+function updateCartUI() {
+    let cart = getCart();
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+    let container = document.getElementById('cartItemsContainer');
+    if(cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--clay);">購物車目前是空的喔！</div>';
+        document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+    }
+    let html = ''; let subtotal = 0;
+    cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+        html += `<div class="cart-item"><img src="${item.image||''}" alt="${item.name}"><div class="cart-item-info"><div style="display:flex; justify-content:space-between;"><div class="cart-item-title">${item.name}</div><button class="cart-remove" onclick="removeFromCart(${index})">移除</button></div><div class="cart-item-var">${variantStr}</div><div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;"><div class="cart-qty-ctrl"><button onclick="updateCartQty(${index}, -1)">-</button><span>${item.qty}</span><button onclick="updateCartQty(${index}, 1)">+</button></div><div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div></div></div></div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+}
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+// ── 動態讀取 Google 試算表 API ──
+var PD = {}; 
+var SLB = {ok:'有貨', low:'少量', out:'售完'};
+var SCC = {ok:'s-ok', low:'s-low', out:'s-out'};
+var curProd = null, curCol = 0, curSz = 0, curQty = 1;
+
+// 您的全站共用 API 網址
+const API_URL = 'https://script.google.com/macros/s/AKfycbzIWfBsLEs7Cqv0FIyuMgzqD5rYeWu9HDdnsZyBymgX4XxBDao1WtNaYsTHZTzrjjYu8A/exec';
+
+window.addEventListener('load', async function() {
+    const heroEl = document.querySelector('.hero');
+    if(heroEl) heroEl.classList.add('rdy');
+    
+    try {
+        const response = await fetch(API_URL);
+        PD = await response.json();
+        console.log("✅ 成功載入商品資料", PD);
+    } catch (error) {
+        console.error("❌ 載入失敗：", error);
+    }
+});
+
+function openModal(k){
+    var p=PD[k];if(!p)return;
+    curProd=p;curProd.key=k;curCol=0;
+    for(var i=0;i<p.colors.length;i++){if(p.colors[i].s!=='out'){curCol=i;break;}}
+    curSz=0;for(var j=0;j<p.sizes.length;j++){if(p.sizes[j].s!=='out'){curSz=j;break;}}
+    curQty=1;
+    renderModal();
+    document.getElementById('MODAL').classList.add('open');
+    document.body.style.overflow='hidden';
+}
 function closeModal(){document.getElementById('MODAL').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('MODAL').addEventListener('click',function(e){if(e.target===this)closeModal();});
-function renderModal(){var p=curProd;var col=p.colors[curCol];var siz=p.sizes[curSz];document.getElementById('MCAT').textContent=p.cat;document.getElementById('MNAME').textContent=p.name;document.getElementById('MDESC').textContent=p.desc;document.getElementById('MQTY').textContent=curQty;document.getElementById('MTOTAL').textContent='NT$ '+(p.price*curQty).toLocaleString();document.getElementById('MCOLNM').textContent=col.n;var ph=document.getElementById('MPHOTO');ph.classList.add('fade');setTimeout(function(){ph.src=col.i;ph.onload=function(){ph.classList.remove('fade');};setTimeout(function(){ph.classList.remove('fade');},400);},150);var ch='';for(var i=0;i<p.colors.length;i++){var c=p.colors[i];ch+='<div class="col-sw'+(i===curCol?' on':'')+(c.s==='out'?' sold':'')+'"'+(c.s!=='out'?' onclick="selCol('+i+')"':'')+'>'+' <img src="'+c.i+'" alt="'+c.n+'" loading="lazy">'+' <span class="col-sw-stk '+SCC[c.s]+'">'+SLB[c.s]+'</span>'+' <div class="col-sw-nm">'+c.n+'</div></div>';}document.getElementById('MCOLS').innerHTML=ch;var sh='';for(var j=0;j<p.sizes.length;j++){var s=p.sizes[j];sh+='<button class="sz-btn'+(j===curSz?' on':'')+(s.s==='out'?' sold':'')+'"'+(s.s==='out'?' disabled':' onclick="selSz('+j+')"')+'>'+s.l+'</button>';}document.getElementById('MSIZES').innerHTML=sh;var ok=col.s!=='out'&&siz.s!=='out';var bb=document.getElementById('MBUY');bb.disabled=!ok;bb.textContent=ok?'前往付款 →':'此花色已售完';}
+function renderModal(){
+    var p=curProd;var col=p.colors[curCol];var siz=p.sizes[curSz];
+    document.getElementById('MCAT').textContent=p.cat;
+    document.getElementById('MNAME').textContent=p.name;
+    document.getElementById('MDESC').textContent=p.desc;
+    document.getElementById('MQTY').textContent=curQty;
+    document.getElementById('MTOTAL').textContent='NT$ '+(p.price*curQty).toLocaleString();
+    document.getElementById('MCOLNM').textContent=col.n;
+    var ph=document.getElementById('MPHOTO');
+    ph.classList.add('fade');
+    setTimeout(function(){ph.src=col.i;ph.onload=function(){ph.classList.remove('fade');};setTimeout(function(){ph.classList.remove('fade');},400);},150);
+    var ch='';
+    for(var i=0;i<p.colors.length;i++){
+        var c=p.colors[i];
+        ch+=`<div class="col-sw${i===curCol?' on':''}${c.s==='out'?' sold':''}"${c.s!=='out'?` onclick="selCol(${i})"`:''}> <img src="${c.i}" alt="${c.n}" loading="lazy"> <span class="col-sw-stk ${SCC[c.s]}">${SLB[c.s]}</span> <div class="col-sw-nm">${c.n}</div></div>`;
+    }
+    document.getElementById('MCOLS').innerHTML=ch;
+    var sh='';
+    for(var j=0;j<p.sizes.length;j++){
+        var s=p.sizes[j];
+        sh+=`<button class="sz-btn${j===curSz?' on':''}${s.s==='out'?' sold':''}"${s.s==='out'?' disabled':` onclick="selSz(${j})"`}>${s.l}</button>`;
+    }
+    document.getElementById('MSIZES').innerHTML=sh;
+    var ok=col.s!=='out'&&siz.s!=='out';
+    var bb=document.getElementById('MBUY');
+    bb.disabled=!ok;
+    bb.textContent=ok?'加入購物車':'此花色已售完';
+}
 function selCol(i){curCol=i;renderModal();}
 function selSz(i){curSz=i;renderModal();}
 function chQty(d){curQty=Math.max(1,Math.min(10,curQty+d));renderModal();}
-function selPay(m){curPay=m;document.querySelectorAll('.pay-opt').forEach(function(el){el.classList.remove('on');});document.getElementById('PAY-'+m).classList.add('on');}
-function doCheckout(){if(!curProd)return;var col=curProd.colors[curCol];if(col.s==='out'){alert('此花色已售完，請選擇其他花色');return;}var siz=curProd.sizes[curSz];var params=new URLSearchParams({product:curProd.key,name:curProd.name,color:col.n,size:siz.l,qty:curQty,price:curProd.price*curQty,pay:curPay});window.location.href='checkout.html?'+params.toString();}
-var hdrEl=document.getElementById('HDR');
-window.addEventListener('scroll',function(){hdrEl.classList.toggle('solid',window.scrollY>20);if(window.scrollY>60)navClose();},{passive:true});
-function toggleMenu(){var mn=document.getElementById('MN'),bg=document.getElementById('BG'),o=mn.classList.contains('open');mn.classList.toggle('open',!o);bg.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';}
-function closeMobileMenu(){document.getElementById('MN').classList.remove('open');document.getElementById('BG').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('click',function(e){var mn=document.getElementById('MN');if(mn.classList.contains('open')&&!mn.contains(e.target)&&!document.getElementById('BG').contains(e.target))navClose();});
-var stickyEl=document.getElementById('STICKY');
-var heroEl=document.getElementById('HERO');
+
+// 原結帳，改為加入購物車
+function doAddToCart(){
+    if(!curProd)return;
+    var col=curProd.colors[curCol];
+    if(col.s==='out'){alert('此花色已售完，請選擇其他花色');return;}
+    var siz=curProd.sizes[curSz];
+    
+    var item = {
+        productKey: curProd.key,
+        name: curProd.name,
+        color: col.n,
+        size: siz.l,
+        qty: curQty,
+        price: curProd.price,
+        image: col.i
+    };
+    
+    let cart = getCart();
+    let existing = cart.find(i => i.productKey === item.productKey && i.color === item.color && i.size === item.size);
+    if(existing) existing.qty += item.qty; else cart.push(item);
+    saveCart(cart);
+    
+    closeModal();
+    toggleCart(true); // 加入後直接滑出購物車
+}
+
+// Layout Script
+var hdrEl=document.getElementById('header');
+window.addEventListener('scroll',function(){hdrEl.classList.toggle('solid',window.scrollY>20);if(window.scrollY>60)closeMobileMenu();},{passive:true});
+function toggleMenu(){var mn=document.getElementById('mobileNav');var burger=document.getElementById('hamburger');var isOpen=mn.classList.contains('open');if(isOpen){closeMobileMenu();}else{mn.classList.add('open');burger.classList.add('open');document.body.style.overflow='hidden';}}
+function closeMobileMenu(){var mn=document.getElementById('mobileNav');var burger=document.getElementById('hamburger');if(mn)mn.classList.remove('open');if(burger)burger.classList.remove('open');document.body.style.overflow='';}
+var stickyEl=document.getElementById('STICKY');var heroEl=document.getElementById('HERO');
 if(stickyEl&&heroEl){var heroObs=new IntersectionObserver(function(entries){stickyEl.classList.toggle('show',!entries[0].isIntersecting);},{threshold:0.1});heroObs.observe(heroEl);}
 var rvObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting)return;var sib=Array.from(entry.target.parentElement.querySelectorAll('.rv:not(.in)'));var idx=sib.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('in');},Math.max(0,idx)*80);rvObs.unobserve(entry.target);});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(function(el){rvObs.observe(el);});
-function doFilt(cat,btn){document.querySelectorAll('.filt').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pc').forEach(function(c){c.style.display=(cat==='all'||c.dataset.c===cat)?'block':'none';});}
+function doFilt(cat,btn){document.querySelectorAll('.filt').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pc').forEach(function(c){c.style.display=(cat==='all'||c.dataset.c.includes(cat))?'block':'none';});}
 function doWish(e,btn){e.stopPropagation();btn.classList.toggle('on');btn.textContent=btn.classList.contains('on')?'♥':'♡';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 </script>

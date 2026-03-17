@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-
 .hero-mini-card:hover{transform:translateX(6px) !important}
 @media(max-width:900px){.hero-card-stack{display:none !important}}
 :root{
@@ -29,23 +28,65 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--butter)}::-webkit-scrollbar-thumb{background:var(--biscuit);border-radius:2px}
 
 /* ── Header ── */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;transition:background .5s,box-shadow .5s}
-.hdr.solid{background:rgba(253,246,235,.96);backdrop-filter:blur(24px) saturate(1.5);box-shadow:0 1px 0 var(--biscuit),0 4px 24px rgba(42,33,24,.07)}
-.hdr-in{max-width:1260px;margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between}
-.logo-txt{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:.06em}
-.logo-sub{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);display:block;margin-top:-2px}
-.main-nav{display:flex;align-items:center;gap:.15rem}
-.main-nav a{font-size:.79rem;letter-spacing:.08em;color:var(--bark);text-decoration:none;padding:.42rem .95rem;border-radius:var(--r-f);transition:background .2s,color .2s;white-space:nowrap}
-.main-nav a:hover,.main-nav a.cur{background:rgba(74,107,62,.08);color:var(--moss)}
-.btn-shop{display:inline-flex;align-items:center;background:var(--moss);color:white;padding:.52rem 1.35rem;border-radius:var(--r-f);font-size:.79rem;letter-spacing:.07em;text-decoration:none;border:none;cursor:pointer;transition:background .25s,transform .2s}
-.btn-shop:hover{background:var(--sage);transform:translateY(-1px)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none}
-.burger span{display:block;width:21px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s}
-.mob-nav{display:none;position:fixed;top:70px;left:0;right:0;z-index:499;background:rgba(253,246,235,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--biscuit);padding:1.5rem 2rem 2rem;flex-direction:column;gap:.1rem;box-shadow:0 12px 40px rgba(42,33,24,.1);opacity:0;transform:translateY(-8px);transition:opacity .28s,transform .28s}
-.mob-nav.open{display:flex;opacity:1;transform:translateY(0)}
-.mob-nav a{font-size:.95rem;color:var(--bark);text-decoration:none;padding:.8rem .5rem;border-bottom:1px solid var(--biscuit);transition:color .2s}
-.mob-nav a:hover{color:var(--moss)}
-.mob-cta{margin-top:1.1rem!important;background:var(--moss)!important;color:white!important;text-align:center;padding:.9rem .5rem!important;border-radius:var(--r-f)!important;border-bottom:none!important;font-size:.9rem;letter-spacing:.07em}
+header#header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  background: rgba(255,254,249,0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
+}
+header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+a.logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+header#header nav { display: flex; align-items: center; gap: 0.15rem; }
+header#header nav > a { font-size: 0.78rem; color: var(--ink); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
+header#header nav > a:hover, header#header nav > a.cur { background: rgba(122,158,126,0.1); color: #4a6b3e; }
+header#header nav > a.cur { font-weight: 500; }
+
+/* ── Dropdown Menu (下拉選單) ── */
+.nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+.nav-item-dropdown > a { font-size: 0.78rem; color: var(--ink); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+.nav-item-dropdown > a:hover { background: rgba(122,154,126,0.08); color: var(--moss); }
+.dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--ink); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+.dropdown-menu a:hover { background: rgba(122,154,126,0.08); color: var(--moss); }
+.dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+/* ── Cart Drawer CSS ── */
+.btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(122,158,126,0.1); color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+.btn-cart-nav:hover { background: rgba(122,158,126,0.2); transform: translateY(-1px); }
+.cart-badge { position: absolute; top: -4px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+.cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--butter); z-index: 10001; transform: translateX(100%); transition: transform 0.35s var(--spring); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+.cart-drawer.open { transform: translateX(0); }
+.cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--biscuit); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+.cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+.cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--biscuit); background: var(--warm-white); }
+.cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+.cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--biscuit); }
+.cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); line-height: 1.3; }
+.cart-item-var { font-size: 0.75rem; color: var(--clay); margin-top: 0.25rem; }
+.cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+.cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--linen); padding: 0.2rem 0.5rem; border-radius: 20px; border: 1px solid var(--biscuit); }
+.cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+.cart-remove { color: var(--clay); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+/* ── Mobile Menu ── */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; display: block; }
+.mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,254,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(122,154,126,0.15); padding: 1.25rem 2rem 1.5rem; z-index: 499; flex-direction: column; gap: 0.25rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px); opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; }
+.mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+.mobile-nav a { font-size: 0.95rem; color: var(--ink); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { background: rgba(122,154,126,0.08); color: #4a6b3e; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+@media (max-width: 768px) { header#header nav { display: none; } .hamburger { display: flex; } }
 
 /* ── Hero ── */
 .hero{margin-top:72px;min-height:calc(100vh - 70px);max-height:900px;position:relative;overflow:hidden;display:flex;align-items:center}
@@ -251,19 +292,10 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
 .qty-row-m{display:flex;align-items:center;gap:.6rem}
 .qty-btn-m{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--biscuit);background:transparent;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--bark);transition:all .18s}
 .qty-btn-m:hover{border-color:var(--moss);color:var(--moss)}.qty-n{font-family:var(--serif);font-size:1.1rem;min-width:24px;text-align:center}
-.pay-opts{display:flex;flex-direction:column;gap:.45rem}
-.pay-opt{display:flex;align-items:center;gap:.75rem;border:1.5px solid var(--biscuit);border-radius:var(--r-md);padding:.7rem .9rem;cursor:pointer;transition:border-color .2s,background .2s}
-.pay-opt.on{border-color:var(--moss);background:rgba(74,107,62,.04)}
-.pay-icon{width:36px;height:36px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;flex-shrink:0}
-.pay-ecpay{background:#1db364;color:white}.pay-linepay{background:#00B900;color:white}
-.pay-label{flex:1}.pay-label strong{display:block;font-size:.78rem;color:var(--ink)}.pay-label span{font-size:.68rem;color:var(--clay)}
-.pay-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--biscuit);flex-shrink:0;transition:border-color .2s}
-.pay-opt.on .pay-radio{border-color:var(--moss);background:var(--moss)}
 .modal-total{display:flex;justify-content:space-between;align-items:center;padding:.9rem 0;border-top:1px solid var(--parchment)}
 .total-lbl{font-size:.78rem;color:var(--clay)}.total-amt{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--moss)}
 .btn-checkout{width:100%;background:var(--moss);color:white;border:none;border-radius:var(--r-f);padding:1rem;font-size:.88rem;letter-spacing:.06em;font-family:var(--sans);cursor:pointer;transition:background .2s,transform .15s}
 .btn-checkout:hover{background:var(--sage);transform:translateY(-1px)}.btn-checkout:disabled{background:var(--clay);cursor:not-allowed;transform:none}
-.checkout-note{font-size:.65rem;text-align:center;color:var(--clay);line-height:1.7}
 
 /* ── Reveal animation ── */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .65s var(--spring),transform .65s var(--spring)}
@@ -280,7 +312,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
 }
 @media(max-width:600px){
-  .main-nav{display:none}.burger{display:flex}
   .prod-grid{grid-template-columns:1fr 1fr;gap:1rem}
   .illus-g{grid-template-columns:repeat(3,1fr);gap:.6rem}
   .rev-grid{grid-template-columns:1fr}
@@ -291,112 +322,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   .footer-top{grid-template-columns:1fr}
   .col-grid{grid-template-columns:repeat(3,1fr)}
 }
-
-  /* ── HEADER (synced from index.html) ── */
-  header#header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 500;
-    background: rgba(255,254,249,0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(122,154,126,0.15);
-    transition: box-shadow 0.3s;
-  }
-  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  a.logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  header#header nav { display: flex; align-items: center; gap: 0.15rem; }
-  header#header nav a {
-    font-size: 0.78rem;
-    color: var(--ink, #2a2118);
-    text-decoration: none;
-    padding: 0.4rem 0.6rem;
-    border-radius: 20px;
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-  header#header nav a:hover,
-  header#header nav a.cur { background: rgba(122,158,126,0.1); color: #4a6b3e; }
-  header#header nav a.cur { font-weight: 500; }
-  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
-  a.btn-shop, button.btn-shop {
-    background: #4a6b3e;
-    color: white !important;
-    border: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-  }
-  a.btn-shop:hover, button.btn-shop:hover { background: #7a9e7e; transform: translateY(-1px); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-  .hamburger span { width: 22px; height: 2px; background: var(--ink, #2a2118); border-radius: 2px; transition: 0.3s; display: block; }
-  /* Mobile Nav */
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: 72px; left: 0; right: 0;
-    background: rgba(255,254,249,0.98);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(122,154,126,0.15);
-    padding: 1.25rem 2rem 1.5rem;
-    z-index: 499;
-    flex-direction: column;
-    gap: 0.25rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    transform: translateY(-8px);
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
-  .mobile-nav a {
-    font-size: 0.95rem;
-    color: var(--ink, #2a2118);
-    text-decoration: none;
-    padding: 0.7rem 0.75rem;
-    border-radius: 10px;
-    letter-spacing: 0.03em;
-    border-bottom: 1px solid rgba(122,154,126,0.1);
-    transition: background 0.2s, color 0.2s;
-  }
-  .mobile-nav a:last-child { border-bottom: none; }
-  .mobile-nav a:hover { background: rgba(122,154,126,0.08); color: #4a6b3e; }
-  .mobile-nav .mobile-shop-btn {
-    margin-top: 0.75rem;
-    background: #4a6b3e;
-    color: white !important;
-    text-align: center;
-    padding: 0.75rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border-bottom: none;
-    letter-spacing: 0.05em;
-  }
-  .mobile-nav .mobile-shop-btn:hover { background: #7a9e7e; }
-  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger.active span:nth-child(2) { opacity: 0; }
-  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  @media (max-width: 768px) {
-    header#header nav { display: none; }
-    .hamburger { display: flex; }
-  }
-
 </style>
 </head>
 <body>
@@ -410,41 +335,52 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <a href="index.html">首頁</a>
       <a href="hibou-6gauze.html">六重紗系列</a>
       <a href="hibou-windshield.html">寶寶我最罩</a>
-      <a href="hibou-clips.html">隨身配件</a>
+      <a href="hibou-clips.html" class="cur">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
       <a href="hibou-journal.html">喜福生活誌</a>
       <a href="news-list.html">最新消息</a>
       <a href="contact.html">聯絡我們</a>
     </nav>
 
     <div class="header-actions">
-      <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </div>
     </div>
   </div>
 </header>
-<!-- MOBILE NAV -->
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="hibou-6gauze.html">六重紗系列</a>
-      <a href="hibou-windshield.html">寶寶我最罩</a>
-      <a href="hibou-clips.html">隨身配件</a>
-      <a href="hibou-journal.html">喜福生活誌</a>
-      <a href="news-list.html">最新消息</a>
-      <a href="contact.html">聯絡我們</a>
-    </nav>
 
-<!-- Header -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html" class="cur">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+</nav>
 
-
-<!-- Hero -->
 <section class="hero" id="HERO">
   <img class="hero-photo" src="images/DCA69B34-E258-4D8F-A418-9719AE88E946-3102-00000186D1143BA9.jpg" alt="小男生穿制服夾著手帕上學" loading="eager">
   <div class="hero-veil"></div>
   <div class="hero-in">
     <div style="display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;max-width:1100px">
-      <!-- Left: text -->
       <div>
         <div class="hero-kicker"><span class="kd"></span>幼兒園必備配件系列<span class="kd"></span></div>
         <h1 class="hero-title">手帕不掉落，<br><em>每天都乾淨</em></h1>
@@ -460,7 +396,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <a href="#all-products" class="btn-g">查看全系列</a>
         </div>
       </div>
-      <!-- Right: product card stack -->
       <div class="hero-card-stack" style="display:flex;flex-direction:column;gap:1rem;animation:risein .9s .5s both">
         <div class="hero-mini-card" onclick="openModal('clip')" style="background:rgba(253,246,235,.92);backdrop-filter:blur(16px);border:1px solid rgba(226,209,181,.6);border-radius:20px;padding:.9rem 1.1rem;display:flex;align-items:center;gap:.9rem;cursor:pointer;transition:transform .25s;box-shadow:0 4px 20px rgba(42,33,24,.08)">
           <img src="images/手帕夾籃紫.jpg" style="width:60px;height:60px;border-radius:12px;object-fit:cover;flex-shrink:0" alt="手帕夾">
@@ -488,7 +423,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   <div class="hero-scroll"><span class="scroll-txt">Scroll</span><div class="scroll-track"></div></div>
 </section>
 
-<!-- Cert strip -->
 <div class="cert-strip">
   <div class="cert-row">
     <div class="cert-it"><span class="cert-ico">🇯🇵</span><div><div class="cert-nm">日本專利夾扣</div><div class="cert-nt">品質耐用，單手開闔不費力</div></div></div>
@@ -499,7 +433,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </div>
 
-<!-- Brand moment: 老師都說 -->
 <section class="sec sec-bt" style="padding:72px 2rem">
   <div class="wrap">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1000px;margin:0 auto" class="rv">
@@ -523,7 +456,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ All Products Grid -->
 <section class="sec sec-bt" id="all-products">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -540,7 +472,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <button class="filt" onclick="doFilt('set',this)">超值組合</button>
     </div>
     <div class="prod-grid">
-      <!-- 手帕夾短夾 -->
       <div class="pc rv" data-c="clip" onclick="openModal('clip')">
         <div class="pc-photo">
           <img src="images/手帕夾籃紫.jpg" alt="緹花織帶手帕夾">
@@ -563,7 +494,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div class="pc-foot"><div class="pc-price">NT$&thinsp;199 <s>250</s></div><button class="btn-sel" onclick="openModal('clip')">選購花色</button></div>
         </div>
       </div>
-      <!-- 雙頭長夾 -->
       <div class="pc rv" data-c="clip" onclick="openModal('longclip')">
         <div class="pc-photo">
           <img src="images/博客來-20.jpg" alt="緹花織帶雙頭長夾">
@@ -586,7 +516,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div class="pc-foot"><div class="pc-price">NT$&thinsp;260</div><button class="btn-sel" onclick="openModal('longclip')">選購花色</button></div>
         </div>
       </div>
-      <!-- 奶嘴單夾 -->
       <div class="pc rv" data-c="pacifier" onclick="openModal('pacifier')">
         <div class="pc-photo">
           <img src="images/1773581266203_博客來-14__2_.jpg" alt="香草奶嘴夾" style="object-fit:contain;background:var(--linen)">
@@ -609,7 +538,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div class="pc-foot"><div class="pc-price">NT$&thinsp;199</div><button class="btn-sel" onclick="openModal('pacifier')">選購花色</button></div>
         </div>
       </div>
-      <!-- 奶嘴收好袋組合 -->
       <div class="pc rv" data-c="bag set" onclick="openModal('bagset')">
         <div class="pc-photo">
           <img src="images/奶嘴夾收納小花01.jpg" alt="奶嘴蘋安收好袋+奶嘴夾組合">
@@ -624,7 +552,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div class="pc-foot"><div class="pc-price">NT$&thinsp;450 <small style="font-size:.7rem;color:var(--clay)">起</small></div><button class="btn-sel" onclick="openModal('bagset')">選購組合</button></div>
         </div>
       </div>
-      <!-- 手帕+手帕夾組合 -->
       <div class="pc rv" data-c="clip set" onclick="openModal('hankyset')">
         <div class="pc-photo">
           <img src="images/喜福安心嬰幼HIBOU幼稚園手帕夾手帕純棉印花手帕HIBOU.jpg" alt="手帕+手帕夾組合">
@@ -639,7 +566,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div class="pc-foot"><div class="pc-price">NT$&thinsp;299</div><button class="btn-sel" onclick="openModal('hankyset')">選購組合</button></div>
         </div>
       </div>
-      <!-- 奶嘴收好袋 單品 -->
       <div class="pc rv" data-c="bag" onclick="openModal('bag')">
         <div class="pc-photo">
           <img src="images/5566.jpg" alt="奶嘴蘋安收好袋">
@@ -658,7 +584,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ Feature: 手帕夾 -->
 <section class="feat-sec feat-sec-ln" id="clip">
   <div class="wrap">
     <div class="feat-grid rv">
@@ -691,7 +616,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- Color palette tiles 手帕夾 -->
 <section class="sec sec-pc">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -710,7 +634,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ Feature: 雙頭長夾 -->
 <section class="feat-sec feat-sec-bt" id="longclip">
   <div class="wrap">
     <div class="feat-grid flip rv">
@@ -726,8 +649,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
         <h2 class="feat-title">被子、推車毯，<br><em>夾哪裡都牢固</em></h2>
         <div class="wavy"></div>
         <p class="feat-desc">雙頭皆設有日本專利夾扣，最長可延伸至 37cm，夾被子、推車毯子、嬰兒車毯通通搞定。搭配手帕可秒變簡易圍兜，外出超方便。同款緹花織帶，五色可選，與手帕夾完美搭配一整套。</p>
-
-        <!-- 3 用途圖示 -->
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.6rem">
           <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:1rem .8rem;text-align:center">
             <div style="font-size:1.4rem;margin-bottom:.4rem">🧣</div>
@@ -742,7 +663,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
             <div style="font-size:.72rem;font-weight:500;color:var(--moss)">推車上夾被子</div>
           </div>
         </div>
-
         <div class="feat-specs">
           <span class="spec">最長 37cm 可延伸</span>
           <span class="spec">雙頭日本專利夾扣</span>
@@ -759,7 +679,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 長夾色票 + 細節圖 -->
 <section class="sec sec-pc">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -767,7 +686,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <h2 class="hdg">每個細節，<em>都是精工</em></h2>
       <div class="wavy"></div>
     </div>
-    <!-- 色票 -->
     <div class="illus-g" style="margin-bottom:2.5rem">
       <div class="itile rv" onclick="openModal('longclip')"><img src="images/博客來-12.jpg" alt="勿忘草藍"><div class="itile-lbl">勿忘草藍</div></div>
       <div class="itile rv" onclick="openModal('longclip')"><img src="images/博客來-13.jpg" alt="抹茶綠"><div class="itile-lbl">抹茶綠</div></div>
@@ -776,7 +694,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <div class="itile rv" onclick="openModal('longclip')"><img src="images/博客來-15.jpg" alt="石榴紅"><div class="itile-lbl">石榴紅</div></div>
       <div class="itile rv" onclick="openModal('longclip')"><img src="images/NAME.jpg" alt="五色全家福"><div class="itile-lbl">五色全家福</div></div>
     </div>
-    <!-- 細節三欄 -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="rv">
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1)">
         <img src="images/博客來-18.jpg" alt="純棉緹花織帶特寫" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
@@ -803,7 +720,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ Feature: 奶嘴夾 -->
 <section class="feat-sec feat-sec-ln" id="pacifier">
   <div class="wrap">
     <div class="feat-grid flip rv">
@@ -819,8 +735,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
         <h2 class="feat-title">香草奶嘴也適用，<br><em>不離身才安心</em></h2>
         <div class="wavy"></div>
         <p class="feat-desc">純棉日本印花布製作，彈力伸縮帶柔軟親膚，一端日本專利夾扣固定在衣服上，另一端棉繩套圈固定奶嘴，支援一般奶嘴及香草奶嘴。2 Way 夾法靈活設計，奶嘴隨時取用不掉落，寶寶再也不用找奶嘴。</p>
-
-        <!-- 2 Way 說明 -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.6rem">
           <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:.85rem 1rem">
             <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">方式 1</div>
@@ -833,7 +747,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
             <div style="font-size:.72rem;color:var(--clay);margin-top:.2rem">適用一般有環奶嘴，棉繩環繞奶嘴環</div>
           </div>
         </div>
-
         <div class="feat-specs">
           <span class="spec">香草奶嘴適用</span>
           <span class="spec">一般奶嘴亦適用</span>
@@ -851,7 +764,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 奶嘴夾細節＋色排列 -->
 <section class="sec sec-pc">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -859,7 +771,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <h2 class="hdg">純棉印花，<em>每款都好看</em></h2>
       <div class="wavy"></div>
     </div>
-    <!-- 三欄特色圖 -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem" class="rv">
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1);background:white">
         <img src="images/1773581266204_博客來-19__2_.jpg" alt="香草奶嘴適用" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
@@ -883,7 +794,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
         </div>
       </div>
     </div>
-    <!-- 多款排列大圖 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem" class="rv">
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1)">
         <img src="images/1773581266203_博客來-15__2_.jpg" alt="多款奶嘴夾正面俯視扇形排列" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
@@ -895,7 +805,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 奶嘴夾情境 mosaic -->
 <section class="sec sec-ln" style="padding:60px 2rem">
   <div class="wrap">
     <div class="sec-hdr rv"><span class="lbl">In Use · 使用情境</span><h2 class="hdg">隨時隨地，<em>都帶得走</em></h2></div>
@@ -909,7 +818,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ Feature: 奶嘴蘋安收好袋 -->
 <section class="feat-sec feat-sec-bt" id="bag">
   <div class="wrap">
     <div class="feat-grid rv">
@@ -925,8 +833,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
         <h2 class="feat-title">奶嘴不怕髒，<br><em>細菌 Bye²</em></h2>
         <div class="wavy"></div>
         <p class="feat-desc">寶寶爬行活動時，奶嘴容易拖到地上接觸細菌，不小心吃下肚就不好了！喜福蘋安收好袋由奶嘴鏈夾和純棉防塵收納袋合而為一，夾在衣服上固定奶嘴，收進袋子隔絕細菌，讓奶嘴隨時保持乾淨。日本純棉印花布製作，親膚安心，各款奶嘴（含香草奶嘴）皆適用。</p>
-
-        <!-- 尺寸說明 -->
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-bottom:1.6rem">
           <div style="background:var(--linen);border:1px solid var(--biscuit);border-radius:var(--r-md);padding:.8rem;text-align:center">
             <div style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:.25rem">收納袋</div>
@@ -941,7 +847,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
             <div style="font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--ink)">3 cm</div>
           </div>
         </div>
-
         <div class="feat-specs">
           <span class="spec">奶嘴鏈夾＋收納袋一體</span>
           <span class="spec">日本純棉印花布</span>
@@ -959,7 +864,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 蘋安收好袋花色 tiles -->
 <section class="sec sec-pc">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -979,7 +883,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 蘋安收好袋三大特色 -->
 <section class="sec sec-ln" style="padding:72px 2rem">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -988,7 +891,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <div class="wavy"></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="rv">
-      <!-- 各款奶嘴適用 -->
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1);background:white">
         <img src="images/1773581384087_123107713_1056195691494524_773760079003150636_n.jpg" alt="小男生在球池玩夾著蘋安袋" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;object-position:center 15%">
         <div style="padding:1.3rem 1.4rem 1.7rem">
@@ -996,7 +898,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div style="font-size:.78rem;color:var(--bark);line-height:1.85">無環（香草奶嘴）、有環奶嘴都適用。棉繩套圈固定，收進防塵袋，不怕髒不怕掉，寶寶玩樂也安心。</div>
         </div>
       </div>
-      <!-- 汽座使用 -->
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1);background:white">
         <img src="images/1773581384088_123141152_352289172532974_2462622683789832787_n.jpg" alt="小女生坐汽座夾著蘋安袋近拍" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;object-position:center 20%">
         <div style="padding:1.3rem 1.4rem 1.7rem">
@@ -1004,7 +905,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
           <div style="font-size:.78rem;color:var(--bark);line-height:1.85">日本專利夾扣固定在安全帶或衣物上，汽座、推車、外出都適用。奶嘴隨取隨放不落地。</div>
         </div>
       </div>
-      <!-- 袋+夾驚喜款 -->
       <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh1);background:white">
         <img src="images/奶嘴收納套-19.jpg" alt="女寶驚喜款蘋安收好袋" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;object-position:center">
         <div style="padding:1.3rem 1.4rem 1.7rem">
@@ -1013,8 +913,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
         </div>
       </div>
     </div>
-
-    <!-- FAQ 區塊 -->
     <div style="margin-top:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:860px;margin-left:auto;margin-right:auto" class="rv">
       <div style="background:var(--butter);border:1px solid var(--biscuit);border-radius:var(--r-xl);padding:2rem">
         <div style="font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--moss);margin-bottom:.8rem">為什麼要使用蘋安收好袋？</div>
@@ -1028,7 +926,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- ★ How to Use 夾扣使用方式 -->
 <section class="sec sec-ln" id="howto">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -1067,7 +964,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 比較一般夾扣 -->
 <section class="sec sec-bt">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -1100,7 +996,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 生活情境 mosaic 2 -->
 <section class="sec sec-pc">
   <div class="wrap">
     <div class="sec-hdr rv"><span class="lbl">Lifestyle · 生活情境</span><h2 class="hdg">陪伴每一個<em>珍貴時刻</em></h2></div>
@@ -1114,7 +1009,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- 材質＋注意事項 -->
 <section class="sec sec-bt" style="padding:72px 2rem">
   <div class="wrap">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1000px;margin:0 auto" class="rv">
@@ -1144,7 +1038,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- Reviews -->
 <section class="sec sec-ln" id="reviews">
   <div class="wrap">
     <div class="sec-hdr rv">
@@ -1176,7 +1069,6 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </section>
 
-<!-- Gift/CTA -->
 <div class="gift">
   <div class="gift-in rv">
     <span class="gift-ico">🦉</span>
@@ -1187,31 +1079,28 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
   <div class="footer-in">
     <div class="footer-top">
       <div>
         <div class="fbrand-nm">HiBOU 喜福生活苑</div>
         <div class="fbrand-tag">Born for Babies</div>
-        <p class="fbrand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="196a7c6b6f707a7c5971707b766c377a7674376d6e">[email&#160;protected]</a><br>營業時間：週一至週五 11:00–17:00</p>
+        <p class="fbrand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：hibou@hibou.com.tw<br>營業時間：週一至週五 11:00–17:00</p>
         <div class="fsocials"><a href="#" class="fsoc">f</a><a href="#" class="fsoc">ig</a><a href="#" class="fsoc">yt</a></div>
       </div>
       <div class="fcol"><h5>緹花夾系列</h5><ul><li><a href="#clip">手帕夾（短夾）</a></li><li><a href="#longclip">雙頭長夾</a></li><li><a href="#pacifier">奶嘴單夾</a></li><li><a href="#bag">奶嘴收好袋</a></li><li><a href="#">手帕＋夾組合</a></li><li><a href="#">袋＋夾組合</a></li></ul></div>
       <div class="fcol"><h5>服務資訊</h5><ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="#">配送說明</a></li><li><a href="#">常見問題</a></li><li><a href="#">聯絡我們</a></li></ul></div>
       <div class="fcol"><h5>關於喜福</h5><ul><li><a href="#">品牌故事</a></li><li><a href="#">六重紗系列</a></li><li><a href="#">媽咪育兒教室</a></li><li><a href="#">部落客推薦</a></li><li><a href="#">HiBOU 會員</a></li></ul></div>
     </div>
-    <div class="footer-bot"><span>© 2025 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span><span>隱私權政策　使用條款</span></div>
+    <div class="footer-bot"><span>© 2026 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span><span>隱私權政策　使用條款</span></div>
   </div>
 </footer>
 
-<!-- Sticky CTA -->
 <div class="sticky-cta" id="STICKY">
   <div><div class="sticky-nm">緹花織帶夾系列</div><div class="sticky-pr">NT$ 199 起・日本專利夾扣・純棉親膚</div></div>
   <button class="sticky-btn" onclick="openModal('clip')">立即選購</button>
 </div>
 
-<!-- Modal -->
 <div class="modal-bg" id="MODAL">
   <div class="modal">
     <div class="modal-l"><img class="modal-photo" id="MPHOTO" src="" alt=""></div>
@@ -1221,77 +1110,65 @@ body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-
       <p class="m-desc" id="MDESC"></p>
       <div><span class="opt-lbl">花色選擇 <span class="col-sel-nm" id="MCOLNM"></span></span><div class="col-grid" id="MCOLS"></div></div>
       <div><span class="opt-lbl">規格選擇</span><div class="sz-row" id="MSIZES"></div></div>
-      <div><span class="opt-lbl">數量</span><div class="qty-row-m"><button class="qty-btn-m" onclick="chQty(-1)">−</button><span class="qty-n" id="MQTY">1</span><button class="qty-btn-m" onclick="chQty(1)">+</button></div></div>
-      <div><span class="opt-lbl">付款方式</span>
-        <div class="pay-opts">
-          <div class="pay-opt on" id="PAY-ecpay" onclick="selPay('ecpay')"><div class="pay-icon pay-ecpay">綠界</div><div class="pay-label"><strong>綠界 ECPay</strong><span>信用卡 / ATM / 超商代碼</span></div><div class="pay-radio"></div></div>
-          <div class="pay-opt" id="PAY-linepay" onclick="selPay('linepay')"><div class="pay-icon pay-linepay">LINE</div><div class="pay-label"><strong>LINE Pay</strong><span>LINE Pay 餘額 / 綁定信用卡</span></div><div class="pay-radio"></div></div>
-        </div>
+      <div>
+        <span class="opt-lbl">數量</span>
+        <div class="qty-row-m"><button class="qty-btn-m" onclick="chQty(-1)">−</button><span class="qty-n" id="MQTY">1</span><button class="qty-btn-m" onclick="chQty(1)">+</button></div>
       </div>
       <div class="modal-total"><div class="total-lbl">合計金額</div><div class="total-amt" id="MTOTAL">NT$ 0</div></div>
-      <button class="btn-checkout" id="MBUY" onclick="doCheckout()">前往付款</button>
-      <p class="checkout-note">點擊後將跳轉至安全付款頁面<br>SSL 加密傳輸 ｜ 不儲存卡號資訊</p>
+      <button class="btn-checkout" id="MBUY" onclick="doAddToCart()">加入購物車</button>
     </div>
   </div>
 </div>
 
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--ink);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--ink);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--ink);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
 <script>
 'use strict';
-var CLIP_COLORS=[
-  {n:'石榴紅',i:'images/1773579605441_博客1-13.jpg',s:'ok'},
-  {n:'抹茶綠',i:'images/1773579605441_博客1-12.jpg',s:'ok'},
-  {n:'勿忘草藍',i:'images/1773579605441_博客1-14.jpg',s:'ok'},
-  {n:'芥子卡其',i:'images/1773579605441_博客1-15.jpg',s:'ok'},
-  {n:'紫羅蘭',i:'images/202409-HIBOU-shortclip-buy2.jpg',s:'ok'},
-  {n:'海松藍',i:'images/202409-HIBOU-shortclip-buy3.jpg',s:'ok'}
-];
-var LONG_COLORS=[
-  {n:'勿忘草藍',i:'images/博客來-12.jpg',s:'ok'},
-  {n:'抹茶綠',i:'images/博客來-13.jpg',s:'ok'},
-  {n:'芥子卡其',i:'images/博客來-14.jpg',s:'ok'},
-  {n:'紫羅蘭',i:'images/PC040051.jpg',s:'ok'},
-  {n:'石榴紅',i:'images/博客來-15.jpg',s:'ok'}
-];
-var PAC_COLORS=[
-  {n:'彩色拼布',i:'images/1773581266203_博客來-14__2_.jpg',s:'ok'},
-  {n:'藍色系',i:'images/1773581266204_博客來-16__2_.jpg',s:'ok'},
-  {n:'粉橘系',i:'images/1773581266204_博客來-17__2_.jpg',s:'ok'},
-  {n:'多款可選',i:'images/1773581266203_博客來-15__2_.jpg',s:'ok'}
-];
-var PD={
-  clip:{cat:'手帕夾系列',name:'緹花織帶手帕夾（萬用短夾）',desc:'日本進口專利夾扣，搬動後方轉軸單手就可以輕鬆開啟，固定手帕不掉落，純棉緹花織帶親膚，無塗漆皮革安心。料號：1C16055F',price:199,sizes:[{l:'標準款（單入）',s:'ok'}],colors:CLIP_COLORS},
-  longclip:{cat:'手帕夾系列',name:'緹花織帶雙頭長夾',desc:'最長可延伸至 37cm，兩頭皆有日本專利夾扣，適合夾被子、推車毯子、嬰兒車毯。同款緹花織帶與手帕夾完美搭配。料號：1C14055F',price:260,sizes:[{l:'標準款（單入）',s:'ok'}],colors:LONG_COLORS},
-  pacifier:{cat:'奶嘴夾系列',name:'香草奶嘴夾（奶嘴單夾）',desc:'日本純棉印花布製作，彈力伸縮帶親膚舒適。一端日本專利夾扣固定衣物，另一端棉繩套圈。香草奶嘴及一般奶嘴皆適用，2 Way 夾法超靈活！',price:199,sizes:[{l:'標準款（單入）',s:'ok'}],colors:PAC_COLORS},
-  bag:{cat:'收納袋系列',name:'奶嘴蘋安收好袋（單品）',desc:'日本純棉印花布製作，奶嘴鏈夾＋防塵收納袋一體設計。各款奶嘴（含香草奶嘴）皆適用，收納袋可拆卸清洗，細菌Bye²！日本印花布＋台灣製造。',price:450,sizes:[{l:'蘋安收好袋（單入）',s:'ok'}],colors:[
-    {n:'粉色小花',i:'images/奶嘴夾收納小花01.jpg',s:'ok'},
-    {n:'花花精靈',i:'images/奶嘴夾收納06.jpg',s:'ok'},
-    {n:'藍色恐龍',i:'images/奶嘴夾收納恐龍01.jpg',s:'ok'},
-    {n:'黃色恐龍',i:'images/S__180961319.jpg',s:'ok'},
-    {n:'女寶驚喜款',i:'images/奶嘴收納套-19.jpg',s:'ok'},
-    {n:'男寶驚喜款',i:'images/奶嘴收納套-18.jpg',s:'ok'}
-  ]},
-  bagset:{cat:'超值組合',name:'奶嘴蘋安收好袋＋緹花奶嘴夾組合',desc:'奶嘴蘋安收好袋（日本純棉印花布）搭配香草奶嘴夾，出門外出一套搞定，固定奶嘴不掉落，收進袋中細菌Bye²！日本印花布＋台灣製造。',price:450,sizes:[{l:'收好袋＋奶嘴夾（組合）',s:'ok'},{l:'驚喜款（不指定花色）',s:'ok'}],colors:[
-    {n:'粉色小花',i:'images/奶嘴夾收納小花01.jpg',s:'ok'},
-    {n:'花花精靈',i:'images/奶嘴夾收納06.jpg',s:'ok'},
-    {n:'藍色恐龍',i:'images/奶嘴夾收納恐龍01.jpg',s:'ok'},
-    {n:'黃色恐龍',i:'images/S__180961319.jpg',s:'ok'},
-    {n:'女寶驚喜款',i:'images/奶嘴收納套-19.jpg',s:'ok'},
-    {n:'男寶驚喜款',i:'images/奶嘴收納套-18.jpg',s:'ok'}
-  ]},
-  hankyset:{cat:'超值組合',name:'純棉印花手帕＋手帕夾組合',desc:'柔軟純棉印花手帕搭配緹花手帕夾，幼兒園入學一次備齊，也是送禮好選擇。',price:299,sizes:[{l:'手帕（25x25cm）+ 夾（標準款）',s:'ok'}],colors:[{n:'印花混色',i:'images/印花手帕喜福安心嬰幼HIBOU幼稚園手帕夾手帕.jpg',s:'ok'}]}
-};
-var SLB={ok:'有貨',low:'少量',out:'售完'};
-var SCC={ok:'s-ok',low:'s-low',out:'s-out'};
-var curProd=null,curCol=0,curSz=0,curQty=1,curPay='ecpay';
 
+// ── 動態讀取 Google 試算表 API ──
+var PD = {}; // 準備一個空物件接收資料
+var SLB = {ok:'有貨', low:'少量', out:'售完'};
+var SCC = {ok:'s-ok', low:'s-low', out:'s-out'};
+var curProd = null, curCol = 0, curSz = 0, curQty = 1;
+
+const API_URL = 'https://script.google.com/macros/s/AKfycbzIWfBsLEs7Cqv0FIyuMgzqD5rYeWu9HDdnsZyBymgX4XxBDao1WtNaYsTHZTzrjjYu8A/exec';
+
+// 網頁載入時，自動去 Google 試算表抓最新商品資料
+window.addEventListener('load', async function() {
+    document.querySelector('.hero').classList.add('rdy');
+    
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        PD = data; // 把抓到的資料存進 PD 裡
+        console.log("✅ 成功從 Google 試算表載入商品資料：", PD);
+    } catch (error) {
+        console.error("❌ 讀取商品資料失敗：", error);
+        alert("商品資料載入中，若無法顯示請重新整理網頁。");
+    }
+});
+
+// ── 商品選單 Modal ──
 function openModal(k){
   var p=PD[k];if(!p)return;
   curProd=p;curProd.key=k;curCol=0;
   for(var i=0;i<p.colors.length;i++){if(p.colors[i].s!=='out'){curCol=i;break;}}
   curSz=0;for(var j=0;j<p.sizes.length;j++){if(p.sizes[j].s!=='out'){curSz=j;break;}}
-  curQty=1;curPay='ecpay';
-  document.getElementById('PAY-ecpay').classList.add('on');
-  document.getElementById('PAY-linepay').classList.remove('on');
+  curQty=1;
   renderModal();
   document.getElementById('MODAL').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1328,30 +1205,107 @@ function renderModal(){
   var ok=col.s!=='out'&&siz.s!=='out';
   var bb=document.getElementById('MBUY');
   bb.disabled=!ok;
-  bb.textContent=ok?'前往付款 →':'此花色已售完';
+  bb.textContent=ok?'加入購物車':'此花色已售完';
 }
 function selCol(i){curCol=i;renderModal();}
 function selSz(i){curSz=i;renderModal();}
 function chQty(d){curQty=Math.max(1,Math.min(10,curQty+d));renderModal();}
-function selPay(m){curPay=m;document.querySelectorAll('.pay-opt').forEach(function(el){el.classList.remove('on');});document.getElementById('PAY-'+m).classList.add('on');}
-function doCheckout(){if(!curProd)return;var col=curProd.colors[curCol];if(col.s==='out'){alert('此花色已售完，請選擇其他花色');return;}var siz=curProd.sizes[curSz];var params=new URLSearchParams({product:curProd.key,name:curProd.name,color:col.n,size:siz.l,qty:curQty,price:curProd.price,pay:curPay});window.location.href='checkout.html?'+params.toString();}
 function doWish(e,btn){e.stopPropagation();btn.classList.toggle('on');btn.textContent=btn.classList.contains('on')?'♥':'♡';}
 
-var hdrEl=document.getElementById('header')||document.getElementById('HDR');
-window.addEventListener('scroll',function(){hdrEl&&hdrEl.classList.toggle('scrolled',window.scrollY>20);if(window.scrollY>60)navClose();},{passive:true});
-var stickyEl=document.getElementById('STICKY');
-var heroEl=document.getElementById('HERO');
-if(stickyEl&&heroEl){var heroObs=new IntersectionObserver(function(entries){stickyEl.classList.toggle('show',!entries[0].isIntersecting);},{threshold:0.1});heroObs.observe(heroEl);}
+// ── 購物車加入與抽屜邏輯 ──
+const CART_KEY = 'hibou_cart';
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
 
-var rvObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting)return;var sib=Array.from(entry.target.parentElement.querySelectorAll('.rv:not(.in)'));var idx=sib.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('in');},Math.max(0,idx)*80);rvObs.unobserve(entry.target);});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv').forEach(function(el){rvObs.observe(el);});
+function doAddToCart() {
+    if(!curProd) return;
+    var col = curProd.colors[curCol];
+    if(col.s === 'out') { alert('此花色已售完，請選擇其他花色'); return; }
+    var siz = curProd.sizes[curSz];
+    
+    const item = {
+        productKey: curProd.key,
+        name: curProd.name,
+        color: col.n,
+        size: siz.l,
+        qty: curQty,
+        price: curProd.price,
+        image: col.i
+    };
+    
+    let cart = getCart();
+    let existing = cart.find(i => i.productKey === item.productKey && i.color === item.color && i.size === item.size);
+    if(existing) existing.qty += item.qty; else cart.push(item);
+    
+    saveCart(cart);
+    closeModal();
+    toggleCart(true); // 自動打開右側購物車
+}
 
-function doFilt(cat,btn){document.querySelectorAll('.filt').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pc').forEach(function(c){if(cat==='all'){c.style.display='block';}else{var cats=c.dataset.c||'';c.style.display=(cats.indexOf(cat)!==-1)?'block':'none';}});}
+function updateCartQty(index, delta) {
+    let cart = getCart();
+    cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart(cart);
+}
 
-window.addEventListener('load',function(){document.querySelector('.hero').classList.add('rdy');});
+function removeFromCart(index) {
+    let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+}
 
-  // ── Mobile Menu (synced from index.html) ──
-  function toggleMenu() {
+function toggleCart(forceOpen = false) {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    if(forceOpen || !drawer.classList.contains('open')) {
+        overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+    } else {
+        overlay.classList.remove('open'); drawer.classList.remove('open');
+    }
+}
+
+function updateCartUI() {
+    let cart = getCart();
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+
+    let container = document.getElementById('cartItemsContainer');
+    if(cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--clay);">購物車目前是空的喔！</div>';
+        document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+    }
+
+    let html = ''; let subtotal = 0;
+    cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+        html += `
+        <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}">
+            <div class="cart-item-info">
+                <div style="display:flex; justify-content:space-between;">
+                    <div class="cart-item-title">${item.name}</div>
+                    <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                </div>
+                <div class="cart-item-var">${variantStr}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                    <div class="cart-qty-ctrl">
+                        <button onclick="updateCartQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateCartQty(${index}, 1)">+</button>
+                    </div>
+                    <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+}
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+
+// ── 行動裝置 Menu 導覽 ──
+function toggleMenu() {
     const nav = document.getElementById('mobileNav');
     const burger = document.getElementById('hamburger');
     const isOpen = nav.classList.contains('open');
@@ -1362,26 +1316,40 @@ window.addEventListener('load',function(){document.querySelector('.hero').classL
       burger.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-  }
-  function closeMobileMenu() {
+}
+function closeMobileMenu() {
     const nav = document.getElementById('mobileNav');
     const burger = document.getElementById('hamburger');
-    nav.classList.remove('open');
-    burger.classList.remove('active');
+    if(nav) nav.classList.remove('open');
+    if(burger) burger.classList.remove('active');
     document.body.style.overflow = '';
-  }
-  document.addEventListener('click', (e) => {
+}
+// 點擊選單外部自動關閉
+document.addEventListener('click', (e) => {
     const nav = document.getElementById('mobileNav');
     const burger = document.getElementById('hamburger');
     if (nav && nav.classList.contains('open') &&
         !nav.contains(e.target) && !burger.contains(e.target)) {
       closeMobileMenu();
     }
-  });
-  window.addEventListener('scroll', () => {
-    const hdr = document.getElementById('header');
-    if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
+});
+
+
+// ── 畫面互動邏輯 ──
+var hdrEl = document.getElementById('header');
+window.addEventListener('scroll', function() {
+    if(hdrEl) hdrEl.classList.toggle('scrolled', window.scrollY > 20);
+    if(window.scrollY > 60) closeMobileMenu();
+}, { passive: true });
+
+var stickyEl=document.getElementById('STICKY');
+var heroEl=document.getElementById('HERO');
+if(stickyEl&&heroEl){var heroObs=new IntersectionObserver(function(entries){stickyEl.classList.toggle('show',!entries[0].isIntersecting);},{threshold:0.1});heroObs.observe(heroEl);}
+
+var rvObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting)return;var sib=Array.from(entry.target.parentElement.querySelectorAll('.rv:not(.in)'));var idx=sib.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('in');},Math.max(0,idx)*80);rvObs.unobserve(entry.target);});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){rvObs.observe(el);});
+
+function doFilt(cat,btn){document.querySelectorAll('.filt').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pc').forEach(function(c){if(cat==='all'){c.style.display='block';}else{var cats=c.dataset.c||'';c.style.display=(cats.indexOf(cat)!==-1)?'block':'none';}});}
 
 </script>
 </body>

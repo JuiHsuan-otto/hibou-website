@@ -19,91 +19,109 @@
     --soft-gray: #8A8A8A;
     --light-gray: #F0EDE8;
     --accent-orange: #D4845A;
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: var(--sans);
     background: var(--warm-white);
     color: var(--charcoal);
     overflow-x: hidden;
   }
 
   /* ── HEADER ── */
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
     background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
   }
-  header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-  .header-inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-  .logo-text .brand { font-family: 'Zen Antique', serif; font-size: 1.35rem; color: var(--moss); letter-spacing: 0.05em; }
-  .logo-text .sub { font-size: 0.65rem; color: var(--soft-gray); letter-spacing: 0.12em; }
-  nav { display: flex; align-items: center; gap: 0.25rem; }
-  nav a {
-    font-size: 0.82rem; color: var(--charcoal); text-decoration: none;
-    padding: 0.4rem 0.85rem; border-radius: 20px; transition: all 0.2s;
-    letter-spacing: 0.03em; white-space: nowrap;
-  }
-  nav a:hover, nav a.active { background: var(--light-gray); color: var(--moss); }
-  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
-  .btn-shop {
-    background: var(--moss); color: white; border: none;
-    padding: 0.5rem 1.25rem; border-radius: 20px; font-size: 0.82rem;
-    cursor: pointer; font-family: 'Noto Sans TC', sans-serif;
-    letter-spacing: 0.05em; transition: all 0.2s; text-decoration: none;
-  }
-  .btn-shop:hover { background: var(--sage); transform: translateY(-1px); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width:1200px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+  a.logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+  header#header nav { display:flex; align-items:center; gap:0.15rem; }
+  header#header nav > a { font-size:0.78rem; color:var(--charcoal); text-decoration:none; padding:0.4rem 0.6rem; border-radius:20px; transition:all 0.2s; letter-spacing:0.02em; white-space:nowrap; }
+  header#header nav > a:hover, header#header nav > a.cur { background:rgba(122,154,126,0.1); color:var(--moss); }
+  header#header nav > a.cur { font-weight:500; }
+  
+  /* ── Dropdown Menu (下拉選單) ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display:flex; align-items:center; gap:0.75rem; }
+  
+  /* ── 購物車圖示與抽屜 ── */
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--light-gray); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--light-gray); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
 
   /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
   .mobile-nav {
     display: none; position: fixed; top: 72px; left: 0; right: 0;
     background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(122,154,126,0.15);
-    padding: 1.25rem 2rem 1.5rem; z-index: 99;
-    flex-direction: column; gap: 0.25rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    opacity: 0; transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    border-bottom: 1px solid rgba(122,154,126,0.15); padding: 1.25rem 2rem 1.5rem;
+    z-index: 499; flex-direction: column; gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px);
+    opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
   }
   .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
-  .mobile-nav a {
-    font-size: 0.95rem; color: var(--charcoal); text-decoration: none;
-    padding: 0.7rem 0.75rem; border-radius: 10px;
-    border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s;
-  }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
   .mobile-nav a:last-child { border-bottom: none; }
-  .mobile-nav a:hover { background: var(--light-gray); color: var(--moss); }
-  .mobile-nav .mobile-shop-btn {
-    margin-top: 0.75rem; background: var(--moss); color: white;
-    text-align: center; padding: 0.75rem; border-radius: 20px;
-    font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em;
-  }
+  .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
   .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  @media (max-width: 768px) { header#header nav { display: none; } .hamburger { display: flex; } }
 
   /* ── BREADCRUMB ── */
   .breadcrumb {
-    margin-top: 72px; background: var(--cream);
-    border-bottom: 1px solid var(--light-gray); padding: 0.85rem 2rem;
+    margin-top: 72px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0.85rem 2rem;
   }
   .breadcrumb-inner {
-    max-width: 780px; margin: 0 auto;
-    display: flex; align-items: center; gap: 0.5rem;
-    font-size: 0.78rem; color: var(--soft-gray);
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--soft-gray);
   }
-  .breadcrumb-inner a { color: var(--soft-gray); text-decoration: none; }
+  .breadcrumb-inner a { color: var(--soft-gray); text-decoration: none; transition: color 0.2s; }
   .breadcrumb-inner a:hover { color: var(--moss); }
   .breadcrumb-inner .sep { color: var(--light-gray); }
+  .breadcrumb-inner .current { color: var(--charcoal); }
 
   /* ── ARTICLE HEADER ── */
   .article-header { max-width: 780px; margin: 3rem auto 2.5rem; padding: 0 2rem; text-align: center; }
@@ -112,7 +130,7 @@
     letter-spacing: 0.15em; margin-bottom: 1rem; display: block;
   }
   .article-title {
-    font-family: 'Noto Serif TC', serif; font-size: clamp(1.75rem, 4vw, 2.4rem);
+    font-family: var(--serif); font-size: clamp(1.75rem, 4vw, 2.4rem);
     color: var(--charcoal); line-height: 1.4; margin-bottom: 1.5rem;
   }
   .article-author-row {
@@ -126,11 +144,11 @@
   .article-main { max-width: 780px; margin: 0 auto 5rem; padding: 0 2rem; }
   .article-main p { font-size: 1rem; line-height: 1.9; color: var(--charcoal); margin-bottom: 1.75rem; text-align: justify; }
   .article-main h2 {
-    font-family: 'Noto Serif TC', serif; font-size: 1.4rem; color: var(--charcoal);
+    font-family: var(--serif); font-size: 1.4rem; color: var(--charcoal);
     margin: 3rem 0 1.5rem; padding-left: 1rem; border-left: 4px solid var(--sand);
   }
   .article-main h3 {
-    font-family: 'Noto Serif TC', serif; font-size: 1.15rem; color: var(--moss);
+    font-family: var(--serif); font-size: 1.15rem; color: var(--moss);
     margin: 2rem 0 1rem;
   }
   .article-img { width: 100%; border-radius: 12px; margin: 1.5rem 0 0.75rem; display: block; }
@@ -145,7 +163,7 @@
     content: '"'; position: absolute; top: 1rem; left: 2rem;
     font-family: serif; font-size: 4rem; color: rgba(201,169,122,0.2);
   }
-  .article-quote p { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; color: var(--moss); margin-bottom: 1rem; font-style: italic; }
+  .article-quote p { font-family: var(--serif); font-size: 1.15rem; color: var(--moss); margin-bottom: 1rem; font-style: italic; }
   .article-quote cite { font-size: 0.85rem; color: var(--soft-gray); font-style: normal; }
 
   .product-card-inline {
@@ -157,7 +175,7 @@
   .pci-icon { width: 64px; height: 64px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
   .pci-body { flex: 1; }
   .pci-label { font-size: 0.7rem; color: var(--sage); letter-spacing: 0.1em; margin-bottom: 0.25rem; }
-  .pci-name { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .pci-name { font-family: var(--serif); font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.5rem; }
   .pci-desc { font-size: 0.85rem; color: var(--soft-gray); margin-bottom: 1rem; line-height: 1.6; }
   .pci-link { color: var(--moss); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
 
@@ -167,7 +185,6 @@
   .footer-brand { font-family: 'Zen Antique', serif; font-size: 1.5rem; color: white; margin-bottom: 1rem; }
   
   @media (max-width: 768px) {
-    nav { display: none; } .hamburger { display: flex; }
     .product-card-inline { flex-direction: column; text-align: center; padding: 1.5rem; }
   }
 
@@ -181,27 +198,53 @@
 <header id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <div class="logo-text">
-        <span class="brand">HiBOU</span>
-        <span class="sub">BORN FOR BABIES</span>
-      </div>
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
     </a>
+
     <nav>
       <a href="index.html">首頁</a>
-      <a href="news-bloggers.html" class="active">部落客推薦</a>
-      <a href="news-parenting.html">育兒教室</a>
-      <a href="news-travel.html">親子旅遊</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
     </nav>
-    <a href="hibou_landing_page_v10.html" class="btn-shop">立即選購</a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html">首頁</a>
-  <a href="news-bloggers.html">部落客推薦</a>
-  <a href="news-parenting.html">育兒教室</a>
-  <a href="news-travel.html">親子旅遊</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
 </nav>
 
 <div class="breadcrumb">
@@ -244,7 +287,7 @@
       <div class="pci-label">{{PRODUCT_CATEGORY}}</div>
       <div class="pci-name">{{PRODUCT_NAME}}</div>
       <p class="pci-desc">{{PRODUCT_DESC}}</p>
-      <a href="hibou_landing_page_v10.html" class="pci-link">查看商品詳情 →</a>
+      <a href="shop-all.html" class="pci-link">查看商品詳情 →</a>
     </div>
   </div>
 
@@ -253,15 +296,117 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">HiBOU</div>
-    <p>© 2025 HiBOU 喜福生活苑 ｜ Born for Babies</p>
+    <div class="footer-brand">HiBOU 喜福生活苑</div>
+    <p>© 2026 HiBOU 喜福生活苑 ｜ Born for Babies</p>
   </div>
 </footer>
 
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
 <script>
-  function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
-  window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  // ── 購物車共用邏輯 ──
+  const CART_KEY = 'hibou_cart';
+  function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+  function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      if(forceOpen || !drawer.classList.contains('open')) {
+          overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+      } else {
+          overlay.classList.remove('open'); drawer.classList.remove('open');
+      }
+  }
+  function updateCartQty(index, delta) {
+      let cart = getCart(); cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+  }
+  function removeFromCart(index) {
+      let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+  }
+  function updateCartUI() {
+      let cart = getCart();
+      let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+      let container = document.getElementById('cartItemsContainer');
+      if(cart.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+          document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+      }
+      let html = ''; let subtotal = 0;
+      cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+          html += `
+          <div class="cart-item">
+              <img src="${item.image || ''}" alt="${item.name}">
+              <div class="cart-item-info">
+                  <div style="display:flex; justify-content:space-between;">
+                      <div class="cart-item-title">${item.name}</div>
+                      <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                  </div>
+                  <div class="cart-item-var">${variantStr}</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                      <div class="cart-qty-ctrl">
+                          <button onclick="updateCartQty(${index}, -1)">-</button>
+                          <span>${item.qty}</span>
+                          <button onclick="updateCartQty(${index}, 1)">+</button>
+                      </div>
+                      <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                  </div>
+              </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+  }
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+
+  // ── 行動裝置導覽與滾動 ──
+  function toggleMenu() {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    const isOpen = nav.classList.contains('open');
+    nav.classList.toggle('open', !isOpen);
+    burger.classList.toggle('active', !isOpen);
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  }
+  
+  document.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if(header) header.classList.toggle('scrolled', window.scrollY > 20);
+
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    if (nav && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }, {passive: true});
+
+  document.addEventListener('click',(e)=>{
+    const n = document.getElementById('mobileNav'), b = document.getElementById('hamburger');
+    if(n && n.classList.contains('open') && !n.contains(e.target) && !b.contains(e.target)) {
+      n.classList.remove('open');
+      b.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   });
 </script>
 </body>
