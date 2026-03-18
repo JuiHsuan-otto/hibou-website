@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全站商品總覽｜HiBOU 喜福生活苑</title>
+<meta name="description" content="HiBOU喜福生活苑全站商品總覽。從六重紗防踢被、外出防護罩、有機棉包屁衣到早教玩具與夾類配件，給寶寶最純淨的台灣製造嬰幼兒精品。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741; --sage: #7A9A7E; --cream: #FAF7F2; --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C; --soft-gray: #8A8A8A; --light-gray: #F0EDE8;
+    --border: rgba(122,154,126,0.15);
+    --sand: #C9A97A; --biscuit: #e2d1b5;
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+    --spring: cubic-bezier(.22,1,.36,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--charcoal); line-height: 1.8; overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header#header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: rgba(255,254,249,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+  nav { display: flex; align-items: center; gap: 0.15rem; }
+  nav > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
+  nav > a:hover { background: var(--light-gray); color: var(--moss); }
+  nav > a.cur { color: var(--moss); font-weight: 500; }
+
+  /* Dropdown Menu */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover, .nav-item-dropdown > a.cur { background: rgba(122,154,126,0.1); color: var(--moss); font-weight: 500; }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s var(--spring); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,254,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(122,154,126,0.15); padding: 1.25rem 2rem 1.5rem; z-index: 499; flex-direction: column; gap: 0.25rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px); opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; border-bottom: 1px solid rgba(122,154,126,0.1); }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; border-radius: 20px; border-bottom: none; }
+  @media (max-width: 768px) { header nav { display: none; } .hamburger { display: flex; } }
+
+  /* ── 購物車抽屜 ── */
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s var(--spring); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--biscuit); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--biscuit); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--biscuit); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  /* ── 頁面標題 HERO ── */
+  .page-hero {
+    margin-top: 72px; padding: 70px 2rem 50px; text-align: center;
+    background: linear-gradient(to bottom, var(--cream) 0%, var(--warm-white) 100%);
+  }
+  .page-hero-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+  .page-hero-desc { font-size: 0.9rem; color: var(--soft-gray); letter-spacing: 0.05em; }
+
+  /* ── 懸浮分類導航欄 (Sticky Nav) ── */
+  .category-nav-wrap {
+    position: sticky; top: 72px; z-index: 400;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray); border-top: 1px solid var(--light-gray);
+  }
+  .category-nav {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; overflow-x: auto; padding: 1rem 2rem; white-space: nowrap; scrollbar-width: none;
+  }
+  .category-nav::-webkit-scrollbar { display: none; }
+  .cat-tab {
+    font-size: 0.85rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 1.2rem;
+    border-radius: 30px; border: 1px solid transparent; transition: all 0.3s;
+    font-weight: 500; letter-spacing: 0.05em;
+  }
+  .cat-tab:hover, .cat-tab.active { background: var(--moss); color: white; border-color: var(--moss); }
+
+  /* ── 產品網格 (Product Grid) ── */
+  .shop-section { padding: 60px 2rem 100px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .category-group { margin-bottom: 6rem; }
+  .group-title {
+    font-family: var(--serif); font-size: 1.8rem; color: var(--moss);
+    border-bottom: 2px solid var(--light-gray); padding-bottom: 0.5rem; margin-bottom: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .group-title span { font-size: 0.8rem; color: var(--soft-gray); font-family: var(--sans); font-weight: 400; letter-spacing: 0.05em; }
+
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  
+  .product-card {
+    background: white; border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; border: 1px solid var(--light-gray);
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
+  .product-img-wrap { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--light-gray); display: flex; align-items: center; justify-content: center; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .product-badge {
+    position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.65rem; letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem; border-radius: 20px; font-weight: 500; z-index: 2;
+  }
+  .badge-hot { background: var(--accent-orange); color: white; }
+  .badge-new { background: var(--sage); color: white; }
+  .badge-best { background: var(--moss); color: white; }
+  .badge-gift { background: #D4AF37; color: white; } /* 禮盒專屬色 */
+  
+  .product-info { padding: 1rem 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .product-cat { font-size: 0.68rem; letter-spacing: 0.15em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.3rem; }
+  .product-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.25rem; line-height: 1.4; }
+  .product-sub { font-size: 0.75rem; color: var(--soft-gray); margin-bottom: 0.75rem; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; border-top: 1px solid var(--light-gray); padding-top: 0.8rem; }
+  .product-price { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; color: var(--moss); }
+  .product-price small { font-family: var(--sans); font-size: 0.72rem; color: var(--soft-gray); font-weight: 400; margin-left: 3px; }
+  .btn-view { font-size: 0.75rem; background: var(--charcoal); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; transition: 0.2s; letter-spacing: 0.05em; }
+  .product-card:hover .btn-view { background: var(--moss); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; text-align: center; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 3rem; text-align: left; }
+  .footer-brand .brand-name { font-family: 'Zen Antique', serif; font-size: 1.3rem; color: white; margin-bottom: 0.25rem; }
+  .footer-brand .brand-tagline { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-brand .brand-about { font-size: 0.82rem; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+  .social-links { display: flex; gap: 0.5rem; }
+  .social-link { width: 34px; height: 34px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: background 0.2s; }
+  .social-link:hover { background: var(--sage); color: white; }
+  .footer-col h4 { font-size: 0.8rem; letter-spacing: 0.1em; color: white; margin-bottom: 1rem; text-transform: uppercase; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--sage); }
+  .footer-bottom { padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+  /* RWD */
+  @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .category-nav { justify-content: flex-start; padding: 1rem; }
+    
+    /* Footer 手機版左對齊雙欄完美排版 */
+    .footer-top { grid-template-columns: 1fr 1fr !important; gap: 2.5rem; text-align: left; }
+    .footer-brand { grid-column: 1 / -1; text-align: center; margin-bottom: 1rem; }
+    .social-links { justify-content: center; margin-top: 0.5rem; }
+    .footer-col h4 { margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+    .footer-col ul { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+    .footer-col ul li { margin-bottom: 0; }
+    .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+  @media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="images/logo.png" alt="HiBOU Logo"></a>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html" class="cur">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="#clothing">穿著衣物</a>
+          <a href="#cleaning">清潔沐浴</a>
+          <a href="#toys">早教玩具</a>
+          <a href="#giftbox">禮盒客製</a>
+        </div>
+      </div>
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">🛒<span class="cart-badge" id="cart-badge">0</span></button>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" class="cur">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<div class="page-hero">
+  <h1 class="page-hero-title">全站商品總覽</h1>
+  <p class="page-hero-desc">ALL PRODUCTS・給寶貝最完整的呵護</p>
+</div>
+
+<div class="category-nav-wrap">
+  <div class="category-nav">
+    <a href="#protection" class="cat-tab">外出防護</a>
+    <a href="#bedding" class="cat-tab">寢具床品</a>
+    <a href="#clothing" class="cat-tab">穿著衣物</a>
+    <a href="#cleaning" class="cat-tab">清潔沐浴</a>
+    <a href="#clips" class="cat-tab">夾類與配件</a>
+    <a href="#toys" class="cat-tab">早教玩具</a>
+    <a href="#giftbox" class="cat-tab">禮盒客製</a>
+  </div>
+</div>
+
+<section class="shop-section">
+  <div class="container">
+
+    <div class="category-group" id="protection">
+      <h2 class="group-title">外出防護 <span>OUTDOOR PROTECTION</span></h2>
+      <div class="products-grid">
+        <a href="hibou-windshield.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/喜福-09049-jpg.webp" alt="機能防風罩"><span class="product-badge badge-hot">熱銷 NO.1</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">外出防護</div><div class="product-name">機能防風罩</div><div class="product-sub">1件抵5用・抗UV防潑水</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 1,880</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="bedding">
+      <h2 class="group-title">寢具床品 <span>BEDDING</span></h2>
+      <div class="products-grid">
+        <a href="hibou-6gauze.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/21-6重紗_呼呼防踢被_3-7歲KEWE.jpg" alt="6重紗呼呼防踢被"><span class="product-badge badge-best">媽咪推薦</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">寢具床品</div><div class="product-name">6重紗呼呼防踢被</div><div class="product-sub">適用 3-7 歲・台灣製造</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 1,280</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="clothing">
+      <h2 class="group-title">穿著衣物 <span>CLOTHING</span></h2>
+      <div class="products-grid">
+        <a href="hibou-organic-jinbei.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/015_9336.jpg" alt="有機棉日式甚平"><span class="product-badge badge-new">新品上市</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">穿著衣物</div><div class="product-name">有機棉 日式甚平包屁衣</div><div class="product-sub">零化學殘留・鹿港手工製</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 1,080</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-printed-bib.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/1773581384088_123141152_352289172532974_2462622683789832787_n.jpg" alt="印花布口水領巾"></div>
+          <div class="product-info">
+            <div><div class="product-cat">穿著衣物</div><div class="product-name">日本和歌山印花布 口水領巾</div><div class="product-sub">預防口水疹・透氣不悶熱</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 280</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="cleaning">
+      <h2 class="group-title">清潔沐浴 <span>CLEANING & BATH</span></h2>
+      <div class="products-grid">
+        <a href="hibou-gauze-towel.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/illus_hk_blue.jpg" alt="嬰兒洗澡雙面紗布巾"></div>
+          <div class="product-info">
+            <div><div class="product-cat">清潔沐浴</div><div class="product-name">嬰兒洗澡雙面紗布巾 (4入組)</div><div class="product-sub">四色滾邊分類・無甲醛保證</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 150</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-organic-gauze.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/Hibou_6.jpg" alt="無織標有機紗布巾"><span class="product-badge badge-best">敏感肌安心</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">清潔沐浴</div><div class="product-name">無織標 有機原棉紗布巾 (3入組)</div><div class="product-sub">無印染漂白・零摩擦設計</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 180</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-sweat-pad.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/1773581384088_123141152_352289172532974_2462622683789832787_n.jpg" alt="吸汗背克汗"></div>
+          <div class="product-info">
+            <div><div class="product-cat">清潔沐浴</div><div class="product-name">日本印花布 吸汗背克汗</div><div class="product-sub">墊背秒吸汗・維持整日乾爽</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 168</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="clips">
+      <h2 class="group-title">夾類與配件 <span>CLIPS & ACCESSORIES</span></h2>
+      <div class="products-grid">
+        <a href="hibou-rabbit-pacifier.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/奶嘴收納套-19.jpg" alt="兔寶奶嘴收好袋"></div>
+          <div class="product-info">
+            <div><div class="product-cat">隨身配件</div><div class="product-name">兔寶奶嘴收好袋 2件組</div><div class="product-sub">防塵套+奶嘴夾・專利夾扣</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 823</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-amulet-bag.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/奶嘴收納套-18.jpg" alt="蘋安福袋"></div>
+          <div class="product-info">
+            <div><div class="product-cat">隨身配件</div><div class="product-name">寶寶蘋安福袋 (平安符/奶嘴收納)</div><div class="product-sub">蘋果造型寓意・貼身守護</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 380</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-stroller-hooks.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/hook.jpg" alt="萬用金屬置物勾"></div>
+          <div class="product-info">
+            <div><div class="product-cat">隨身配件</div><div class="product-name">萬用金屬置物勾 (2入組)</div><div class="product-sub">推車掛物/汽車收納・金屬防潮</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 250</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-bottle-carrier.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/1773581384088_123141152_352289172532974_2462622683789832787_n.jpg" alt="彈力水壺背袋"></div>
+          <div class="product-info">
+            <div><div class="product-cat">隨身配件</div><div class="product-name">隨行彈力水壺背袋</div><div class="product-sub">適用Owala/太和工房・解放雙手</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 350</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-camping-lanyard.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/camping_lanyard.jpg" alt="露營掛繩"><span class="product-badge badge-hot">戶外必備</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">戶外用品</div><div class="product-name">多功能露營掛物繩 (270cm)</div><div class="product-sub">露營/車宿收納・多環扣設計</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 380</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="toys">
+      <h2 class="group-title">早教玩具 <span>TOYS</span></h2>
+      <div class="products-grid">
+        <a href="hibou-flashcard.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/fb-02.png" alt="喜福黑白卡"></div>
+          <div class="product-info">
+            <div><div class="product-cat">早教玩具</div><div class="product-name">喜福黑白卡_寶寶看世界 (雙面18張)</div><div class="product-sub">0-6個月必備・大豆油墨印刷</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 149</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-dice-ball.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/fb-02.png" alt="童趣布骰子球"><span class="product-badge badge-new">花色隨機</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">早教玩具</div><div class="product-name">寶貝童趣布骰子球 (小)</div><div class="product-sub">純棉多層紗・訓練手眼協調</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 88</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="category-group" id="giftbox">
+      <h2 class="group-title">禮盒客製 <span>GIFT BOX & CUSTOM</span></h2>
+      <div class="products-grid">
+        <a href="hibou-giftbox.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/015_9336.jpg" alt="日式連身褲禮盒"><span class="product-badge badge-gift">送禮推薦</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">彌月禮盒</div><div class="product-name">新生彌月日式連身褲禮盒</div><div class="product-sub">內含有機棉連身褲與配件組合</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 1,980</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-giftbox.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/21-6重紗_呼呼防踢被_3-7歲KEWE.jpg" alt="蘋安彌月禮盒"></div>
+          <div class="product-info">
+            <div><div class="product-cat">彌月禮盒</div><div class="product-name">蘋安彌月禮盒新生兒禮盒</div><div class="product-sub">內含6重紗防踢被與蘋安福袋</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 2,280</div><span class="btn-view">查看詳情</span></div>
+          </div>
+        </a>
+        <a href="hibou-custom.html" class="product-card">
+          <div class="product-img-wrap"><img src="./images/奶嘴收納套-18.jpg" alt="客製化刺繡"><span class="product-badge badge-hot">幼兒園必備</span></div>
+          <div class="product-info">
+            <div><div class="product-cat">客製刺繡</div><div class="product-name">專屬姓名刺繡系列</div><div class="product-sub">奶嘴夾/手帕夾/圍兜・防丟神器</div></div>
+            <div class="product-footer"><div class="product-price">NT$ 299<small>起</small></div><span class="btn-view">開始客製</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand" style="grid-column: 1 / -1; text-align: center; margin-bottom: 1rem;">
+        <div class="brand-name">HiBOU 喜福生活苑</div>
+        <div class="brand-tagline">BORN FOR BABIES</div>
+        <p class="brand-about">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247</p>
+        <div class="social-links" style="justify-content: center;"><a href="#" class="social-link">f</a><a href="#" class="social-link">ig</a><a href="#" class="social-link">yt</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>商品分類</h4>
+        <ul><li><a href="hibou-windshield.html">外出防護</a></li><li><a href="hibou-6gauze.html">寢具床品</a></li><li><a href="shop-all.html#clothing">穿著衣物</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>&nbsp;</h4>
+        <ul><li><a href="shop-all.html#cleaning">清潔沐浴</a></li><li><a href="hibou-clips.html">隨身配件</a></li><li><a href="hibou-giftbox.html">禮盒客製</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>服務資訊</h4>
+        <ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="contact.html">聯絡我們</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>關於喜福</h4>
+        <ul><li><a href="news-travel.html">親子旅遊誌</a></li><li><a href="news-parenting.html">媽咪育兒教室</a></li><li><a href="news-bloggers.html">部落客推薦</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HiBOU 喜福生活苑股份有限公司｜彰化縣鹿港鎮</span>
+      <span>隱私權政策｜使用條款</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500;">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span>小計</span><span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em;" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+// ── 購物車邏輯 ──
+const CART_KEY = 'hibou_cart';
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+
+function toggleCart(forceOpen = false) {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    if(forceOpen || !drawer.classList.contains('open')) {
+        overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+    } else {
+        overlay.classList.remove('open'); drawer.classList.remove('open');
+    }
+}
+function updateCartQty(index, delta) {
+    let cart = getCart(); cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart(cart);
+}
+function removeFromCart(index) {
+    let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+}
+
+function updateCartUI() {
+    let cart = getCart();
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+
+    let container = document.getElementById('cartItemsContainer');
+    if(cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+        document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+    }
+
+    let html = ''; let subtotal = 0;
+    cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+        html += `
+        <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}">
+            <div class="cart-item-info">
+                <div style="display:flex; justify-content:space-between;">
+                    <div class="cart-item-title">${item.name}</div>
+                    <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                </div>
+                <div class="cart-item-var">${variantStr}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                    <div class="cart-qty-ctrl">
+                        <button onclick="updateCartQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateCartQty(${index}, 1)">+</button>
+                    </div>
+                    <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+}
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+// 導航列滾動互動
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  
+  // Sticky Category Nav 亮起邏輯
+  const sections = document.querySelectorAll('.category-group');
+  const tabs = document.querySelectorAll('.cat-tab');
+  let current = '';
+  
+  sections.forEach(sec => {
+    const sectionTop = sec.offsetTop;
+    if (pageYOffset >= sectionTop - 160) {
+      current = sec.getAttribute('id');
+    }
+  });
+
+  tabs.forEach(tab => {
+    tab.classList.remove('active');
+    if (tab.getAttribute('href').includes(current)) {
+      tab.classList.add('active');
+    }
+  });
+});
+
+// 平滑滾動錨點
+document.querySelectorAll('.cat-tab').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            window.scrollTo({
+                top: targetEl.offsetTop - 130,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// 手機選單
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  const burger = document.getElementById('hamburger');
+  const isOpen = nav.classList.contains('open');
+  nav.classList.toggle('open', !isOpen);
+  burger.classList.toggle('active', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+</script>
+</body>
+</html>

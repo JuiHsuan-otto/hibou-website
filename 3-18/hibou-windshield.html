@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiBOU 喜福機能防風罩｜1被5用・抗UV防潑水・給寶寶最安心的移動城堡</title>
+<meta name="description" content="HiBOU 喜福機能防風罩，1件抵5用：揹巾防風罩、推車防風墊、哺乳巾、包被、連帽披風。獨家奈米防潑水技術，解決寶寶噴尿、突如其來小雨的焦慮。MIT 台灣職人手作，BSMI 認證，給孩子有溫度的安全守護。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --butter:#fdf6eb;--linen:#f5ead8;--parchment:#ece0ca;
+  --biscuit:#e2d1b5;--wheat:#c9a87a;--cinnamon:#b07d4a;
+  --moss:#3d5c33;--sage:#6e9272;--fern:#a8c0a4;--mint:rgba(110,146,114,.12);
+  --ink:#221a10;--bark:#5c4a30;--clay:#9a8060;--warm-white:#fefcf7;
+  --serif:'Cormorant Garamond','Noto Serif TC',serif;
+  --sans:'Noto Sans TC',sans-serif;
+  --r-xs:6px;--r-sm:12px;--r-md:20px;--r-lg:32px;--r-xl:48px;--r-f:9999px;
+  --spring:cubic-bezier(.22,1,.36,1);--bounce:cubic-bezier(.34,1.56,.64,1);
+  --sh0:0 2px 12px rgba(42,33,24,.05);--sh1:0 6px 24px rgba(42,33,24,.09);
+  --sh2:0 14px 48px rgba(42,33,24,.12);--sh3:0 28px 80px rgba(42,33,24,.16);
+  --sh-green:0 8px 32px rgba(61,92,51,.22);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--sans);background:var(--butter);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body::after{content:'';position:fixed;inset:0;background:var(--grain);pointer-events:none;z-index:9999;opacity:.6}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--wheat);border-radius:2px}
+img{display:block;width:100%;height:auto}
+::selection{background:rgba(110,146,114,.25);color:var(--ink)}
+
+/* HEADER */
+header#header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    background: rgba(254,252,247,0.96);
+    backdrop-filter: blur(28px) saturate(1.6);
+    -webkit-backdrop-filter: blur(28px) saturate(1.6);
+    border-bottom: 1px solid rgba(226,209,181,0.45);
+    transition: box-shadow 0.4s var(--spring);
+}
+header#header.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+a.logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; transition: opacity .25s; }
+a.logo:hover { opacity: .8; }
+header#header nav { display: flex; align-items: center; gap: 0.1rem; }
+header#header nav > a {
+    font-size: 0.775rem;
+    color: var(--bark);
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 20px;
+    transition: all 0.25s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+header#header nav > a:hover,
+header#header nav > a.cur { background: var(--mint); color: var(--moss); letter-spacing: 0.05em; }
+header#header nav > a.cur { font-weight: 500; }
+
+/* ── Dropdown Menu (下拉選單) ── */
+.nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+.nav-item-dropdown > a { font-size: 0.775rem; color: var(--bark); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.03em; white-space: nowrap; cursor: pointer; }
+.nav-item-dropdown > a:hover { background: var(--mint); color: var(--moss); letter-spacing: 0.05em; }
+.dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(254,252,247,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(226,209,181,0.45); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--ink); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+.dropdown-menu a:hover { background: var(--mint); color: var(--moss); }
+.dropdown-divider { height: 1px; background: rgba(226,209,181,0.45); margin: 0.4rem 0.5rem; }
+
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+/* ── 購物車圖示與抽屜 UI CSS ── */
+.btn-cart-nav {
+    position: relative;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--linen); color: var(--moss); border: none;
+    cursor: pointer; transition: 0.2s; font-size: 1.1rem;
+}
+.btn-cart-nav:hover { background: var(--biscuit); transform: translateY(-1px); }
+.cart-badge {
+    position: absolute; top: -2px; right: -4px;
+    background: #C0614A; color: white; font-size: 0.6rem;
+    width: 16px; height: 16px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-weight: bold;
+    border: 1.5px solid #fff;
+}
+.cart-overlay {
+    position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer {
+    position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh;
+    background: var(--butter); z-index: 10001; transform: translateX(100%);
+    transition: transform 0.35s var(--spring); display: flex; flex-direction: column;
+    box-shadow: -8px 0 32px rgba(42,33,24,0.15);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-header {
+    padding: 1.5rem 2rem; border-bottom: 1px solid var(--biscuit);
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(253,246,235,0.9);
+}
+.cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+.cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--biscuit); background: var(--warm-white); }
+.cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+.cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--biscuit); }
+.cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); line-height: 1.3; }
+.cart-item-var { font-size: 0.75rem; color: var(--clay); margin-top: 0.25rem; }
+.cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+.cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--linen); padding: 0.2rem 0.5rem; border-radius: 20px; border: 1px solid var(--biscuit); }
+.cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+.cart-remove { color: var(--clay); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { width: 22px; height: 1.5px; background: var(--ink); border-radius: 2px; transition: 0.35s var(--spring); display: block; }
+
+/* Mobile Nav */
+.mobile-nav {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(254,252,247,0.99); backdrop-filter: blur(28px);
+    border-bottom: 1px solid rgba(226,209,181,.4); padding: 1.25rem 2rem 1.5rem;
+    z-index: 499; flex-direction: column; gap: 0.25rem; box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+    transform: translateY(-8px); opacity: 0; transition: opacity 0.28s var(--spring), transform 0.28s var(--spring);
+}
+.mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+.mobile-nav a { font-size: 0.95rem; color: var(--bark); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(226,209,181,.35); transition: background 0.25s, color 0.25s, padding-left 0.25s; }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { background: var(--mint); color: var(--moss); padding-left: 1rem; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+@media (max-width: 768px) { header#header nav { display: none; } .hamburger { display: flex; } }
+
+/* 其餘原本 CSS ... */
+.hero{margin-top:70px;background:var(--linen);text-align:center;padding:96px 0 0;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse at 50% 30%,rgba(110,146,114,.13) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,var(--linen));pointer-events:none;z-index:2}
+.hero-img{display:block;width:72%;max-width:960px;margin:0 auto;position:relative;z-index:1;filter:contrast(.93) saturate(.92) brightness(1.01);mask-image:radial-gradient(ellipse at 50% 40%,black 25%,rgba(0,0,0,.85) 50%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%,black 25%,rgba(0,0,0,.85) 50%,transparent 80%)}
+.hero-in{position:relative;z-index:3;max-width:860px;margin:0 auto;width:100%;padding:0 2rem 4rem}
+.hero-kicker{display:inline-flex;align-items:center;gap:.6rem;font-size:.67rem;letter-spacing:.26em;text-transform:uppercase;color:var(--moss);background:rgba(61,92,51,.07);border:1px solid rgba(61,92,51,.15);padding:.32rem 1rem;border-radius:var(--r-f);margin-bottom:1.8rem;animation:risein .9s .1s both}
+.kd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.hero-title{font-family:var(--serif);font-size:clamp(2.9rem,6.5vw,5.2rem);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:1.5rem;animation:risein .9s .22s both;letter-spacing:-.01em}
+.hero-title em{font-style:italic;color:var(--moss);font-weight:400;position:relative}
+.hero-title em::after{content:'';position:absolute;bottom:-.05em;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--sage),transparent);opacity:.45}
+.hero-sub{font-size:.88rem;line-height:2.1;color:var(--bark);max-width:530px;margin:0 auto 2.4rem;animation:risein .9s .36s both;letter-spacing:.02em}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2.6rem;animation:risein .9s .48s both;justify-content:center}
+.pill{display:inline-flex;align-items:center;gap:.35rem;background:rgba(254,252,247,.8);border:1px solid rgba(226,209,181,.8);padding:.3rem .9rem;border-radius:var(--r-f);font-size:.69rem;color:var(--bark);backdrop-filter:blur(8px);transition:border-color .25s,color .25s,background .25s}
+.pd{width:4px;height:4px;border-radius:50%;background:var(--sage)}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;animation:risein .9s .6s both;justify-content:center;margin-bottom:4rem}
+.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--moss);color:white;padding:.95rem 2.2rem;border-radius:var(--r-f);font-size:.82rem;letter-spacing:.08em;font-family:var(--sans);text-decoration:none;border:none;cursor:pointer;transition:background .3s,transform .25s,box-shadow .3s,letter-spacing .3s;position:relative;overflow:hidden}
+.btn-g{display:inline-flex;align-items:center;background:rgba(254,252,247,.6);color:var(--bark);padding:.95rem 2.2rem;border-radius:var(--r-f);font-size:.82rem;letter-spacing:.08em;border:1.5px solid var(--biscuit);text-decoration:none;transition:border-color .3s,color .3s,background .3s,transform .25s;backdrop-filter:blur(8px)}
+.cert-strip{background:var(--warm-white);border-top:1px solid rgba(226,209,181,.7);border-bottom:1px solid rgba(226,209,181,.7);position:relative;overflow:hidden}
+.cert-strip::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(201,168,122,.04) 50%,transparent 100%)}
+.cert-row{max-width:1100px;margin:0 auto;display:flex;align-items:stretch;flex-wrap:wrap}
+.cert-it{flex:1;min-width:180px;display:flex;align-items:center;gap:.8rem;padding:1.5rem 1.7rem;border-right:1px solid rgba(226,209,181,.55);transition:background .3s,transform .3s var(--spring);cursor:default}
+.cert-it:last-child{border-right:none}.cert-it:hover{background:rgba(201,168,122,.06);transform:translateY(-1px)}
+.cert-ico{font-size:1.45rem;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(61,92,51,.15))}
+.cert-nm{font-size:.77rem;font-weight:500;color:var(--moss);letter-spacing:.04em}
+.cert-nt{font-size:.63rem;color:var(--clay);margin-top:.15rem;letter-spacing:.02em}
+.sec{padding:104px 2rem}.sec-ln{background:var(--linen)}.sec-pc{background:var(--parchment)}.sec-bt{background:var(--butter)}.sec-ww{background:var(--warm-white)}
+.wrap{max-width:1200px;margin:0 auto}
+.lbl{display:block;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:.75rem;font-weight:400}
+.hdg{font-family:var(--serif);font-size:clamp(1.95rem,3.2vw,2.9rem);font-weight:300;line-height:1.3;color:var(--ink);letter-spacing:-.01em}
+.hdg em{font-style:italic;color:var(--moss);font-weight:400}
+.bcopy{font-size:.86rem;line-height:2;color:var(--bark);margin-top:.9rem;letter-spacing:.02em}
+.wavy{margin:1.4rem 0;width:56px;height:9px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='9'%3E%3Cpath d='M0 4.5Q7 0 14 4.5Q21 9 28 4.5Q35 0 42 4.5Q49 9 56 4.5' stroke='%236e9272' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat}
+.sec-hdr{text-align:center;margin-bottom:4rem}.sec-hdr .hdg{max-width:560px;margin:0 auto}.sec-hdr .bcopy{max-width:500px;margin:.9rem auto 0}.sec-hdr .wavy{margin:1.4rem auto}
+.feat-sec{padding:104px 2rem}.feat-bt{background:var(--butter)}.feat-ln{background:var(--linen)}.feat-ww{background:var(--warm-white)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:center;max-width:1120px;margin:0 auto}
+.feat-grid.flip{direction:rtl}.feat-grid.flip>*{direction:ltr}
+.feat-img{position:relative;border-radius:var(--r-xl);overflow:hidden}
+.feat-img::before{content:'';position:absolute;z-index:1;pointer-events:none;inset:-1px;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(201,168,122,.2)}
+.feat-img::after{content:'';position:absolute;z-index:1;pointer-events:none;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(34,26,16,.12),transparent);border-radius:inherit}
+.feat-img img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;transition:transform .8s var(--spring);filter:saturate(.9) contrast(1.02)}.feat-img:hover img{transform:scale(1.05)}
+.feat-tag{position:absolute;bottom:1.5rem;left:1.5rem;z-index:2;background:rgba(254,252,247,.96);backdrop-filter:blur(16px);border-radius:var(--r-md);padding:1rem 1.2rem;box-shadow:var(--sh2);border:1px solid rgba(226,209,181,.5)}
+.feat-tag-nm{font-family:var(--serif);font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:.2rem}
+.feat-tag-sub{font-size:.62rem;color:var(--sage);letter-spacing:.14em;text-transform:uppercase}
+.feat-lbl{font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:.9rem;display:block}
+.feat-title{font-family:var(--serif);font-size:clamp(1.75rem,2.8vw,2.45rem);font-weight:300;line-height:1.35;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.feat-title em{font-style:italic;color:var(--moss)}
+.feat-desc{font-size:.85rem;line-height:2.05;color:var(--bark);margin-bottom:1.6rem;margin-top:1rem;letter-spacing:.02em}
+.feat-specs{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem}
+.spec{font-size:.71rem;background:rgba(245,234,216,.65);border:1px solid rgba(226,209,181,.8);color:var(--bark);padding:.3rem .9rem;border-radius:var(--r-f);transition:border-color .2s,color .2s,background .2s;letter-spacing:.03em}
+.feat-cta{display:flex;gap:.85rem;flex-wrap:wrap}
+.usage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem}
+.uc{background:var(--warm-white);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh0);transition:transform .4s var(--spring),box-shadow .4s;border:1px solid rgba(226,209,181,.4)}
+.uc-img{aspect-ratio:3/4;overflow:hidden;position:relative}
+.uc-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(34,26,16,.08),transparent)}
+.uc-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--spring);filter:saturate(.9)}
+.uc-body{padding:1.5rem 1.5rem 1.9rem}
+.uc-num{font-family:var(--serif);font-size:2.1rem;font-weight:300;color:rgba(201,168,122,.4);line-height:1;margin-bottom:.5rem}
+.uc-name{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:.5rem;letter-spacing:.01em}
+.uc-desc{font-size:.77rem;color:var(--bark);line-height:1.9;letter-spacing:.02em}
+.style-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;max-width:760px;margin:0 auto}
+.style-card{background:var(--warm-white);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh0);transition:transform .45s var(--spring),box-shadow .45s;text-align:center;border:1px solid rgba(226,209,181,.4)}
+.style-img-wrap{aspect-ratio:1;overflow:hidden;position:relative}
+.style-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--spring);filter:saturate(.92)}
+.style-body{padding:1.6rem 1.7rem 2.1rem}
+.style-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:.5rem;letter-spacing:.01em}
+.style-price{font-family:var(--serif);font-size:1.1rem;color:var(--moss);font-weight:400;margin-bottom:1.35rem;letter-spacing:.07em}
+.btn-buy{display:inline-flex;align-items:center;justify-content:center;background:var(--moss);color:white;padding:.9rem 2rem;border-radius:var(--r-f);font-size:.81rem;letter-spacing:.08em;font-family:var(--sans);border:none;cursor:pointer;transition:background .3s,transform .25s,box-shadow .3s;width:100%;position:relative;overflow:hidden}
+.btn-buy::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.14) 0%,transparent 55%);pointer-events:none}
+.btn-buy:hover{background:var(--sage);transform:translateY(-2px);box-shadow:var(--sh-green)}
+.btn-buy:disabled{background:var(--clay);cursor:not-allowed;transform:none;box-shadow:none}
+.specs-card{background:var(--warm-white);border-radius:var(--r-xl);padding:2.8rem 3.2rem;box-shadow:var(--sh0);border:1px solid rgba(226,209,181,.45)}
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.spec-item-v2{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem 1.6rem;border-bottom:1px solid rgba(245,234,216,.8);transition:background .25s}
+.spec-item-v2:nth-child(odd){border-right:1px solid rgba(245,234,216,.8)}
+.spec-item-v2:nth-last-child(-n+2){border-bottom:none}
+.spec-ico{width:38px;height:38px;border-radius:var(--r-sm);background:var(--mint);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;margin-top:.1rem}
+.spec-text-nm{font-size:.75rem;font-weight:500;color:var(--moss);letter-spacing:.05em;margin-bottom:.3rem}
+.spec-text-val{font-size:.82rem;color:var(--bark);line-height:1.75}
+.style-badge{display:inline-flex;align-items:center;gap:.3rem;background:rgba(61,92,51,.08);border:1px solid rgba(61,92,51,.15);color:var(--moss);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .65rem;border-radius:var(--r-f);margin-bottom:.9rem}
+.style-gift{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--clay);margin-bottom:1.3rem;justify-content:center}
+.site-footer{background:#171009;color:rgba(245,234,216,.5);padding:4.5rem 2rem 2.5rem;position:relative;overflow:hidden}
+.footer-in{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;margin-bottom:2.5rem;border-bottom:1px solid rgba(245,234,216,.07)}
+.fbrand-nm{font-family:var(--serif);font-size:1.3rem;color:#f5ead8;margin-bottom:.2rem;letter-spacing:.02em}
+.fbrand-tag{font-size:.61rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,234,216,.27);margin-bottom:1.2rem}
+.fbrand-info{font-size:.76rem;line-height:2;color:rgba(245,234,216,.44);margin-bottom:1.5rem}
+.fsocials{display:flex;gap:.45rem}
+.fsoc{width:33px;height:33px;border-radius:var(--r-xs);background:rgba(245,234,216,.06);display:flex;align-items:center;justify-content:center;color:rgba(245,234,216,.45);text-decoration:none;font-size:.73rem;}
+.fcol h5{font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,234,216,.8);margin-bottom:1.1rem;font-weight:500}
+.fcol ul{list-style:none}.fcol li{margin-bottom:.65rem}.fcol a{font-size:.76rem;color:rgba(245,234,216,.38);text-decoration:none}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;font-size:.69rem;color:rgba(245,234,216,.2);flex-wrap:wrap;gap:.5rem}
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:600;background:transparent}
+.scroll-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--moss),var(--sage),var(--wheat));transition:width .1s linear;border-radius:0 2px 2px 0}
+.wave-div{display:block;width:100%;line-height:0;overflow:hidden;margin-bottom:-1px}
+.wave-div svg{display:block;width:100%}
+.feat-number{font-family:var(--serif);font-size:5rem;font-weight:300;color:rgba(201,168,122,.12);line-height:1;position:absolute;top:-1.5rem;left:-1rem;pointer-events:none;user-select:none}
+.feat-text-wrap{position:relative}
+.buy-bar{position:fixed;bottom:0;left:0;right:0;z-index:400;background:rgba(254,252,247,.97);backdrop-filter:blur(24px);border-top:1px solid rgba(226,209,181,.5);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform .4s var(--spring);box-shadow:0 -4px 24px rgba(42,33,24,.08)}
+.buy-bar.visible{transform:translateY(0)}
+.buy-bar-info{display:flex;flex-direction:column}
+.buy-bar-name{font-family:var(--serif);font-size:.95rem;font-weight:500;color:var(--ink)}
+.buy-bar-price{font-size:.78rem;color:var(--moss);letter-spacing:.04em}
+.buy-bar-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--moss);color:white;padding:.7rem 1.8rem;border-radius:var(--r-f);font-size:.8rem;letter-spacing:.08em;font-family:var(--sans);text-decoration:none;white-space:nowrap;transition:background .3s,box-shadow .3s;position:relative;overflow:hidden}
+@keyframes risein{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--spring),transform .8s var(--spring)}.rv.in{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.usage-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
+
+/* ── 手機版排版修正 (寶寶我最罩專屬) ── */
+@media(max-width:768px){
+  .sec,.feat-sec{padding:68px 1.5rem}
+  .feat-grid{grid-template-columns:1fr;gap:2.5rem}
+  .feat-grid.flip{direction:ltr}
+  .style-grid{grid-template-columns:1fr;gap:1.5rem}
+  .usage-grid{grid-template-columns:1fr;gap:1.5rem}
+  .cert-row{flex-direction:column}
+  .cert-it{border-right:none;border-bottom:1px solid rgba(226,209,181,.55)}
+  .cert-it:last-child{border-bottom:none}
+  
+  /* 修正「品質嚴控」的 5 個特點區塊為單行排列 */
+  .specs-grid{grid-template-columns:1fr;}
+  .spec-item-v2{border-right:none !important; border-bottom:1px solid rgba(245,234,216,.8);}
+  .spec-item-v2:last-child{border-bottom:none;}
+  .specs-card{padding:2rem 1.5rem;}
+  
+  /* 修正英雄區塊文字重疊問題 */
+  .hero-title{font-size: 2.2rem;}
+  .hero-sub{font-size: 0.85rem;}
+  .hero-pills{gap: 0.4rem;}
+}
+@media(max-width:480px){
+  .hero-cta{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress"><div class="scroll-progress-bar" id="progressBar"></div></div>
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html" class="cur">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html" class="cur">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+</nav>
+
+<section class="hero" id="HERO">
+  <div class="hero-in">
+    <span class="hero-kicker"><span class="kd"></span>HiBOU 喜福 · 品牌信譽守護</span>
+    <h1 class="hero-title">寶寶我最<em>罩</em>，<br>為愛打造移動城堡</h1>
+    <p class="hero-sub">融合「奈米防潑水」與「極致透氣」的品牌傑作。揹巾防風、推車防護、哺乳隱私，一件滿足育兒生活的全方位需求，讓每一次探索都自在安心。</p>
+    <div class="hero-pills">
+      <span class="pill"><span class="pd"></span>抗UV UPF50+</span>
+      <span class="pill"><span class="pd"></span>獨家防噴尿科技</span>
+      <span class="pill"><span class="pd"></span>雙重紗恆溫內層</span>
+      <span class="pill"><span class="pd"></span>職人工藝 MIT</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#styles" class="btn-p">探索旗艦花色 →</a>
+      <a href="#usage" class="btn-g">了解5種用法</a>
+    </div>
+  </div>
+  <img class="hero-img" src="./hibou-web/public/images/detail_scenes/image_1.webp" alt="HiBOU 喜福機能防風罩" loading="eager">
+</section>
+
+<div class="wave-div" style="background:var(--warm-white)">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style="height:40px" fill="var(--linen)" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C240,40 480,40 720,20 C960,0 1200,0 1440,20 L1440,0 L0,0 Z"/>
+  </svg>
+</div>
+
+<div class="cert-strip">
+  <div class="cert-row">
+    <div class="cert-it rv"><span class="cert-ico">🛡️</span><div><div class="cert-nm">品牌信譽保證</div><div class="cert-nt">在地職人精品品質</div></div></div>
+    <div class="cert-it rv"><span class="cert-ico">☀️</span><div><div class="cert-nm">頂級抗UV阻隔</div><div class="cert-nt">UPF50+ 守護嬌嫩肌</div></div></div>
+    <div class="cert-it rv"><span class="cert-ico">💧</span><div><div class="cert-nm">奈米級防潑水</div><div class="cert-nt">噴尿小雨一抹即淨</div></div></div>
+    <div class="cert-it rv"><span class="cert-ico">🇹🇼</span><div><div class="cert-nm">MIT 職人工藝</div><div class="cert-nt">嚴格 BSMI 安全認證</div></div></div>
+    <div class="cert-it rv"><span class="cert-ico">🌬️</span><div><div class="cert-nm">恆溫調節技術</div><div class="cert-nt">告別悶熱，四季舒適</div></div></div>
+  </div>
+</div>
+
+<div class="wave-div" style="background:var(--butter)">
+  <svg viewBox="0 0 1440 36" preserveAspectRatio="none" style="height:36px" fill="var(--warm-white)" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C360,0 720,36 1080,18 C1260,9 1380,4 1440,0 L1440,36 L0,36 Z"/>
+  </svg>
+</div>
+
+<section class="feat-sec feat-bt" id="feature">
+  <div class="wrap">
+    <div class="feat-grid rv">
+      <div class="feat-img">
+        <img src="./images/image_25.webp" alt="HiBOU 防風罩防潑水特寫">
+        <div class="feat-tag">
+          <div class="feat-tag-nm">喜福專屬機能布</div>
+          <div class="feat-tag-sub">SAFETY · REPUTATION</div>
+        </div>
+      </div>
+      <div class="feat-text-wrap">
+        <div class="feat-number">01</div>
+        <span class="feat-lbl">Core Feature · 核心技術</span>
+        <h2 class="feat-title">別讓突如其來的意外，<br><em>打斷美好的育兒時光</em></h2>
+        <div class="wavy"></div>
+        <p class="feat-desc">帶寶寶出門最怕突如其來的小雨，或是在推車上「突然噴尿」的狼狽。喜福機能防風罩採用獨家奈米防潑水技術，讓液體瞬間成球狀滑落，不再滲透座墊。一抹即淨的質感，是品牌給家長最優雅的後盾。</p>
+        <div class="feat-specs">
+          <span class="spec">抗UV UPF50+</span>
+          <span class="spec">奈米防潑水</span>
+          <span class="spec">雙重紗內層</span>
+          <span class="spec">零有害添加</span>
+        </div>
+        <div class="feat-cta">
+          <a href="#styles" class="btn-p">立即擁有 →</a>
+          <a href="#usage" class="btn-g">查看生活應用</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-div" style="background:var(--linen)">
+  <svg viewBox="0 0 1440 36" preserveAspectRatio="none" style="height:36px" fill="var(--butter)" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,36 960,0 1440,28 L1440,0 L0,0 Z"/>
+  </svg>
+</div>
+
+<section class="sec sec-ln" id="usage">
+  <div class="wrap">
+    <div class="sec-hdr rv">
+      <span class="lbl">Versatility · 多元生活場景</span>
+      <h2 class="hdg">喜福，更懂您的<em>育兒節奏</em></h2>
+      <div class="wavy"></div>
+      <p class="bcopy">不只是一件防風罩，更是伴隨寶寶成長的多功能守護者</p>
+    </div>
+    <div class="usage-grid">
+      <div class="uc rv">
+        <div class="uc-img"><img src="./hibou-web/public/images/usage_scenes/%E5%96%9C%E7%A6%8F-06736-jpg.webp" alt="揹巾搭配"></div>
+        <div class="uc-body">
+          <div class="uc-num">01</div>
+          <div class="uc-name">移動式的避風港</div>
+          <div class="uc-desc">進出百貨冷氣房或日夜溫差，喜福的高機能布料能有效鎖住適溫，讓寶寶在懷裡享受星級般的安穩。</div>
+        </div>
+      </div>
+      <div class="uc rv">
+        <div class="uc-img"><img src="./hibou-web/public/images/usage_scenes/stroller_new.jpg" alt="推車防風墊"></div>
+        <div class="uc-body">
+          <div class="uc-num">02</div>
+          <div class="uc-name">質感推車座墊</div>
+          <div class="uc-desc">解決「噴尿溼答答」的頭痛問題。防潑水層攔截髒汙，推車座墊不再受災，讓外出逛街更顯從容。</div>
+        </div>
+      </div>
+      <div class="uc rv">
+        <div class="uc-img"><img src="./hibou-web/public/images/usage_scenes/breastfeeding_new.jpg" alt="哺乳巾"></div>
+        <div class="uc-body">
+          <div class="uc-num">03</div>
+          <div class="uc-name">優雅哺乳隱私</div>
+          <div class="uc-desc">輕薄透氣、垂墜感佳，為媽咪建立專屬的靜謐空間，在公共場所哺乳也能保持質感與體面。</div>
+        </div>
+      </div>
+      <div class="uc rv">
+        <div class="uc-img"><img src="./hibou-web/public/images/usage_scenes/image_10.webp" alt="專利分腿"></div>
+        <div class="uc-body">
+          <div class="uc-num">04</div>
+          <div class="uc-name">職人專利分腿</div>
+          <div class="uc-desc">獨家包腳設計，徹底封鎖腿部冷風空隙。喜福的貼心細節，體現在對寶寶小腳丫的溫柔呵護。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-div" style="background:var(--butter)">
+  <svg viewBox="0 0 1440 36" preserveAspectRatio="none" style="height:36px" fill="var(--linen)" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C360,0 720,36 1080,12 C1260,0 1380,6 1440,0 L1440,36 L0,36 Z"/>
+  </svg>
+</div>
+
+<section class="sec sec-bt" id="styles">
+  <div class="wrap">
+    <div class="sec-hdr rv">
+      <span class="lbl">Brand Aesthetics · 品牌美學</span>
+      <h2 class="hdg">賦予防風罩 <em>獨特的靈魂</em></h2>
+      <div class="wavy"></div>
+      <p class="bcopy">精選兩款經典花色，附贈品牌專屬質感提袋</p>
+    </div>
+    <div class="style-grid rv">
+      <div class="style-card">
+        <div class="style-img-wrap"><img src="./hibou-web/public/images/styles/style_grey_blue.jpg" alt="灰灰藍恐龍" loading="lazy"></div>
+        <div class="style-body">
+          <div class="style-badge">✦ 經典款</div>
+          <div class="style-name">灰灰藍恐龍</div>
+          <div class="style-price" id="price-blue">NT$ --</div>
+          <div class="style-gift"><span class="style-gift-ico">🎁</span>附贈品牌質感提袋</div>
+          <button class="btn-buy" id="btn-buy-blue" onclick="doAddWindshield('windshield_blue')">資料載入中...</button>
+        </div>
+      </div>
+      <div class="style-card">
+        <div class="style-img-wrap"><img src="./hibou-web/public/images/styles/style_flower_pink.jpg" alt="花花粉恐龍" loading="lazy"></div>
+        <div class="style-body">
+          <div class="style-badge">✦ 人氣款</div>
+          <div class="style-name">花花粉恐龍</div>
+          <div class="style-price" id="price-pink">NT$ --</div>
+          <div class="style-gift"><span class="style-gift-ico">🎁</span>附贈品牌質感提袋</div>
+          <button class="btn-buy" id="btn-buy-pink" onclick="doAddWindshield('windshield_pink')">資料載入中...</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-pc">
+  <div class="wrap">
+    <div class="sec-hdr rv">
+      <span class="lbl">Quality Control · 品質嚴控</span>
+      <h2 class="hdg">信譽，源自於 <em>極致的苛求</em></h2>
+      <div class="wavy"></div>
+    </div>
+    <div class="specs-card rv">
+      <div class="specs-grid">
+        <div class="spec-item-v2">
+          <div class="spec-ico">🧪</div>
+          <div>
+            <div class="spec-text-nm">核心技術</div>
+            <div class="spec-text-val">HiBOU 獨家奈米防潑水塗層 + 抗UV UPF50+ 機能布料</div>
+          </div>
+        </div>
+        <div class="spec-item-v2">
+          <div class="spec-ico">🤱</div>
+          <div>
+            <div class="spec-text-nm">親膚內層</div>
+            <div class="spec-text-val">嚴選高品質雙重紗，物理性透氣結構，拒絕悶熱熱疹</div>
+          </div>
+        </div>
+        <div class="spec-item-v2">
+          <div class="spec-ico">🏅</div>
+          <div>
+            <div class="spec-text-nm">品牌認證</div>
+            <div class="spec-text-val">經濟部標準檢驗局 BSMI 認證：M55352</div>
+          </div>
+        </div>
+        <div class="spec-item-v2">
+          <div class="spec-ico">🧵</div>
+          <div>
+            <div class="spec-text-nm">職人工藝</div>
+            <div class="spec-text-val">MIT 台灣製造，專注於每一個針腳的安全性與耐用度</div>
+          </div>
+        </div>
+        <div class="spec-item-v2" style="grid-column:1/-1;border-right:none">
+          <div class="spec-ico">👶</div>
+          <div>
+            <div class="spec-text-nm">適用階段</div>
+            <div class="spec-text-val">新生兒至幼兒（66 × 76 cm，多段式可調釦設計）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-div" style="background:#171009">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="height:48px" fill="var(--parchment)" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C360,0 720,48 1080,24 C1260,12 1380,8 1440,0 L1440,48 L0,48 Z"/>
+  </svg>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div>
+        <div class="fbrand-nm">HiBOU 喜福生活苑</div>
+        <div class="fbrand-tag">Reputation & Quality · Born for Babies</div>
+        <p class="fbrand-info">台灣原創嬰幼兒精品品牌<br>以信譽與工藝，守護孩子的第一步<br>TEL：04-2773247</p>
+        <div class="fsocials">
+          <a href="#" class="fsoc">f</a><a href="#" class="fsoc">ig</a><a href="#" class="fsoc">yt</a>
+        </div>
+      </div>
+      <div class="fcol"><h5>機能防風罩</h5><ul><li><a href="#">品牌價值</a></li><li><a href="#">工藝細節</a></li><li><a href="#">安全認證</a></li><li><a href="#">清潔指南</a></li></ul></div>
+      <div class="fcol"><h5>服務資訊</h5><ul><li><a href="#">購物說明</a></li><li><a href="#">退換貨政策</a></li><li><a href="#">常見問題</a></li></ul></div>
+      <div class="fcol"><h5>關於喜福</h5><ul><li><a href="#">職人故事</a></li><li><a href="hibou-6gauze.html">六重紗系列</a></li><li><a href="news-bloggers.html">部落客推薦</a></li></ul></div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 HiBOU 喜福生活苑 ｜ 建立在信賴上的質感育兒</span>
+      <span>隱私權政策　使用條款</span>
+    </div>
+  </div>
+</footer>
+
+<div class="buy-bar" id="buyBar">
+  <div class="buy-bar-info">
+    <div class="buy-bar-name">HiBOU 機能防風罩</div>
+    <div class="buy-bar-price">NT$ 1,880 · 附贈質感提袋</div>
+  </div>
+  <a href="#styles" class="buy-bar-btn" onclick="document.getElementById('buyBar').classList.remove('visible')">選購花色 →</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--ink);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--ink);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--ink);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+// ── 動態讀取 Google 試算表 API ──
+var PD = {};
+// 您的全站共用 API 網址
+const API_URL = 'https://script.google.com/macros/s/AKfycbzIWfBsLEs7Cqv0FIyuMgzqD5rYeWu9HDdnsZyBymgX4XxBDao1WtNaYsTHZTzrjjYu8A/exec';
+
+window.addEventListener('load', async function() {
+    try {
+        const response = await fetch(API_URL);
+        PD = await response.json();
+        console.log("✅ 成功載入商品資料", PD);
+        
+        // 渲染防風罩的價格與狀態
+        renderWindshieldButton('windshield_blue', 'price-blue', 'btn-buy-blue');
+        renderWindshieldButton('windshield_pink', 'price-pink', 'btn-buy-pink');
+        
+    } catch (error) {
+        console.error("❌ 載入失敗：", error);
+    }
+});
+
+function renderWindshieldButton(productId, priceId, btnId) {
+    const product = PD[productId];
+    const priceEl = document.getElementById(priceId);
+    const btnEl = document.getElementById(btnId);
+    
+    if(product) {
+        priceEl.textContent = `NT$ ${product.price.toLocaleString()}`;
+        // 檢查花色庫存狀態
+        if(product.colors && product.colors.length > 0 && product.colors[0].s === 'out') {
+            btnEl.textContent = '此花色已售完';
+            btnEl.disabled = true;
+        } else {
+            btnEl.textContent = '加入購物車';
+            btnEl.disabled = false;
+        }
+    } else {
+        btnEl.textContent = '商品載入失敗';
+        btnEl.disabled = true;
+    }
+}
+
+// ── 購物車共用邏輯 ──
+const CART_KEY = 'hibou_cart';
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+
+function doAddWindshield(productId) {
+    const product = PD[productId];
+    if(!product) return;
+    
+    const colorInfo = product.colors[0]; // 防風罩每款只有一個花色對應
+    if(colorInfo.s === 'out') return;
+    
+    const item = { 
+        productKey: productId, 
+        name: product.name, 
+        color: colorInfo.n, 
+        size: '標準款', 
+        qty: 1, 
+        price: product.price, 
+        image: colorInfo.i 
+    };
+    
+    let cart = getCart();
+    let existing = cart.find(i => i.productKey === item.productKey);
+    if(existing) existing.qty += item.qty; else cart.push(item);
+    saveCart(cart);
+    
+    toggleCart(true); // 自動打開購物車
+}
+
+function updateCartQty(index, delta) {
+    let cart = getCart();
+    cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart(cart);
+}
+function removeFromCart(index) {
+    let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+}
+
+function toggleCart(forceOpen = false) {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    if(forceOpen || !drawer.classList.contains('open')) {
+        overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+    } else {
+        overlay.classList.remove('open'); drawer.classList.remove('open');
+    }
+}
+
+function updateCartUI() {
+    let cart = getCart();
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+
+    let container = document.getElementById('cartItemsContainer');
+    if(cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--clay);">購物車目前是空的喔！</div>';
+        document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+    }
+
+    let html = ''; let subtotal = 0;
+    cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+        html += `
+        <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name}">
+            <div class="cart-item-info">
+                <div style="display:flex; justify-content:space-between;">
+                    <div class="cart-item-title">${item.name}</div>
+                    <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                </div>
+                <div class="cart-item-var">${variantStr}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                    <div class="cart-qty-ctrl">
+                        <button onclick="updateCartQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateCartQty(${index}, 1)">+</button>
+                    </div>
+                    <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+}
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+// Scroll progress bar
+var progressBar = document.getElementById('progressBar');
+function updateProgress(){
+  var scrollTop = window.scrollY || document.documentElement.scrollTop;
+  var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var pct = docH > 0 ? (scrollTop / docH * 100) : 0;
+  progressBar.style.width = pct + '%';
+}
+
+// Sticky buy bar — appears after scrolling past hero
+var buyBar = document.getElementById('buyBar');
+var heroSection = document.querySelector('.hero');
+function updateBuyBar(){
+  if(!heroSection) return;
+  var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+  buyBar.classList.toggle('visible', window.scrollY > heroBottom);
+}
+
+// Reveal Animation — staggered within each section
+var rvObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(!entry.isIntersecting) return;
+    var siblings = Array.from(entry.target.parentElement.querySelectorAll('.rv:not(.in)'));
+    var idx = siblings.indexOf(entry.target);
+    setTimeout(function(){ entry.target.classList.add('in'); }, Math.max(0, idx) * 95);
+    rvObs.unobserve(entry.target);
+  });
+}, {threshold:0.07, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){ rvObs.observe(el); });
+
+// Header scroll state
+var hdrEl = document.getElementById('header');
+window.addEventListener('scroll', function(){
+  hdrEl.classList.toggle('scrolled', window.scrollY > 20);
+  updateProgress();
+  updateBuyBar();
+}, {passive:true});
+
+// Subtle hero parallax
+var heroImg = document.querySelector('.hero-img');
+if(heroImg){
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    if(y < window.innerHeight * 1.5){
+      heroImg.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+    }
+  }, {passive:true});
+}
+
+// Mobile Menu
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  const burger = document.getElementById('hamburger');
+  const isOpen = nav.classList.contains('open');
+  if (isOpen) { closeMobileMenu(); }
+  else {
+    nav.classList.add('open');
+    burger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMobileMenu() {
+  const nav = document.getElementById('mobileNav');
+  const burger = document.getElementById('hamburger');
+  nav.classList.remove('open');
+  burger.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', (e) => {
+  const nav = document.getElementById('mobileNav');
+  const burger = document.getElementById('hamburger');
+  if (nav && nav.classList.contains('open') &&
+      !nav.contains(e.target) && !burger.contains(e.target)) {
+    closeMobileMenu();
+  }
+});
+</script>
+</body>
+</html>

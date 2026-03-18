@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜福生活誌｜親子旅遊・育兒教室・部落客推薦｜HiBOU 喜福生活苑</title>
+<meta name="description" content="喜福生活誌：跟著小鷹出去玩、媽咪育兒教室、部落客真實推薦。陪伴每一個家庭，走過育兒路上最美好的時光。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7A9A7E;
+    --moss: #4A6741;
+    --sand: #C9A97A;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --accent-orange: #D4845A;
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--charcoal); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+  /* ── HEADER ── */
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
+  }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width:1200px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+  a.logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+  header#header nav { display:flex; align-items:center; gap:0.15rem; }
+  header#header nav > a { font-size:0.78rem; color:var(--charcoal); text-decoration:none; padding:0.4rem 0.6rem; border-radius:20px; transition:all 0.2s; letter-spacing:0.02em; white-space:nowrap; }
+  header#header nav > a:hover, header#header nav > a.cur { background:rgba(122,154,126,0.1); color:var(--moss); }
+  header#header nav > a.cur { font-weight:500; }
+  
+  /* ── Dropdown Menu (下拉選單) ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display:flex; align-items:center; gap:0.75rem; }
+  
+  /* ── 購物車圖示與抽屜 ── */
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--light-gray); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--light-gray); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .hamburger span { width:22px; height:2px; background:var(--charcoal); border-radius:2px; transition:0.3s; display:block; }
+  .mobile-nav { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(255,254,249,0.98); backdrop-filter:blur(12px); border-bottom:1px solid rgba(122,154,126,0.15); padding:1.25rem 2rem 1.5rem; z-index:499; flex-direction:column; gap:0.25rem; box-shadow:0 8px 32px rgba(0,0,0,0.08); transform:translateY(-8px); opacity:0; transition:opacity 0.25s, transform 0.25s; }
+  .mobile-nav.open { display:flex; opacity:1; transform:translateY(0); }
+  .mobile-nav a { font-size:0.95rem; color:var(--charcoal); text-decoration:none; padding:0.7rem 0.75rem; border-radius:10px; border-bottom:1px solid rgba(122,154,126,0.1); transition:background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom:none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background:rgba(122,154,126,0.08); color:var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top:0.75rem; background:var(--moss); color:white; text-align:center; padding:0.75rem; border-radius:20px; font-size:0.9rem; border-bottom:none; letter-spacing:0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background:var(--sage); }
+  .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+  .hamburger.active span:nth-child(2) { opacity:0; }
+  .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+  @media (max-width:768px) { header#header nav { display:none; } .hamburger { display:flex; } }
+
+  /* ── HERO ── */
+  .journal-hero {
+    margin-top: 72px;
+    padding: 80px 2rem 72px;
+    background: linear-gradient(160deg, #f5f0e8 0%, #eef4ee 50%, #f5ede0 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .journal-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a6741' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .journal-hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--moss); background: rgba(74,103,65,0.08); border: 1px solid rgba(74,103,65,0.18); padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 1.5rem; }
+  .journal-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; color: var(--charcoal); line-height: 1.3; margin-bottom: 1rem; }
+  .journal-hero h1 em { font-style: italic; color: var(--moss); }
+  .journal-hero p { font-size: 0.92rem; line-height: 1.95; color: var(--soft-gray); max-width: 520px; margin: 0 auto; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb { background: var(--light-gray); border-bottom: 1px solid rgba(122,154,126,0.12); }
+  .breadcrumb-inner { max-width:1200px; margin:0 auto; padding:0.7rem 2rem; display:flex; align-items:center; gap:0.5rem; font-size:0.78rem; color:var(--soft-gray); }
+  .breadcrumb a { color:var(--soft-gray); text-decoration:none; transition:color 0.2s; }
+  .breadcrumb a:hover { color:var(--moss); }
+  .breadcrumb .sep { opacity:0.5; }
+  .breadcrumb .current { color:var(--charcoal); font-weight:500; }
+
+  /* ── SECTION ── */
+  .sec { padding: 80px 2rem; }
+  .sec-cream { background: var(--cream); }
+  .sec-white { background: var(--warm-white); }
+  .sec-sage { background: linear-gradient(135deg, #edf3ee 0%, #e8f0e9 100%); }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .sec-label { font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); display: block; margin-bottom: 0.6rem; }
+  .sec-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; color: var(--charcoal); line-height: 1.35; }
+  .sec-title em { font-style: italic; color: var(--moss); }
+  .sec-copy { font-size: 0.87rem; line-height: 1.95; color: #666; margin-top: 0.75rem; max-width: 520px; }
+  .wavy { margin: 1.1rem 0; width: 48px; height: 7px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='7'%3E%3Cpath d='M0 3.5Q6 0 12 3.5Q18 7 24 3.5Q30 0 36 3.5Q42 7 48 3.5' stroke='%237a9a7e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat; }
+
+  /* ── CATEGORY CARDS ── */
+  .cat-hub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .cat-card {
+    border-radius: 24px; overflow: hidden; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s;
+    background: white;
+  }
+  .cat-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+  .cat-card-img {
+    aspect-ratio: 16/9; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cat-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(.22,1,.36,1); }
+  .cat-card:hover .cat-card-img img { transform: scale(1.06); }
+  .cat-card-emoji { font-size: 3.5rem; line-height: 1; }
+  .cat-card-body { padding: 1.5rem 1.6rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
+  .cat-card-tag { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+  .cat-card-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.65rem; line-height: 1.4; }
+  .cat-card-desc { font-size: 0.82rem; line-height: 1.85; color: var(--soft-gray); flex: 1; margin-bottom: 1.3rem; }
+  .cat-card-cta { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 500; color: var(--moss); letter-spacing: 0.04em; }
+  .cat-card-cta::after { content: '→'; transition: transform 0.2s; }
+  .cat-card:hover .cat-card-cta::after { transform: translateX(4px); }
+
+  /* Card accent colors */
+  .cat-card-travel .cat-card-img { background: linear-gradient(135deg, #e8f4f0 0%, #d4e8da 100%); }
+  .cat-card-parenting .cat-card-img { background: linear-gradient(135deg, #fef3e8 0%, #fde8d0 100%); }
+  .cat-card-bloggers .cat-card-img { background: linear-gradient(135deg, #f0edf8 0%, #e4dff4 100%); }
+
+  /* ── LATEST STRIP ── */
+  .latest-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  .latest-item { display: flex; align-items: flex-start; gap: 0.9rem; padding: 1rem; border-radius: 16px; background: white; box-shadow: 0 1px 8px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; }
+  .latest-item:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
+  .latest-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .latest-icon-travel { background: rgba(122,154,126,0.15); }
+  .latest-icon-parenting { background: rgba(212,132,90,0.15); }
+  .latest-icon-bloggers { background: rgba(150,120,200,0.12); }
+  .latest-cat { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--soft-gray); margin-bottom: 0.2rem; }
+  .latest-title { font-size: 0.84rem; font-weight: 500; color: var(--charcoal); line-height: 1.45; }
+
+  /* ── CTA BAND ── */
+  .cta-band { background: linear-gradient(140deg, #2e4428 0%, #3b4a2e 60%, #2e3c20 100%); padding: 72px 2rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-band::before { content:''; position:absolute; top:-180px; right:-120px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(201,168,122,.1) 0%, transparent 65%); pointer-events:none; }
+  .cta-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+  .cta-label { font-size: 0.65rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(245,234,216,0.45); margin-bottom: 0.8rem; display: block; }
+  .cta-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; color: #f5ead8; line-height: 1.4; margin-bottom: 0.9rem; }
+  .cta-title em { font-style: italic; color: #c9a87a; }
+  .cta-desc { font-size: 0.88rem; line-height: 2; color: rgba(245,234,216,0.65); margin-bottom: 2rem; }
+  .btn-cta { display: inline-flex; align-items: center; background: #f5ead8; color: var(--moss); padding: 0.85rem 2.2rem; border-radius: 24px; font-size: 0.84rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  footer { background: #1c1509; color: rgba(245,234,216,0.5); padding: 4rem 2rem 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(245,234,216,0.08); }
+  .footer-brand-name { font-family: var(--serif); font-size: 1.2rem; color: #f5ead8; margin-bottom: 0.2rem; }
+  .footer-brand-sub { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,234,216,0.28); margin-bottom: 1rem; }
+  .footer-brand-info { font-size: 0.76rem; line-height: 1.9; color: rgba(245,234,216,0.45); }
+  .footer-col h5 { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,234,216,0.8); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.6rem; }
+  .footer-col a { font-size: 0.76rem; color: rgba(245,234,216,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--sage); }
+  .footer-bot { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: rgba(245,234,216,0.2); flex-wrap: wrap; gap: 0.5rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cat-hub { grid-template-columns: 1fr; gap: 1.2rem; }
+    .cat-card-img { aspect-ratio: 2/1; }
+    .latest-strip { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .sec { padding: 56px 1.2rem; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATE IN ── */
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1); }
+  .rv.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<section class="journal-hero">
+  <div class="journal-hero-inner">
+    <div class="hero-eyebrow">🦉 HiBOU Journal · 喜福生活誌</div>
+    <h1>陪你走過<br><em>育兒最美好的時光</em></h1>
+    <p>親子旅遊攻略、育兒實用知識、部落客真實體驗分享。我們不只做好商品，更想成為你育兒路上最溫暖的陪伴。</p>
+  </div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">首頁</a>
+    <span class="sep">›</span>
+    <span class="current">喜福生活誌</span>
+  </div>
+</div>
+
+<section class="sec sec-white">
+  <div class="wrap">
+    <div class="rv">
+      <span class="sec-label">Journal · 三大主題</span>
+      <h2 class="sec-title">選擇你想探索的<em>主題</em></h2>
+      <div class="wavy"></div>
+      <p class="sec-copy">從親子出遊到育兒知識，從真實媽媽的使用心得到品牌故事，喜福生活誌記錄每一個育兒片刻。</p>
+    </div>
+
+    <div class="cat-hub">
+      <a href="news-travel.html" class="cat-card cat-card-travel rv">
+        <div class="cat-card-img">
+          <div class="cat-card-emoji">🗺</div>
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-card-tag">Travel · 親子旅遊</div>
+          <div class="cat-card-title">跟著小鷹出去玩</div>
+          <div class="cat-card-desc">大手牽小手，帶孩子探索台灣最美的風景。精選親子友善景點、行程規劃、外出帶娃必知小撇步，讓每一次出遊都成為美好回憶。</div>
+          <div class="cat-card-cta">前往探索</div>
+        </div>
+      </a>
+
+      <a href="news-parenting.html" class="cat-card cat-card-parenting rv">
+        <div class="cat-card-img">
+          <div class="cat-card-emoji">📚</div>
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-card-tag">Parenting · 育兒教室</div>
+          <div class="cat-card-title">媽咪育兒教室</div>
+          <div class="cat-card-desc">新手爸媽必修課：待產包清單、新生兒照顧指南、副食品入門、睡眠訓練方法。最實用的育兒知識，陪你度過每一個新手挑戰。</div>
+          <div class="cat-card-cta">進入教室</div>
+        </div>
+      </a>
+
+      <a href="news-bloggers.html" class="cat-card cat-card-bloggers rv">
+        <div class="cat-card-img">
+          <div class="cat-card-emoji">⭐</div>
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-card-tag">Reviews · 部落客推薦</div>
+          <div class="cat-card-title">真實媽媽的推薦</div>
+          <div class="cat-card-desc">超過 50 位媽媽部落客親身體驗喜福商品，防風罩、六重紗、防踢被⋯每一篇都是最真實的育兒心得，讓妳買得安心、用得放心。</div>
+          <div class="cat-card-cta">看看推薦</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-cream">
+  <div class="wrap">
+    <div class="rv">
+      <span class="sec-label">Quick Links · 精選文章</span>
+      <h2 class="sec-title">最多媽媽<em>在看的</em></h2>
+      <div class="wavy"></div>
+    </div>
+    <div class="latest-strip">
+      <a href="news-travel.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-travel">🗺</div>
+        <div>
+          <div class="latest-cat">親子旅遊</div>
+          <div class="latest-title">帶寶寶出門的行李清單：一次整理帶什麼最省心</div>
+        </div>
+      </a>
+      <a href="news-parenting.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-parenting">📚</div>
+        <div>
+          <div class="latest-cat">育兒教室</div>
+          <div class="latest-title">新生兒待產包必備清單：護士媽媽私藏版</div>
+        </div>
+      </a>
+      <a href="news-bloggers.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-bloggers">⭐</div>
+        <div>
+          <div class="latest-cat">部落客推薦</div>
+          <div class="latest-title">防風罩真的有用嗎？50 位媽媽實測心得整理</div>
+        </div>
+      </a>
+      <a href="news-travel.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-travel">🗺</div>
+        <div>
+          <div class="latest-cat">親子旅遊</div>
+          <div class="latest-title">台灣 10 個最適合帶嬰兒出遊的親子景點</div>
+        </div>
+      </a>
+      <a href="news-parenting.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-parenting">📚</div>
+        <div>
+          <div class="latest-cat">育兒教室</div>
+          <div class="latest-title">寶寶睡眠訓練怎麼開始？3 個月到 1 歲完整指南</div>
+        </div>
+      </a>
+      <a href="news-bloggers.html" class="latest-item rv">
+        <div class="latest-icon latest-icon-bloggers">⭐</div>
+        <div>
+          <div class="latest-cat">部落客推薦</div>
+          <div class="latest-title">六重紗防踢被實測：越洗越柔軟是真的嗎？</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="cta-inner rv">
+    <span class="cta-label">HiBOU · 喜福生活苑</span>
+    <h2 class="cta-title">好商品，<em>好故事</em></h2>
+    <p class="cta-desc">每一件喜福商品背後，都有一個關於守護寶寶的故事。探索我們的商品系列，找到最適合你家寶寶的那一件。</p>
+    <a href="shop-all.html" class="btn-cta">探索商品系列 →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">HiBOU 喜福生活苑</div>
+        <div class="footer-brand-sub">Born for Babies</div>
+        <p class="footer-brand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：service@hibou.com.tw<br>營業時間：週一至週五 11:00–17:00</p>
+      </div>
+      <div class="footer-col">
+        <h5>喜福生活誌</h5>
+        <ul>
+          <li><a href="news-travel.html">跟著小鷹出去玩</a></li>
+          <li><a href="news-parenting.html">媽咪育兒教室</a></li>
+          <li><a href="news-bloggers.html">部落客推薦</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>商品系列</h5>
+        <ul>
+          <li><a href="hibou-6gauze.html">六重紗系列</a></li>
+          <li><a href="hibou-windshield.html">寶寶我最罩</a></li>
+          <li><a href="hibou-clips.html">隨身配件</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>服務資訊</h5>
+        <ul>
+          <li><a href="contact.html">聯絡我們</a></li>
+          <li><a href="#">購物說明</a></li>
+          <li><a href="#">退換貨政策</a></li>
+          <li><a href="#">品牌故事</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 HiBOU 喜福生活苑股份有限公司　彰化縣鹿港鎮</span>
+      <span>隱私權政策　使用條款</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+  // ── 購物車共用邏輯 ──
+  const CART_KEY = 'hibou_cart';
+  function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+  function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      if(forceOpen || !drawer.classList.contains('open')) {
+          overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+      } else {
+          overlay.classList.remove('open'); drawer.classList.remove('open');
+      }
+  }
+  function updateCartQty(index, delta) {
+      let cart = getCart(); cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+  }
+  function removeFromCart(index) {
+      let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+  }
+  function updateCartUI() {
+      let cart = getCart();
+      let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+      let container = document.getElementById('cartItemsContainer');
+      if(cart.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+          document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+      }
+      let html = ''; let subtotal = 0;
+      cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+          html += `
+          <div class="cart-item">
+              <img src="${item.image || ''}" alt="${item.name}">
+              <div class="cart-item-info">
+                  <div style="display:flex; justify-content:space-between;">
+                      <div class="cart-item-title">${item.name}</div>
+                      <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                  </div>
+                  <div class="cart-item-var">${variantStr}</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                      <div class="cart-qty-ctrl">
+                          <button onclick="updateCartQty(${index}, -1)">-</button>
+                          <span>${item.qty}</span>
+                          <button onclick="updateCartQty(${index}, 1)">+</button>
+                      </div>
+                      <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                  </div>
+              </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+  }
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+
+  // ── 行動裝置與動畫 ──
+  function toggleMenu(){
+    const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');
+    if(n.classList.contains('open')){closeMobileMenu();}
+    else{n.classList.add('open');b.classList.add('active');document.body.style.overflow='hidden';}
+  }
+  function closeMobileMenu(){
+    const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');
+    n.classList.remove('open');b.classList.remove('active');document.body.style.overflow='';
+  }
+  document.addEventListener('click',(e)=>{
+    const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');
+    if(n&&n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target))closeMobileMenu();
+  });
+  window.addEventListener('scroll',()=>{
+    const h=document.getElementById('header');
+    if(h)h.classList.toggle('scrolled',window.scrollY>10);
+  },{passive:true});
+  const rvObs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(!e.isIntersecting)return;
+      const sibs = Array.from(e.target.parentElement.querySelectorAll('.rv:not(.in)'));
+      const idx = sibs.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('in'), Math.max(0,idx)*80);
+      rvObs.unobserve(e.target);
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跟著小鷹出去玩｜HiBOU 喜福生活苑</title>
+<meta name="description" content="大手牽小手，帶孩子環島探險趣。探索台灣最適合親子出遊的景點與私房遊記。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7A9A7E;
+    --moss: #4A6741;
+    --sand: #C9A97A;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --accent-orange: #D4845A;
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,154,126,0.15); transition: box-shadow 0.3s;
+  }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width:1200px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+  a.logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+  header#header nav { display:flex; align-items:center; gap:0.15rem; }
+  header#header nav > a { font-size:0.78rem; color:var(--charcoal); text-decoration:none; padding:0.4rem 0.6rem; border-radius:20px; transition:all 0.2s; letter-spacing:0.02em; white-space:nowrap; }
+  header#header nav > a:hover, header#header nav > a.cur { background:rgba(122,154,126,0.1); color:var(--moss); }
+  header#header nav > a.cur { font-weight:500; }
+  
+  /* ── Dropdown Menu (下拉選單) ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display:flex; align-items:center; gap:0.75rem; }
+  
+  /* ── 購物車圖示與抽屜 ── */
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--light-gray); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--light-gray); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .mobile-nav {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,154,126,0.15); padding: 1.25rem 2rem 1.5rem;
+    z-index: 499; flex-direction: column; gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px);
+    opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.7rem 0.75rem; border-radius: 10px; letter-spacing: 0.03em; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  @media (max-width: 768px) { header#header nav { display: none; } .hamburger { display: flex; } }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    margin-top: 72px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0.85rem 2rem;
+  }
+  .breadcrumb-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--soft-gray);
+  }
+  .breadcrumb-inner a { color: var(--soft-gray); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb-inner a:hover { color: var(--moss); }
+  .breadcrumb-inner .sep { color: var(--light-gray); }
+  .breadcrumb-inner .current { color: var(--charcoal); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    background: linear-gradient(135deg, var(--sage) 0%, #5d7a60 100%);
+    padding: 72px 2rem 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35);
+    color: white; font-size: 0.72rem; letter-spacing: 0.18em;
+    padding: 0.35rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .page-hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+  .page-hero-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.9;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background: white;
+    border-bottom: 1px solid var(--light-gray);
+    position: sticky;
+    top: 72px;
+    z-index: 50;
+    padding: 0 2rem;
+  }
+  .filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.85rem 0;
+    scrollbar-width: none;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--light-gray);
+    background: transparent;
+    font-size: 0.78rem;
+    color: var(--soft-gray);
+    cursor: pointer;
+    font-family: var(--sans);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--sage); color: var(--moss); }
+  .filter-btn.active {
+    background: var(--moss); border-color: var(--moss);
+    color: white;
+  }
+
+  /* ── COMMON SECTION ── */
+  section { padding: 72px 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ── TRAVEL CARDS ── */
+  .travel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .travel-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .travel-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .travel-cover {
+    height: 180px;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--light-gray) 100%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    overflow: hidden;
+  }
+  .travel-cover-pattern {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(122,154,126,0.05) 20px,
+      rgba(122,154,126,0.05) 40px
+    );
+  }
+  .travel-badge {
+    position: absolute; bottom: 0.75rem; left: 0.75rem;
+    background: var(--sand); color: white;
+    font-size: 0.65rem; letter-spacing: 0.08em;
+    padding: 0.22rem 0.65rem; border-radius: 20px;
+  }
+  .travel-body { padding: 1.35rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .travel-cat {
+    font-size: 0.72rem; color: var(--sage);
+    font-weight: 600; letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+  .travel-title {
+    font-family: var(--serif);
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--charcoal); line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+  .travel-excerpt {
+    font-size: 0.8rem; color: var(--soft-gray);
+    line-height: 1.75; flex: 1;
+  }
+  .travel-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1rem; padding-top: 0.85rem;
+    border-top: 1px solid var(--light-gray);
+  }
+  .rtag {
+    background: var(--light-gray);
+    color: var(--moss); font-size: 0.67rem;
+    padding: 0.18rem 0.55rem; border-radius: 20px;
+  }
+
+  /* ── TICKER ── */
+  .ticker-section {
+    background: var(--moss);
+    padding: 1.5rem 0;
+    overflow: hidden;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 2.5rem;
+    animation: ticker 45s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .t-item {
+    font-size: 0.8rem; color: rgba(255,255,255,0.7);
+    flex-shrink: 0; display: flex; align-items: center; gap: 0.6rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.7);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .brand-name {
+    font-family: 'Zen Antique', serif; font-size: 1.3rem;
+    color: white; margin-bottom: 0.25rem;
+  }
+  .footer-col h4 {
+    font-size: 0.8rem; letter-spacing: 0.1em; color: white;
+    margin-bottom: 1rem; text-transform: uppercase;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--sage); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 1024px) {
+    .travel-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    .travel-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html" class="cur">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">首頁</a>
+    <span class="sep">›</span>
+    <a href="hibou-journal.html">喜福生活誌</a>
+    <span class="sep">›</span>
+    <span class="current">跟著小鷹出去玩</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">🗺 TRAVEL WITH HIBOU · 親子旅遊誌</div>
+    <h1 class="page-hero-title">跟著小鷹出去玩</h1>
+    <p class="page-hero-desc">
+      大手牽小手，記錄每一個探索世界的精彩瞬間。<br>
+      從山林步道到文青小鎮，與孩子一起寫下最美的回憶。
+    </p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterCat('all', this)">全部遊記</button>
+    <button class="filter-btn" onclick="filterCat('city', this)">城市探險</button>
+    <button class="filter-btn" onclick="filterCat('nature', this)">山林步道</button>
+    <button class="filter-btn" onclick="filterCat('camping', this)">露營樂趣</button>
+    <button class="filter-btn" onclick="filterCat('island', this)">環島旅行</button>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="travel-grid">
+
+      <a href="#" class="travel-card reveal" data-cat="city nature">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🏔️</span>
+          <span class="travel-badge">宜蘭・兩天一夜</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">親子旅遊</div>
+          <h3 class="travel-title">宜蘭雨天也精彩！蠟筆城堡 DIY 與蘭城晶英酒店賽車體驗</h3>
+          <p class="travel-excerpt">誰說下雨天不能帶孩子出門？喜福小鷹帶你走訪超壯觀的蠟筆城堡，還要在蘭城晶英享受室內賽車趣。</p>
+          <div class="travel-footer">
+            <span class="rtag">宜蘭</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="travel-card reveal" data-cat="nature">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🌳</span>
+          <span class="travel-badge">台中・大坑</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">健行景點</div>
+          <h3 class="travel-title">帶孩子挑戰芬多精！台中大坑 9 號步道親子健行全紀錄</h3>
+          <p class="travel-excerpt">適合全家大小的入門級步道，跟著小鷹一起深呼吸，看見孩子在自然中成長的堅毅眼神。</p>
+          <div class="travel-footer">
+            <span class="rtag">健行</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="travel-card reveal" data-cat="city nature">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🦌</span>
+          <span class="travel-badge">嘉義・森活</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">觀光導覽</div>
+          <h3 class="travel-title">走進檜木香氣！奮起湖與達娜伊谷的親子森林森呼吸</h3>
+          <p class="travel-excerpt">嘉義親子旅遊首選！在日式建築群中漫步，讓孩子體驗不同於都市的靜謐氛圍與原民文化。</p>
+          <div class="travel-footer">
+            <span class="rtag">嘉義</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="travel-card reveal" data-cat="camping">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🏕️</span>
+          <span class="travel-badge">谷關・露營</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">露營樂趣</div>
+          <h3 class="travel-title">喜福 X 享樂：搞鬼萬聖節露營趣，在星空下與孩子歡笑</h3>
+          <p class="travel-excerpt">當萬聖節遇上大自然，一場專屬於親子的星空派對。記錄孩子們穿上變裝服在草地上奔跑的瞬間。</p>
+          <div class="travel-footer">
+            <span class="rtag">露營</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="travel-card reveal" data-cat="city">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🏮</span>
+          <span class="travel-badge">彰化・鹿港</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">私房景點</div>
+          <h3 class="travel-title">喜福小鷹的家鄉：鹿港百年龍山寺與古巷弄中的時光穿梭</h3>
+          <p class="travel-excerpt">帶著孩子走訪充滿歷史感的家鄉，在每一塊古老的紅磚間，分享傳承與文化的美好故事。</p>
+          <div class="travel-footer">
+            <span class="rtag">鹿港</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="travel-card reveal" data-cat="island">
+        <div class="travel-cover">
+          <div class="travel-cover-pattern"></div>
+          <span>🌊</span>
+          <span class="travel-badge">花蓮・台東</span>
+        </div>
+        <div class="travel-body">
+          <div class="travel-cat">環島旅行</div>
+          <h3 class="travel-title">一路向東！在花蓮太魯閣與富山護魚區看見太平洋的藍</h3>
+          <p class="travel-excerpt">跨越中央山脈，小鷹帶著大家來到東海岸。從震撼峽谷到親水體驗，感受大自然的壯闊與純真。</p>
+          <div class="travel-footer">
+            <span class="rtag">花東</span>
+            <span style="font-size: 0.8rem; color: var(--sage);">閱讀遊記 →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="ticker-section">
+  <div class="ticker-track">
+    <span class="t-item">🌿 帶著喜福去旅行・專屬防風罩熱銷中</span>
+    <span class="t-item">🌿 記錄孩子成長的每一哩路</span>
+    <span class="t-item">🌿 MIT 台灣製造・高品質育兒精品</span>
+    <span class="t-item">🌿 帶著喜福去旅行・專屬防風罩熱銷中</span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-name" style="font-family: var(--serif); font-size: 1.3rem; color: white;">HiBOU 喜福生活苑</div>
+        <p style="font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4);">BORN FOR BABIES</p>
+      </div>
+      <div class="footer-col">
+        <h4>喜福生活誌</h4>
+        <ul>
+          <li><a href="news-bloggers.html">部落客推薦</a></li>
+          <li><a href="news-travel.html">親子旅遊誌</a></li>
+          <li><a href="news-parenting.html">媽咪育兒教室</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+  // ── 購物車共用邏輯 ──
+  const CART_KEY = 'hibou_cart';
+  function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+  function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      if(forceOpen || !drawer.classList.contains('open')) {
+          overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+      } else {
+          overlay.classList.remove('open'); drawer.classList.remove('open');
+      }
+  }
+  function updateCartQty(index, delta) {
+      let cart = getCart(); cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+  }
+  function removeFromCart(index) {
+      let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+  }
+  function updateCartUI() {
+      let cart = getCart();
+      let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+      let container = document.getElementById('cartItemsContainer');
+      if(cart.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+          document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+      }
+      let html = ''; let subtotal = 0;
+      cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+          html += `
+          <div class="cart-item">
+              <img src="${item.image || ''}" alt="${item.name}">
+              <div class="cart-item-info">
+                  <div style="display:flex; justify-content:space-between;">
+                      <div class="cart-item-title">${item.name}</div>
+                      <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                  </div>
+                  <div class="cart-item-var">${variantStr}</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                      <div class="cart-qty-ctrl">
+                          <button onclick="updateCartQty(${index}, -1)">-</button>
+                          <span>${item.qty}</span>
+                          <button onclick="updateCartQty(${index}, 1)">+</button>
+                      </div>
+                      <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                  </div>
+              </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+  }
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+
+  // ── 畫面互動 ──
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if(header) header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.travel-card').forEach(card => {
+      const cats = card.dataset.cat || '';
+      card.style.display = (cat === 'all' || cats.includes(cat)) ? '' : 'none';
+    });
+  }
+
+  function toggleMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n.classList.contains('open')){closeMobileMenu();}else{n.classList.add('open');b.classList.add('active');document.body.style.overflow='hidden';}}
+  function closeMobileMenu(){const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');n.classList.remove('open');b.classList.remove('active');document.body.style.overflow='';}
+  document.addEventListener('click',(e)=>{const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');if(n&&n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target))closeMobileMenu();});
+</script>
+</body>
+</html>

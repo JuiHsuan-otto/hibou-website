@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最新消息｜HiBOU 喜福生活苑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741;
+    --sage: #7A9A7E;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --border: rgba(122,154,126,0.15);
+    --sand: #C9A97A;
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+  }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+
+  nav { display: flex; align-items: center; gap: 0.15rem; }
+  nav > a {
+    font-size: 0.78rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  nav > a:hover { background: var(--light-gray); color: var(--moss); }
+  nav > a.cur { color: var(--moss); font-weight: 500; }
+
+  /* ── Dropdown Menu (下拉選單) ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  
+  /* ── 購物車圖示與抽屜 ── */
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--light-gray); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--light-gray); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  /* ── MAIN ── */
+  main { max-width: 1000px; margin: 120px auto 80px; padding: 0 2rem; min-height: 60vh; }
+  
+  .section-hdr { text-align: center; margin-bottom: 60px; }
+  .section-lbl { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--sage); text-transform: uppercase; margin-bottom: 12px; display: block; }
+  .page-title { font-family: 'Noto Serif TC', serif; font-size: 2.4rem; color: var(--charcoal); font-weight: 700; }
+  .wavy { margin: 20px auto; width: 50px; height: 4px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 4'%3E%3Cpath d='M0 2 Q6.25 0 12.5 2 T25 2 T37.5 2 T50 2' fill='none' stroke='%237A9A7E' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x; }
+
+  /* ── NEWS GRID ── */
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
+  .news-card {
+    background: white; border-radius: 20px; overflow: hidden; text-decoration: none;
+    color: inherit; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column;
+  }
+  .news-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .news-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--cream); }
+  .news-body { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+  .news-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+  .news-date { font-size: 0.75rem; color: var(--soft-gray); letter-spacing: 0.05em; font-family: 'Noto Serif TC', serif; }
+  .news-tag { font-size: 0.65rem; padding: 2px 10px; border-radius: 20px; background: var(--cream); color: var(--moss); border: 1px solid rgba(74,103,65,0.2); }
+  .news-title { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: var(--charcoal); font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+  .news-desc { font-size: 0.88rem; color: var(--soft-gray); line-height: 1.8; margin-bottom: 20px; }
+  .news-more { margin-top: auto; font-size: 0.8rem; color: var(--moss); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-nav {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 1.25rem 2rem 1.5rem;
+    z-index: 499; flex-direction: column; gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px);
+    opacity: 0; transition: opacity 0.25s, transform 0.25s;
+  }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.75rem; border-radius: 10px; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
+
+  @media (max-width: 768px) {
+    header nav { display: none; }
+    .hamburger { display: flex; }
+    main { margin-top: 100px; }
+    .news-grid { grid-template-columns: 1fr; gap: 28px; }
+    .page-title { font-size: 1.9rem; }
+  }
+  @media (max-width: 480px) {
+    main { padding: 0 1.25rem; margin-bottom: 60px; }
+  }
+
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 60px 2rem 40px; text-align: center; }
+  footer p { font-size: 0.75rem; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html" class="cur">最新消息</a>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html" class="cur">最新消息</a>
+  <a href="contact.html">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<main>
+  <div class="section-hdr">
+    <span class="section-lbl">Announcements</span>
+    <h1 class="page-title">最新消息</h1>
+    <div class="wavy"></div>
+  </div>
+  
+  <div class="news-grid">
+    <a href="#" class="news-card">
+      <img src="./images/015_9336.jpg" class="news-img" alt="新品上市">
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.03.15</span>
+          <span class="news-tag">新品上市</span>
+        </div>
+        <h2 class="news-title">春季新品：六重紗「恆溫呼呼被」暖心登場</h2>
+        <p class="news-desc">喜福 2026 春季首發，獨家工藝打造如雲朵般輕盈的觸感，陪伴寶寶度過溫差變化大的春季。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <div class="news-img" style="background: linear-gradient(135deg, #f9c3a0 0%, #D4845A 100%);"></div>
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.03.08</span>
+          <span class="news-tag">活動公告</span>
+        </div>
+        <h2 class="news-title">【女王節優惠】寵愛媽咪與寶貝，全館滿額現折</h2>
+        <p class="news-desc">即日起至 3/20，購買指定系列商品滿 $2,000 立減 $200，給辛勞的媽咪最貼心的回饋。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <img src="./images/Hibou_6.jpg" class="news-img" alt="品牌消息">
+      <div class="news-body">
+        <div class="news-meta">
+          <span class="news-date">2026.02.25</span>
+          <span class="news-tag">品牌消息</span>
+        </div>
+        <h2 class="news-title">喜福通過 SGS 安全認證：我們對品質的最高堅持</h2>
+        <p class="news-desc">喜福全系列六重紗商品再度通過年度嚴格檢驗，確保無螢光劑、無甲醛，守護寶寶每一吋肌膚。</p>
+        <span class="news-more">閱讀更多 →</span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 HiBOU 喜福生活苑 · 彰化縣鹿港鎮</p>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+  // ── 購物車共用邏輯 ──
+  const CART_KEY = 'hibou_cart';
+  function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+  function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      if(forceOpen || !drawer.classList.contains('open')) {
+          overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+      } else {
+          overlay.classList.remove('open'); drawer.classList.remove('open');
+      }
+  }
+  function updateCartQty(index, delta) {
+      let cart = getCart(); cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+  }
+  function removeFromCart(index) {
+      let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+  }
+  function updateCartUI() {
+      let cart = getCart();
+      let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+      let container = document.getElementById('cartItemsContainer');
+      if(cart.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+          document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+      }
+      let html = ''; let subtotal = 0;
+      cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+          html += `
+          <div class="cart-item">
+              <img src="${item.image || ''}" alt="${item.name}">
+              <div class="cart-item-info">
+                  <div style="display:flex; justify-content:space-between;">
+                      <div class="cart-item-title">${item.name}</div>
+                      <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                  </div>
+                  <div class="cart-item-var">${variantStr}</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                      <div class="cart-qty-ctrl">
+                          <button onclick="updateCartQty(${index}, -1)">-</button>
+                          <span>${item.qty}</span>
+                          <button onclick="updateCartQty(${index}, 1)">+</button>
+                      </div>
+                      <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                  </div>
+              </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+  }
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+
+  // ── 行動裝置導覽與滾動 ──
+  function toggleMenu() {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    const isOpen = nav.classList.contains('open');
+    nav.classList.toggle('open', !isOpen);
+    burger.classList.toggle('active', !isOpen);
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  }
+  
+  document.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if(header) header.classList.toggle('scrolled', window.scrollY > 20);
+
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    if (nav && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }, {passive: true});
+
+  document.addEventListener('click',(e)=>{
+    const n = document.getElementById('mobileNav'), b = document.getElementById('hamburger');
+    if(n && n.classList.contains('open') && !n.contains(e.target) && !b.contains(e.target)) {
+      n.classList.remove('open');
+      b.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>

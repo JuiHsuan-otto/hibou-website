@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聯絡我們｜HiBOU 喜福生活苑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss: #4A6741;
+    --sage: #7A9A7E;
+    --cream: #FAF7F2;
+    --warm-white: #FFFEF9;
+    --charcoal: #2C2C2C;
+    --soft-gray: #8A8A8A;
+    --light-gray: #F0EDE8;
+    --border: rgba(122,154,126,0.15);
+    --sand: #C9A97A;
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header#header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,254,249,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+  }
+  header#header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+
+  nav { display: flex; align-items: center; gap: 0.15rem; }
+  nav > a {
+    font-size: 0.78rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  nav > a:hover { background: var(--light-gray); color: var(--moss); }
+  nav > a.cur { color: var(--moss); font-weight: 500; }
+
+  /* ── Dropdown Menu (下拉選單) ── */
+  .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+  .nav-item-dropdown > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; cursor: pointer; }
+  .nav-item-dropdown > a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(255,254,249,0.98); backdrop-filter: blur(16px); border: 1px solid rgba(122,154,126,0.15); border-radius: 16px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; box-shadow: 0 12px 40px rgba(42,33,24,0.08); opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); min-width: 150px; pointer-events: none; z-index: 600; }
+  .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .dropdown-menu a { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none; color: var(--charcoal); transition: background 0.2s, color 0.2s; display: block; text-align: center; }
+  .dropdown-menu a:hover { background: rgba(122,154,126,0.1); color: var(--moss); }
+  .dropdown-divider { height: 1px; background: rgba(122,154,126,0.15); margin: 0.4rem 0.5rem; }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  
+  /* ── 購物車圖示與抽屜 ── */
+  .btn-cart-nav { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #f5ead8; color: var(--moss); border: none; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+  .btn-cart-nav:hover { background: #e2d1b5; transform: translateY(-1px); }
+  .cart-badge { position: absolute; top: -2px; right: -4px; background: #C0614A; color: white; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 1.5px solid #fff; }
+  .cart-overlay { position: fixed; inset: 0; background: rgba(42,33,24,0.5); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+  .cart-overlay.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer { position: fixed; top: 0; right: 0; width: 420px; max-width: 100%; height: 100vh; background: var(--warm-white); z-index: 10001; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column; box-shadow: -8px 0 32px rgba(42,33,24,0.15); }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: rgba(253,246,235,0.9); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--light-gray); background: white; }
+  .cart-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(226,209,181,0.5); padding-bottom: 1.5rem; }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--light-gray); }
+  .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .cart-item-title { font-weight: 500; font-size: 0.95rem; color: var(--charcoal); line-height: 1.3; }
+  .cart-item-var { font-size: 0.75rem; color: var(--soft-gray); margin-top: 0.25rem; }
+  .cart-item-price { color: var(--moss); font-weight: 500; font-family: var(--serif); font-size: 1.05rem; }
+  .cart-qty-ctrl { display: flex; align-items: center; gap: 0.75rem; background: var(--light-gray); padding: 0.2rem 0.5rem; border-radius: 20px; }
+  .cart-qty-ctrl button { width: 22px; height: 22px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--moss); font-size: 1rem; }
+  .cart-remove { color: var(--soft-gray); font-size: 0.75rem; text-decoration: underline; cursor: pointer; border: none; background: none; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: 0.3s; display: block; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-nav {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(255,254,249,0.98); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 1.25rem 2rem 1.5rem;
+    z-index: 499; flex-direction: column; gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-8px);
+    opacity: 0; transition: opacity 0.25s, transform 0.25s;
+  }
+  .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+  .mobile-nav a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 0.75rem; border-radius: 10px; border-bottom: 1px solid rgba(122,154,126,0.1); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover, .mobile-nav a.cur { background: rgba(122,154,126,0.08); color: var(--moss); }
+  .mobile-nav .mobile-shop-btn { margin-top: 0.75rem; background: var(--moss); color: white; text-align: center; padding: 0.75rem; border-radius: 20px; font-size: 0.9rem; border-bottom: none; letter-spacing: 0.05em; }
+  .mobile-nav .mobile-shop-btn:hover { background: var(--sage); }
+
+  @media (max-width: 768px) {
+    header nav { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* ── 聯絡我們質感設計 ── */
+  .contact-hero {
+    margin-top: 72px;
+    background: linear-gradient(135deg, rgba(232,240,233,0.8) 0%, rgba(201,169,122,0.15) 100%);
+    padding: 80px 2rem 160px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+    background: linear-gradient(to top, var(--warm-white), transparent);
+  }
+  .hero-eyebrow {
+    display: inline-block; font-size: 0.72rem; letter-spacing: 0.25em;
+    color: var(--moss); text-transform: uppercase; margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .contact-hero h1 {
+    font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.5rem);
+    color: var(--charcoal); font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .contact-hero h1 em { font-style: italic; color: var(--moss); }
+  .contact-hero p {
+    font-size: 0.95rem; color: var(--soft-gray); max-width: 500px;
+    margin: 0 auto; line-height: 1.8;
+  }
+
+  /* ── 內容區塊 ── */
+  .contact-main {
+    max-width: 1000px; margin: -80px auto 100px; padding: 0 2rem;
+    position: relative; z-index: 10;
+  }
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px;
+    background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  
+  /* 左側資訊區 */
+  .contact-info {
+    background: var(--cream);
+    padding: 3.5rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .info-group { margin-bottom: 2.5rem; }
+  .info-group:last-child { margin-bottom: 0; }
+  .info-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; opacity: 0.8; }
+  .info-lbl {
+    font-size: 0.7rem; letter-spacing: 0.15em; color: var(--sage);
+    text-transform: uppercase; margin-bottom: 0.4rem; display: block; font-weight: 600;
+  }
+  .info-val { font-family: var(--serif); font-size: 1.15rem; color: var(--charcoal); font-weight: 500; }
+  .info-val a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .info-val a:hover { color: var(--moss); }
+  .info-sub { font-size: 0.8rem; color: var(--soft-gray); margin-top: 0.3rem; display: block; }
+  
+  /* 社交按鈕 */
+  .social-row { display: flex; gap: 0.8rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .s-btn {
+    width: 40px; height: 40px; border-radius: 50%; background: white; border: 1px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--moss);
+    font-size: 0.8rem; font-weight: 600; transition: all 0.3s;
+  }
+  .s-btn:hover { background: var(--moss); color: white; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,103,65,0.15); }
+
+  /* 右側表單區 */
+  .contact-form-area { padding: 3.5rem 4rem 3.5rem 2rem; }
+  .form-title { font-family: var(--serif); font-size: 1.4rem; color: var(--charcoal); margin-bottom: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.75rem; color: var(--soft-gray); margin-bottom: 0.5rem; letter-spacing: 0.05em; font-weight: 500; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.9rem 1rem; border: 1.5px solid var(--light-gray); border-radius: 12px;
+    font-family: var(--sans); font-size: 0.9rem; outline: none; transition: all 0.3s;
+    background: #fafaf8; color: var(--charcoal);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--sage); background: white; box-shadow: 0 4px 12px rgba(122,154,126,0.06);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  
+  .btn-submit {
+    width: 100%; padding: 1.1rem; background: var(--moss); color: white; border: none; border-radius: 30px;
+    font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s; letter-spacing: 0.1em;
+    margin-top: 1rem; font-family: var(--sans); display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,103,65,0.25); }
+
+  /* ── 頁尾 Footer ── */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; text-align: center; }
+  .footer-brand { font-family: 'Zen Antique', serif; font-size: 1.5rem; color: white; margin-bottom: 1rem; }
+  .footer-info { font-size: 0.75rem; letter-spacing: 0.05em; }
+
+  /* RWD */
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 0; }
+    .contact-form-area { padding: 3rem 2.5rem; }
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .contact-main { margin-top: -50px; padding: 0 1.2rem; }
+    .contact-hero { padding: 60px 1.5rem 120px; }
+    .contact-hero h1 { font-size: 2rem; }
+    .contact-info { padding: 2.5rem 1.5rem; }
+    .contact-form-area { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="HiBOU Logo" style="height:44px;width:auto;">
+    </a>
+
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="hibou-6gauze.html">六重紗系列</a>
+      <a href="hibou-windshield.html">寶寶我最罩</a>
+      <a href="hibou-clips.html">隨身配件</a>
+      
+      <div class="nav-item-dropdown">
+        <a href="shop-all.html">全站商品 ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop-all.html#clothing">穿著衣物</a>
+          <a href="shop-all.html#cleaning">清潔沐浴</a>
+          <a href="shop-all.html#toys">早教玩具</a>
+          <a href="shop-all.html#giftbox">禮盒客製</a>
+          <div class="dropdown-divider"></div>
+          <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">查看全部商品</a>
+        </div>
+      </div>
+      
+      <a href="hibou-journal.html">喜福生活誌</a>
+      <a href="news-list.html">最新消息</a>
+      <a href="contact.html" class="cur">聯絡我們</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-cart-nav" onclick="toggleCart()">
+          🛒<span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">首頁</a>
+  <a href="hibou-6gauze.html">六重紗系列</a>
+  <a href="hibou-windshield.html">寶寶我最罩</a>
+  <a href="hibou-clips.html">隨身配件</a>
+  <a href="shop-all.html" style="color: var(--moss); font-weight: 500;">全站商品總覽 ✨</a>
+  <a href="hibou-journal.html">喜福生活誌</a>
+  <a href="news-list.html">最新消息</a>
+  <a href="contact.html" class="cur">聯絡我們</a>
+  <a href="checkout.html" class="mobile-shop-btn">前往結帳</a>
+</nav>
+
+<div class="contact-hero">
+  <span class="hero-eyebrow">Contact Us</span>
+  <h1>我們隨時為您<em>解答</em></h1>
+  <p>無論是商品選購建議、訂單查詢或是合作提案，<br>喜福生活苑都非常期待聽見您的聲音。</p>
+</div>
+
+<main class="contact-main">
+  <div class="contact-layout">
+    
+    <div class="contact-info">
+      <div class="info-group">
+        <span class="info-icon">📞</span>
+        <span class="info-lbl">客服專線</span>
+        <div class="info-val">04-2773247</div>
+        <span class="info-sub">週一至週五 11:00 – 17:00</span>
+      </div>
+
+      <div class="info-group">
+        <span class="info-icon">✉️</span>
+        <span class="info-lbl">電子信箱</span>
+        <div class="info-val"><a href="mailto:service@hibou.com.tw">service@hibou.com.tw</a></div>
+      </div>
+
+      <div class="info-group">
+        <span class="info-icon">🏠</span>
+        <span class="info-lbl">品牌工作室</span>
+        <div class="info-val">彰化縣鹿港鎮</div>
+        <span class="info-sub">職人工作坊（採預約制參觀）</span>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="s-btn">FB</a>
+        <a href="#" class="s-btn">IG</a>
+        <a href="#" class="s-btn">YT</a>
+      </div>
+    </div>
+
+    <div class="contact-form-area">
+      <h2 class="form-title">傳送訊息給我們</h2>
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label>您的姓名 Name</label>
+            <input type="text" placeholder="王小明">
+          </div>
+          <div class="form-group">
+            <label>聯絡電話 Phone</label>
+            <input type="tel" placeholder="09XX-XXX-XXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>電子信箱 Email</label>
+          <input type="email" placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label>諮詢類別 Category</label>
+          <select>
+            <option>請選擇...</option>
+            <option>產品選購諮詢</option>
+            <option>訂單配送進度</option>
+            <option>售後服務 / 退換貨</option>
+            <option>商業合作洽談</option>
+            <option>其他事項</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>訊息內容 Message</label>
+          <textarea placeholder="請寫下您的疑問或需求，我們將盡快回覆您..."></textarea>
+        </div>
+        <button type="button" class="btn-submit" onclick="alert('訊息已成功送出！客服人員會盡快與您聯繫。')">
+          傳送訊息 <span style="font-size: 1.2rem;">→</span>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">HiBOU 喜福生活苑</div>
+    <p class="footer-info">© 2026 HiBOU 喜福生活苑 ｜ Born for Babies 台灣職人製造</p>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; margin:0; font-weight: 500; color: var(--charcoal);">我的購物車</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.8rem; cursor:pointer; color: var(--charcoal);">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:500;">
+            <span style="color: var(--charcoal);">小計</span>
+            <span id="cartSubtotal" style="color:var(--moss); font-size:1.2rem; font-family:var(--serif);">NT$ 0</span>
+        </div>
+        <button style="width:100%; background:var(--moss); color:white; border:none; border-radius:50px; padding:1rem; font-size:1rem; cursor:pointer; letter-spacing: 0.05em; font-family: var(--sans);" onclick="location.href='checkout.html'">前往結帳</button>
+    </div>
+</div>
+
+<script>
+  // ── 購物車邏輯 ──
+  const CART_KEY = 'hibou_cart';
+  function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+  function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      if(forceOpen || !drawer.classList.contains('open')) {
+          overlay.classList.add('open'); drawer.classList.add('open'); updateCartUI();
+      } else {
+          overlay.classList.remove('open'); drawer.classList.remove('open');
+      }
+  }
+  function updateCartQty(index, delta) {
+      let cart = getCart(); cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+  }
+  function removeFromCart(index) {
+      let cart = getCart(); cart.splice(index, 1); saveCart(cart);
+  }
+  function updateCartUI() {
+      let cart = getCart();
+      let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalQty);
+      let container = document.getElementById('cartItemsContainer');
+      if(cart.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 3rem 0; color:var(--soft-gray);">購物車目前是空的喔！</div>';
+          document.getElementById('cartSubtotal').textContent = 'NT$ 0'; return;
+      }
+      let html = ''; let subtotal = 0;
+      cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          let variantStr = [item.color, item.size].filter(Boolean).join(' / ');
+          html += `
+          <div class="cart-item">
+              <img src="${item.image || ''}" alt="${item.name}">
+              <div class="cart-item-info">
+                  <div style="display:flex; justify-content:space-between;">
+                      <div class="cart-item-title">${item.name}</div>
+                      <button class="cart-remove" onclick="removeFromCart(${index})">移除</button>
+                  </div>
+                  <div class="cart-item-var">${variantStr}</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.5rem;">
+                      <div class="cart-qty-ctrl">
+                          <button onclick="updateCartQty(${index}, -1)">-</button>
+                          <span>${item.qty}</span>
+                          <button onclick="updateCartQty(${index}, 1)">+</button>
+                      </div>
+                      <div class="cart-item-price">NT$ ${(item.price * item.qty).toLocaleString()}</div>
+                  </div>
+              </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartSubtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+  }
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+
+  // ── 行動導航邏輯 ──
+  function toggleMenu() {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    const isOpen = nav.classList.contains('open');
+    nav.classList.toggle('open', !isOpen);
+    burger.classList.toggle('active', !isOpen);
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  }
+  document.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if(header) header.classList.toggle('scrolled', window.scrollY > 20);
+
+    const nav = document.getElementById('mobileNav');
+    const burger = document.getElementById('hamburger');
+    if (nav && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+  document.addEventListener('click',(e)=>{
+    const n=document.getElementById('mobileNav'),b=document.getElementById('hamburger');
+    if(n&&n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target)){
+      n.classList.remove('open'); b.classList.remove('active'); document.body.style.overflow='';
+    }
+  });
+</script>
+</body>
+</html>

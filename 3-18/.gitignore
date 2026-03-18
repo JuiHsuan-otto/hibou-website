@@ -1,0 +1,10 @@
+
+# Large video files
+images/2017-03 日本工廠拜訪/
+*.MOV
+*.mp4
+
+# Backup folders
+backup_*/
+過去式/
+hibou-web/
