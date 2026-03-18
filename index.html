@@ -5,9 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HiBOU 喜福生活苑｜Born for Babies・台灣製造嬰幼兒精品</title>
 <meta name="description" content="HiBOU 喜福生活苑，台灣本土嬰幼兒衣物品牌。SGS 檢驗合格，MIT 台灣製造，提供外出防護、寢具床品、日式著衣、清潔沐浴等精品。">
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="HiBOU 喜福生活苑">
+<meta property="og:locale"      content="zh_TW">
+<meta property="og:title"       content="HiBOU 喜福生活苑｜Born for Babies・台灣製造嬰幼兒精品">
+<meta property="og:description" content="HiBOU 喜福生活苑，台灣本土嬰幼兒衣物品牌。SGS 檢驗合格，MIT 台灣製造，提供外出防護、寢具床品、日式著衣、清潔沐浴等精品。">
+<meta property="og:image"       content="https://www.hibou.com.tw/images/og/home.jpg">
+<meta property="og:url"         content="https://www.hibou.com.tw/">
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="HiBOU 喜福生活苑｜Born for Babies・台灣製造嬰幼兒精品">
+<meta name="twitter:description" content="HiBOU 喜福生活苑，台灣本土嬰幼兒衣物品牌。SGS 檢驗合格，MIT 台灣製造，提供外出防護、寢具床品、日式著衣、清潔沐浴等精品。">
+<meta name="twitter:image"       content="https://www.hibou.com.tw/images/og/home.jpg">
+<!-- Canonical -->
+<link rel="canonical" href="https://www.hibou.com.tw/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --sage: #7A9A7E; --moss: #4A6741; --sand: #C9A97A; --cream: #FAF7F2;
@@ -28,7 +43,7 @@
   nav { display: flex; align-items: center; gap: 0.15rem; }
   nav > a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; padding: 0.4rem 0.6rem; border-radius: 20px; transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
   nav > a:hover { background: var(--light-gray); color: var(--moss); }
-  nav > a.active { color: var(--moss); font-weight: 500; }
+  nav > a.cur { color: var(--moss); font-weight: 500; }
   
   /* ── Dropdown Menu (下拉選單) ── */
   .nav-item-dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
@@ -224,7 +239,7 @@
   footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; }
   .footer-inner { max-width: 1200px; margin: 0 auto; }
   .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 3rem; }
-  .footer-brand .brand-name { font-family: 'Zen Antique', serif; font-size: 1.3rem; color: white; margin-bottom: 0.25rem; }
+  .footer-brand .brand-name { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; color: white; margin-bottom: 0.25rem; }
   .footer-brand .brand-tagline { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
   .footer-brand .brand-about { font-size: 0.82rem; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
   .social-links { display: flex; gap: 0.5rem; }
@@ -319,6 +334,23 @@
     .products-grid { grid-template-columns: 1fr; } 
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "HiBOU 喜福生活苑",
+  "url": "https://www.hibou.com.tw/",
+  "logo": "https://www.hibou.com.tw/images/logo.png",
+  "description": "HiBOU 喜福生活苑，台灣本土嬰幼兒衣物品牌。SGS 檢驗合格，MIT 台灣製造，提供外出防護、寢具床品、日式著衣、清潔沐浴等精品。",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+886-4-2773247",
+    "contactType": "customer service",
+    "areaServed": "TW",
+    "availableLanguage": "Chinese"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -329,7 +361,7 @@
     </a>
 
     <nav>
-      <a href="index.html" class="active">首頁</a>
+      <a href="index.html" class="cur">首頁</a>
       <a href="hibou-6gauze.html">六重紗系列</a>
       <a href="hibou-windshield.html">寶寶我最罩</a>
       <a href="hibou-clips.html">隨身配件</a>
@@ -362,7 +394,7 @@
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-  <a href="index.html" class="active">首頁</a>
+  <a href="index.html" class="cur">首頁</a>
   <a href="hibou-6gauze.html">六重紗系列</a>
   <a href="hibou-windshield.html">寶寶我最罩</a>
   <a href="hibou-clips.html">隨身配件</a>

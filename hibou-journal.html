@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>喜福生活誌｜親子旅遊・育兒教室・部落客推薦｜HiBOU 喜福生活苑</title>
 <meta name="description" content="喜福生活誌：跟著小鷹出去玩、媽咪育兒教室、部落客真實推薦。陪伴每一個家庭，走過育兒路上最美好的時光。">
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="HiBOU 喜福生活苑">
+<meta property="og:locale"      content="zh_TW">
+<meta property="og:title"       content="喜福生活誌｜親子旅遊・育兒教室・部落客推薦｜HiBOU 喜福生活苑">
+<meta property="og:description" content="喜福生活誌：跟著小鷹出去玩、媽咪育兒教室、部落客真實推薦。陪伴每一個家庭，走過育兒路上最美好的時光。">
+<meta property="og:image"       content="https://www.hibou.com.tw/images/og/journal.jpg">
+<meta property="og:url"         content="https://www.hibou.com.tw/hibou-journal.html">
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="喜福生活誌｜親子旅遊・育兒教室・部落客推薦｜HiBOU 喜福生活苑">
+<meta name="twitter:description" content="喜福生活誌：跟著小鷹出去玩、媽咪育兒教室、部落客真實推薦。陪伴每一個家庭，走過育兒路上最美好的時光。">
+<meta name="twitter:image"       content="https://www.hibou.com.tw/images/og/journal.jpg">
+<!-- Canonical -->
+<link rel="canonical" href="https://www.hibou.com.tw/hibou-journal.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Zen+Antique&display=swap" rel="stylesheet">
@@ -399,7 +414,7 @@
       <div>
         <div class="footer-brand-name">HiBOU 喜福生活苑</div>
         <div class="footer-brand-sub">Born for Babies</div>
-        <p class="footer-brand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：service@hibou.com.tw<br>營業時間：週一至週五 11:00–17:00</p>
+        <p class="footer-brand-info">台灣本土嬰幼兒精品品牌<br>TEL：04-2773247<br>Mail：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f2819780849b9197b29a9b909d87dc919d9fdc8685">[email&#160;protected]</a><br>營業時間：週一至週五 11:00–17:00</p>
       </div>
       <div class="footer-col">
         <h5>喜福生活誌</h5>
@@ -450,7 +465,7 @@
     </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── 購物車共用邏輯 ──
   const CART_KEY = 'hibou_cart';
   function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
@@ -533,11 +548,4 @@
       if(!e.isIntersecting)return;
       const sibs = Array.from(e.target.parentElement.querySelectorAll('.rv:not(.in)'));
       const idx = sibs.indexOf(e.target);
-      setTimeout(()=>e.target.classList.add('in'), Math.max(0,idx)*80);
-      rvObs.unobserve(e.target);
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
-</script>
-</body>
-</html>
+      setTimeout(()=>e.target.class
